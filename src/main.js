@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui';
-// import './style/index.css';
+import './style/index.css';
 import axios from 'axios';
 import selfComponents from './components';
 

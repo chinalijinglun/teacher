@@ -11,6 +11,7 @@ import reservation1 from '@/pages/applyProcess/reservation1'
 import contract from '@/pages/applyProcess/contract'
 import center from '@/pages/center/soon'
 import schedule from '@/pages/schedule/schedule'
+import course from '@/pages/course/myCourses'
 
 Vue.use(Router)
 
@@ -94,6 +95,17 @@ export default new Router({
                 {
                     path: '',
                     component: schedule
+                }
+            ]
+        },{
+            title: '我的课程',
+            path: '/course',
+            name: 'course',
+            component: main,
+            children: [
+                {
+                    path: '',
+                    component: course
                 }
             ]
         }
