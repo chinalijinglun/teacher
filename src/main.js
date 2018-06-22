@@ -10,6 +10,9 @@ import selfComponents from './components';
 
 import fullCalendar from 'vue-fullcalendar'
 
+// import myVueEditor from 'my-vue-editor'
+// Vue.use(myVueEditor, options)
+
 Vue.component('full-calendar', fullCalendar)
 
 Vue.use(ElementUI);
