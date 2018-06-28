@@ -4,16 +4,18 @@
     <div class="main-text">
       <router-view/>
     </div>
-    
+    <footers></footers>
   </div>
 </template>
 
 <script>
 import headers from '@/components/header'
+import footers from '@/components/footer'
 export default {
   name: 'App',
   components:{
-    headers
+    headers,
+    footers
   }
 }
 </script>
