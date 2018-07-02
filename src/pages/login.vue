@@ -11,8 +11,8 @@
                 </span>
             </div>
             <div class="inps">
-                <input type="text" class="" placeholder="Email">
-                <input type="text" placeholder="Password">
+                <input type="text" v-model="form.username" class="" placeholder="Email">
+                <input type="password" v-model="form.password" placeholder="Password">
             </div>
             <div class="remember-num">
                 <input type="checkbox" class="check">
@@ -20,7 +20,7 @@
                     <span>Keep me signed in.</span>
                 </div>
             </div>
-            <button class="btn">登录</button>
+            <button class="btn" @click="login">登录</button>
             <div class="regist-now">
                 Forgot your password?
             </div>
@@ -29,9 +29,27 @@
 </template>
 
 <script>
-
+import {
+	authLoginPost
+} from '@/api/auth'
+export default {
+	data() {
+		return {
+			form: {
+				username: '',
+				password: ''
+			}
+		}
+	},
+	methods: {
+		login() {
+			authLoginPost(this.form).then(resp => {
+				console.log(resp);
+			})
+		}
+	}
+}
 </script>
-
 <style scoped>
     .login{
         height: 600px;

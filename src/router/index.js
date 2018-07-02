@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import regist from '@/pages/regist/email'
 import login from '@/pages/login'
 import main from '@/pages/main'
@@ -28,230 +29,230 @@ import addResult from '@/pages/course/addResult'
 Vue.use(Router)
 
 export default new Router({
-    routes: [
-        //注册
-        //邮箱注册
-        {
-            title: '注册页',
-            path: '/regist',
-            name: 'regist',
-            component: regist
-        },
-        //登录
-        {
-            title: '登录',
-            path: '/login',
-            name: 'login',
-            component: login
-        },
-        {
-            title: '基本信息',
-            path: '/basic',
-            name: 'basic',
-            component: basic
-        },
-        {
-            title: '基本信息1',
-            path: '/basic1',
-            name: 'basic1',
-            component: basic1
-        },
-        {
-            title: '基本信息2',
-            path: '/basic2',
-            name: 'basic2',
-            component: basic2
-        },
-        {
-            title: '预约面试',
-            path: '/reservation',
-            name: 'reservation',
-            component: reservation
-        },
-        {
-            title: '预约面试',
-            path: '/reservation1',
-            name: 'reservation1',
-            component: reservation1
-        },
-        {
-            title: '签约',
-            path: '/contract',
-            name: 'contract',
-            component: contract
-        },
-        {
-            // 主页
-            title: '首页',
-            path: '/main',
-            name: 'main',
-            component: main,
-        },
-        {
-            title: '个人中心',
-            path: '/center',
-            name: 'center',
-            component: main,
-            children: [
-                {
-                    path: '',
-                    component: center
-                }
-            ]
-        },{
-            title: '课程表',
-            path: '/schedule',
-            name: 'schedule',
-            component: main,
-            children: [
-                {
-                    path: '',
-                    component: schedule
-                }
-            ]
-        },{
-            title: '我的课程',
-            path: '/course',
-            name: 'course',
-            component: main,
-            children: [
-                {
-                    path: '',
-                    component: course
-                }
-            ]
-        },{
-            title: '已上课程',
-            path: '/finish-course',
-            name: 'finish-course',
-            component: main,
-            children: [
-                {
-                    path: '',
-                    component: finishCourse
-                }
-            ]
-        },{
-            title: '作业',
-            path: '/homework',
-            name: 'homework',
-            component: main,
-            children: [
-                {
-                    path: '',
-                    component: homework
-                }
-            ]
-        },{
-            title: '查看作业',
-            path: '/check-homework',
-            name: 'check-homework',
-            component: main,
-            children: [
-                {
-                    path: '',
-                    component: checkHomework
-                }
-            ]
-        },{
-            title: '作业点评',
-            path: '/comment',
-            name: 'comment',
-            component: main,
-            children: [
-                {
-                    path: '',
-                    component: comment
-                }
-            ]
-        },{
-            title: '作业点评',
-            path: '/evaluate',
-            name: 'evaluate',
-            component: main,
-            children: [
-                {
-                    path: '',
-                    component: evaluate
-                }
-            ]
-        },{
-            title: '已约课程',
-            path: '/dated-course',
-            name: 'dated-course',
-            component: main,
-            children: [
-                {
-                    path: '',
-                    component: datedCourse
-                }
-            ]
-        },{
-            title: '上传课件',
-            path: '/uploading-courseware',
-            name: 'uploading-courseware',
-            component: main,
-            children: [
-                {
-                    path: '',
-                    component: uploadingCourseware
-                }
-            ]
-        },{
-            title: '课程总结',
-            path: '/summary',
-            name: 'summary',
-            component: main,
-            children: [
-                {
-                    path: '',
-                    component: summary
-                }
-            ]
-        },{
-            title: '成绩单',
-            path: '/report',
-            name: 'report',
-            component: main,
-            children: [
-                {
-                    path: '',
-                    component: report
-                }
-            ]
-        },{
-            title: '成绩单',
-            path: '/common',
-            name: 'common',
-            component: main,
-            children: [
-                {
-                    path: '',
-                    component: common
-                }
-            ]
-        },{
-            title: '添加评价',
-            path: '/add-evaluate',
-            name: 'add-evaluate',
-            component: main,
-            children: [
-                {
-                    path: '',
-                    component: addEvaluate
-                }
-            ]
-        },{
-            title: '添加评价',
-            path: '/add-result',
-            name: 'add-result',
-            component: main,
-            children: [
-                {
-                    path: '',
-                    component: addResult
-                }
-            ]
-        }
-    ]
+	routes: [
+		//注册
+		//邮箱注册
+		{
+			title: '注册页',
+			path: '/regist',
+			name: 'regist',
+			component: regist
+		},
+		//登录
+		{
+			title: '登录',
+			path: '/login',
+			name: 'login',
+			component: login
+		},
+		{
+			title: '基本信息',
+			path: '/basic',
+			name: 'basic',
+			component: basic
+		},
+		{
+			title: '基本信息1',
+			path: '/basic1',
+			name: 'basic1',
+			component: basic1
+		},
+		{
+			title: '基本信息2',
+			path: '/basic2',
+			name: 'basic2',
+			component: basic2
+		},
+		{
+			title: '预约面试',
+			path: '/reservation',
+			name: 'reservation',
+			component: reservation
+		},
+		{
+			title: '预约面试',
+			path: '/reservation1',
+			name: 'reservation1',
+			component: reservation1
+		},
+		{
+			title: '签约',
+			path: '/contract',
+			name: 'contract',
+			component: contract
+		},
+		{
+			// 主页
+			title: '首页',
+			path: '/main',
+			name: 'main',
+			component: main,
+		},
+		{
+			title: '个人中心',
+			path: '/center',
+			name: 'center',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: center
+				}
+			]
+		}, {
+			title: '课程表',
+			path: '/schedule',
+			name: 'schedule',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: schedule
+				}
+			]
+		}, {
+			title: '我的课程',
+			path: '/course',
+			name: 'course',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: course
+				}
+			]
+		}, {
+			title: '已上课程',
+			path: '/finish-course',
+			name: 'finish-course',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: finishCourse
+				}
+			]
+		}, {
+			title: '作业',
+			path: '/homework',
+			name: 'homework',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: homework
+				}
+			]
+		}, {
+			title: '查看作业',
+			path: '/check-homework',
+			name: 'check-homework',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: checkHomework
+				}
+			]
+		}, {
+			title: '作业点评',
+			path: '/comment',
+			name: 'comment',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: comment
+				}
+			]
+		}, {
+			title: '作业点评',
+			path: '/evaluate',
+			name: 'evaluate',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: evaluate
+				}
+			]
+		}, {
+			title: '已约课程',
+			path: '/dated-course',
+			name: 'dated-course',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: datedCourse
+				}
+			]
+		}, {
+			title: '上传课件',
+			path: '/uploading-courseware',
+			name: 'uploading-courseware',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: uploadingCourseware
+				}
+			]
+		}, {
+			title: '课程总结',
+			path: '/summary',
+			name: 'summary',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: summary
+				}
+			]
+		}, {
+			title: '成绩单',
+			path: '/report',
+			name: 'report',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: report
+				}
+			]
+		}, {
+			title: '成绩单',
+			path: '/common',
+			name: 'common',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: common
+				}
+			]
+		}, {
+			title: '添加评价',
+			path: '/add-evaluate',
+			name: 'add-evaluate',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: addEvaluate
+				}
+			]
+		}, {
+			title: '添加评价',
+			path: '/add-result',
+			name: 'add-result',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: addResult
+				}
+			]
+		}
+	]
 })

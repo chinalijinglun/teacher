@@ -5,10 +5,12 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui';
 import './style/index.css';
-import axios from 'axios';
-import selfComponents from './components';
-
 import fullCalendar from 'vue-fullcalendar'
+
+import selfComponents from './components';
+import utils from './utils';
+import store from './store';
+
 
 // import myVueEditor from 'my-vue-editor'
 // Vue.use(myVueEditor, options)
@@ -17,18 +19,15 @@ Vue.component('full-calendar', fullCalendar)
 
 Vue.use(ElementUI);
 Vue.use(selfComponents);
+Vue.use(utils);
+
 Vue.config.productionTip = false;
 
-const baseAxios = axios.create({
-    baseURL: 'http://39.106.143.18:5000',
-    headers: { Accept: 'application/json; charset=utf-8' }
-});
-Vue.prototype.baseAxios = baseAxios;
 /* eslint-disable no-new */
-
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
-})
+});
