@@ -14,14 +14,20 @@ export const authLoginPost = form => {
   })
 };
 
-export const authRegisterPost = form => baseAxios.post('/auth/register',form).then(resp => {
-  store.commit('auth/setUserName', '');
-  store.commit('auth/setAuthorization', '');
-  return resp;
-});
+export const authRegisterPost = form => {
+  form.usertype = store.state.auth.userType;
+  return baseAxios.post('/auth/register',form).then(resp => {
+    store.commit('auth/setUserName', '');
+    store.commit('auth/setAuthorization', '');
+    return resp;
+  })
+};
 
-export const authResetpasswordPost = form => baseAxios.post('/auth/resetpassword',form).then(resp => {
-  store.commit('auth/setUserName', '');
-  store.commit('auth/setAuthorization', '');
-  return resp;
-});
+export const authResetpasswordPost = form => {
+  form.usertype = store.state.auth.userType;
+  return baseAxios.post('/auth/resetpassword',form).then(resp => {
+    store.commit('auth/setUserName', '');
+    store.commit('auth/setAuthorization', '');
+    return resp;
+  });
+};
