@@ -23,6 +23,11 @@ Vue.use(utils);
 
 Vue.config.productionTip = false;
 
+Vue.prototype.$loginOut = function() {
+  router.push('/login');
+  store.dispatch('auth/loginOut')
+}
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

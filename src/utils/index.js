@@ -20,6 +20,11 @@ import {
   getLocalStorage,
   deleteLocalStorage
 } from './localStorage';
+import {
+  setSession,
+  getSession,
+  deleteSession
+} from './session'
 
 import * as enums from './enums';
 import {
@@ -56,6 +61,11 @@ const install = (Vue) => {
   Vue.prototype.$getQueryParams = getQueryParams;
   Vue.prototype.$getNopageQueryParams = getNopageQueryParams;
   Vue.prototype.$deleteEmptyProps = deleteEmptyProps;
+
+  
+  Vue.prototype.$setSession = setSession;
+  Vue.prototype.$getSession = getSession;
+  Vue.prototype.$deleteSession = deleteSession;
 
   // enum start
   // 有效状态

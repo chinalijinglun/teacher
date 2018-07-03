@@ -15,8 +15,8 @@
 					<div class="phone-left">
 						Your name
 					</div>
-					<input type="text" class="register" placeholder="First name">
-					<input type="text" class="register" placeholder="Last name">
+					<input type="text" class="register" v-model="form.first_name" placeholder="First name">
+					<input type="text" class="register" v-model="form.last_name" placeholder="Last name">
 				</div>
 				<div class="phone">
 					<div class="phone-left">
@@ -29,9 +29,9 @@
 						Verification code
 					</div>
 					<div class="inps">
-						<input type="text" class="yan-num" placeholder="Get code from your Email">
-						<div class="click-btn" @click="getVerifyCode">
-							Get Code
+						<input type="text" class="yan-num" v-model="form.verify_code" placeholder="Get code from your Email">
+						<div class="click-btn" ref="countDown" @click="getVerifyCode">
+							{{verifyBtn.text}}
 						</div>
 					</div>
 				</div>
@@ -39,28 +39,29 @@
 					<div class="phone-left">
 						Get Code
 					</div>
-					<input type="text" class="inps" placeholder="at least 6 characters">
+					<input type="password" class="inps" v-model="form.password" placeholder="at least 6 characters">
 				</div>
 				<div class="phone">
 					<div class="phone-left">
 						Re-enter password
 					</div>
-					<input type="text" class="inps" placeholder="at least 6 characters">
+					<input type="password" class="inps" v-model="repass" placeholder="at least 6 characters">
 				</div>
 				<div class="checkbox">
-					<input type="checkbox">
+					<input type="checkbox" v-model="agree">
 					<span>我已阅读并同意
 						<span class="instructor">《UStutor用户注册协议》</span>
 					</span>
 				</div>
-				<button class="regist-now">立即注册</button>
+				<button class="regist-now" @click="regist">立即注册</button>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
 import {
-	authEmailverifyPost
+	authEmailverifyPost,
+	authRegisterPost 
 } from '@/api/auth'
 export default {
   name: "phone",
@@ -72,7 +73,13 @@ export default {
         username: "",
         password: "",
         verify_code: ""
-      }
+      },
+			repass: '',
+			verifyBtn: {
+				status: true,
+				text: 'Get Code'
+			},
+			agree: false
     };
   },
 	methods: {
@@ -117,16 +124,43 @@ export default {
 			}
 			return true;
 		},
+		countDown(count) {
+			if(count === 0) {
+				this.verifyBtn.status = true;
+				this.verifyBtn.text = 'Get Code';
+				return;
+			} else {
+				this.verifyBtn.status = false;
+				this.verifyBtn.text = `${count}S`;
+				setTimeout(() => {
+					this.countDown(--count);
+				}, 1000);
+			}
+		},
 		getVerifyCode() {
+			if(!this.verifyBtn.status) return
 			const {
         username
 			} = this.form;
 			if(this.valid('verify_code')){
+				this.countDown(60);
 				authEmailverifyPost({
 					email_address: username
 				}).then(resp => {
 					console.log(resp);
 				});
+			}
+		},
+		regist() {
+			if(!this.agree) {
+				this.$message.error('请先同意《UStutor用户注册协议》');
+				return false;
+			}
+			if(this.valid()) {
+				return authRegisterPost(this.form).then(resp=> {
+					this.$message.success('注册成功，请重新登录！');
+					this.$router.push('/login');
+				})
 			}
 		}
 	}

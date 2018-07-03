@@ -7,7 +7,8 @@ import {
 const state = {
   authorization: getLocalStorage('authorization'),
   userName: getLocalStorage('userName'),
-  userType: 'Teacher'
+  userType: 'Teacher',
+  id: getLocalStorage('id')
 };
 
 const mutations = {
@@ -18,6 +19,18 @@ const mutations = {
   setUserName(state, v) {
     setLocalStorage('userName', v);
     state.userName = v;
+  },
+  setId(state, v) {
+    setLocalStorage('id', v);
+    state.id = v;
+  }
+}
+
+const actions = {
+  loginOut(context) {
+    context.commit('setAuthorization', '')
+    context.commit('setUserName', '')
+    context.commit('setId', '')
   }
 }
 

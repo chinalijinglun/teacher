@@ -103,14 +103,34 @@
 </template>
 
 <script>
+import { userinfo,auth,basicCache } from '@/mixins';
+
 export default {
+  name: 'basicInformation',
   data() {
     return {
-      data1: []
+      form: {
+        first_name: '',
+        middle_name: '',
+        last_name: '',
+        gender: '',
+        email: '',
+        mobile: '',
+        country: '',
+        state: '',
+        city: '',
+        street: '',
+        zipone: '',
+        timezone: ''
+      }
     };
   },
-  created() {},
+  mixins: [ userinfo, auth, basicCache ],
+  created() {
+
+  },
   methods: {
+
 	}
 };
 </script>

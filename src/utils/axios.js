@@ -12,7 +12,7 @@ const baseAxios = axios.create({
 });
 
 baseAxios.interceptors.request.use(config => {
-  // config.headers['authorization'] = store.state.auth.authorization;
+  config.headers['authorization'] = store.state.auth.authorization;
   // config.headers['lang'] = 1000000;
   return config;
 }, error => {
@@ -27,7 +27,7 @@ baseAxios.interceptors.response.use(resp => {
     return Promise.reject(error);
   }
   if(error.response && error.response.data) {
-    Message.error(error.response.data.message);
+    Message.error(error.response.data.error || error.response.data.message || 'error');
   }
   return Promise.reject(error);
 });
