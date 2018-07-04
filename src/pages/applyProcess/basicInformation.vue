@@ -17,33 +17,35 @@
 		<div class="full-name">
 			<div class="name">
 				<label for="">*First Name</label><br/>
-				<input type="text">
+				<input type="text" v-model="form.first_name">
 			</div>
 			<div class="name">
 				<label for="">Middle Name</label><br/>
-				<input type="text">
+				<input type="text" v-model="form.middle_name">
 			</div>
 			<div class="name">
 				<label for="">Last Name</label><br/>
-				<input type="text">
+				<input type="text" v-model="form.last_name">
 			</div>
 		</div>
 		<div class="full-name male">
-			<h4>*Gender</h4>
-			<span><input type="radio">Female</span>
-			<span><input type="radio">Male</span>
-			<span><input type="radio">Prefer not to disclose</span>
+			<h4>*Gender</h4>  
+      <el-radio-group v-model="form.gender">
+        <el-radio :label="1">Female</el-radio>
+        <el-radio :label="2">Male</el-radio>
+        <el-radio :label="3">Prefer not to disclose</el-radio>
+      </el-radio-group>
 		</div>
 		<div class="full-name email">
 			<h4>*Contact Email</h4>
-			<input type="text">
+			<input v-model="form.email">
 		</div>
 		<div class="full-name phone">
 			<h4>*Contact Phone Number</h4>
 			<select>
-				<option value="">86</option>
+        <option v-for="(item, key) in $MOBILE_PRE" :value="key" :key="key">{{item}}</option>
 			</select>
-			<input type="text">
+			<input v-model="form.mobile">
 		</div>
 		<div class="full-name">
 			<div class="street">
@@ -57,7 +59,7 @@
 			<div class="street">
 				<span class="street-name">*State</span>
 				<span class="street-input">
-					<select v-model="form.state">
+					<select v-model="form.state" @change="handlerStateChange">
 						<option v-for="(item, index) in stateLs" :value="item.id" :key="index">{{item.name}}</option>
 					</select>
 				</span>
@@ -65,7 +67,7 @@
 			<div class="street">
 				<span class="street-name">*City</span>
 				<span class="street-input">
-					<select v-model="form.city">
+					<select v-model="form.city" @change="handlerCityChange">
 						<option v-for="(item, index) in cityLs" :value="item.id" :key="index">{{item.name}}</option>
 					</select>
 				</span>
@@ -82,7 +84,7 @@
 				<span class="street-name">*Time Zone</span>
 				<span class="street-input">
 					<select name="">
-						<option value=""></option>
+						<option v-for="(item, key) in $TIME_ZONE" :value="key" :key="key">{{item}}</option>
 					</select>
 				</span>
 			</div>
@@ -90,14 +92,14 @@
 				<span class="street-name">*Zip Code</span>
 				<span class="street-input">
 					<select name="">
-						<option value=""></option>
+						<option v-for="(item, key) in $ZIP_CODE" :value="key" :key="key">{{item}}</option>
 					</select>
 				</span>
 			</div>
 		</div>
 	</div>
 	<div class="next-btn">
-		<button>下一步</button>
+		<button @click="$router.push('/basic2')">下一步</button>
 	</div>
 </div>
 </template>
@@ -161,6 +163,21 @@ export default {
       this.form.state = '';
       this.form.city = '';
       this.form.street = '';
+      return;
+    },
+    async handlerStateChange(e) {
+      const countryId = e.target.value;
+      this.cityLs = await this.getAreaByPid(countryId);
+      this.streetLs = [];
+      this.form.city = '';
+      this.form.street = '';
+      return;
+    },
+    async handlerCityChange(e) {
+      const countryId = e.target.value;
+      this.streetLs = await this.getAreaByPid(countryId);
+      this.form.street = '';
+      return;
     }
 	}
 };

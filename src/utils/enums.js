@@ -81,9 +81,17 @@ export const TEACHER_STATE_ZH = {
 };
 
 export const MOBILE_PRE = {
-  '+1': '美国/加拿大',
-  '+61': '澳大利亚',
+  '+1': '美国/加拿大(+1)',
+  '+61': '澳大利亚(+61)',
   '+86': '中国（+86）'
 }
 
-export const COUNTRY_IDS = [7, 140, 25, 99]
+export const COUNTRY_IDS = [7, 140, 25, 99];
+
+export const TIME_ZONE = {
+  '1': '测试1'
+}
+
+export const ZIP_CODE = {
+  '1': '测试1'
+}
