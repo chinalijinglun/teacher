@@ -1,6 +1,7 @@
 export default {
   created() {
-    this.form = JSON.parse(this.$getSession(this.$route.fullPath));
+    // const sform = this.$getSession(this.$route.fullPath);
+    // this.form = JSON.parse(this.$getSession(this.$route.fullPath));
   },
   watch: {
     form: {

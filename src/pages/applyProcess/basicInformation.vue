@@ -49,32 +49,32 @@
 			<div class="street">
 				<span class="street-name">*Country</span>
 				<span class="street-input">
-					<select name="">
-						<option value=""></option>
+					<select v-model="form.country" @change="handlerCountryChange">
+						<option v-for="(item, index) in countryLs" :value="item.id" :key="index">{{item.name}}</option>
 					</select>
 				</span>
 			</div>
 			<div class="street">
 				<span class="street-name">*State</span>
 				<span class="street-input">
-					<select name="">
-						<option value=""></option>
+					<select v-model="form.state">
+						<option v-for="(item, index) in stateLs" :value="item.id" :key="index">{{item.name}}</option>
 					</select>
 				</span>
 			</div>
 			<div class="street">
 				<span class="street-name">*City</span>
 				<span class="street-input">
-					<select name="">
-						<option value=""></option>
+					<select v-model="form.city">
+						<option v-for="(item, index) in cityLs" :value="item.id" :key="index">{{item.name}}</option>
 					</select>
 				</span>
 			</div>
 			<div class="street">
 				<span class="street-name">*Street</span>
 				<span class="street-input">
-					<select name="">
-						<option value=""></option>
+					<select v-model="form.street">
+						<option v-for="(item, index) in streetLs" :value="item.id" :key="index">{{item.name}}</option>
 					</select>
 				</span>
 			</div>
@@ -125,7 +125,11 @@ export default {
         street: '',
         zipone: '',
         timezone: ''
-      }
+      },
+      countryLs: [],
+      stateLs: [],
+      cityLs: [],
+      streetLs: []
     };
   },
   mixins: [ userinfo, auth, basicCache ],
@@ -137,9 +141,26 @@ export default {
       const filter = this.$json2filter({
         id: this.$COUNTRY_IDS
       })
-      regionBareGet(filter).then(resp => {
-        console.log(resp)
+      return regionBareGet(filter).then(resp => {
+        this.countryLs = resp.data.objects;
       })
+    },
+    getAreaByPid(pid) {
+      const filter = this.$json2filter({
+        pid: [pid]
+      })
+      return regionBareGet(filter).then(resp => {
+        return resp.data.objects;
+      })
+    },
+    async handlerCountryChange(e) {
+      const countryId = e.target.value;
+      this.stateLs = await this.getAreaByPid(countryId);
+      this.cityLs = [];
+      this.streetLs = [];
+      this.form.state = '';
+      this.form.city = '';
+      this.form.street = '';
     }
 	}
 };
