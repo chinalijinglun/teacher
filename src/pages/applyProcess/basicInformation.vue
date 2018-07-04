@@ -104,6 +104,9 @@
 
 <script>
 import { userinfo,auth,basicCache } from '@/mixins';
+import {
+  regionBareGet
+} from '@/api/region'
 
 export default {
   name: 'basicInformation',
@@ -127,10 +130,17 @@ export default {
   },
   mixins: [ userinfo, auth, basicCache ],
   created() {
-
+    this.getCountry();
   },
   methods: {
-
+    getCountry() {
+      const filter = this.$json2filter({
+        id: this.$COUNTRY_IDS
+      })
+      regionBareGet(filter).then(resp => {
+        console.log(resp)
+      })
+    }
 	}
 };
 </script>
