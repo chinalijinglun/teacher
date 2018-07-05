@@ -13,11 +13,11 @@
 			</ul>
 		</div>
 		<div class="basic-main basic2">
-			<h3>教育背景</h3>
-			<small>Please Start With your highest academic degree obtained</small>
+			<h3>教育背景 <small class="tishi"> Please Start With your highest academic degree obtained</small></h3>
+			
 
 			<div class="full-name basic1-degree">
-				<h4>Degree</h4>
+				<h4><span class="tishi">*</span>Degree</h4>
 				<el-radio-group v-model="form.degree">
 					<el-radio :label="1">本科</el-radio>
 					<el-radio :label="2">硕士</el-radio>
@@ -25,9 +25,10 @@
 					<el-radio :label="4">博士后</el-radio>
 				</el-radio-group>
 			</div>
+      <h3 class="xueli">学历 1</h3>
 			<div class="full-name">
 				<div class="street">
-					<span class="street-name">*Current Teaching Location</span>
+					<span class="street-name"><span class="tishi">*</span>Period</span>
 					<span class="street-input">
 						<select name="">
 							<option value=""></option>
@@ -35,7 +36,7 @@
 					</span>
 				</div>
 				<div class="street">
-					<span class="street-name">* Current Teaching State </span>
+					<span class="street-name none"><span class="tishi">*</span>Period</span>
 					<span class="street-input">
 						<select name="">
 							<option value=""></option>
@@ -45,24 +46,28 @@
 			</div>
 			<div class="full-name email">
 				<h4>
-					Current School Teaching At
+					<span class="tishi">*</span>School 
 				</h4>
 				<input type="text" placeholder="please input">
 			</div>
 			<div class="full-name email">
 				<h4>
-					Current School Teaching At
+					<span class="tishi">*</span>Major
 				</h4>
 				<input type="text" placeholder="please input">
 			</div>
 			<div class="full-name">
+        <h4>
+					<span class="tishi">*</span>Certificate
+				</h4>
 				<div class="full-name basic2-resume">
-					<span>上传简历</span>
+					<span>上传学历证明</span>
 					<span>已上传\预览</span>
 				</div>
 			</div>
+      <h3 class="xueli">学历 1</h3>
 			<div class="full-name">
-				<h4>*Current Teaching Academic Subject</h4>
+				<h4><span class="tishi">*</span>Period</h4>
 				<div class="street">
 					<span class="street-input">
 						<select name="">
@@ -80,23 +85,27 @@
 			</div>
 			<div class="full-name email">
 				<h4>
-					Current School Teaching At
+					<span class="tishi">*</span>School 
 				</h4>
 				<input type="text" placeholder="please input">
 			</div>
 			<div class="full-name email">
 				<h4>
-					Current School Teaching At
+					<span class="tishi">*</span>Major
 				</h4>
 				<input type="text" placeholder="please input">
 			</div>
+      <h4 class="h4">
+        <span class="tishi">*</span>Certificate
+      </h4>
 			<div class="full-name basic2-resume">
-				<span>上传简历</span>
+				<span>上传学历证明</span>
 				<span>已上传\预览</span>
 			</div>
 		</div>
 		<div class="next-btn">
-			<button>确定</button>
+      <button class="adds">增加教育背景</button>
+			<button>下一步</button>
 		</div>
 	</div>
 </template>
@@ -148,6 +157,36 @@ export default {
   overflow: hidden;
   margin-top: 20px;
   background: #ffffff;
+}
+
+.street .tishi{
+  display: inline;
+}
+.tishi{
+  margin: 0!important;
+  font-size: 12px;
+  color: #FF4433;
+}
+.none{
+  visibility: hidden;
+}
+.xueli{
+  font-size: 14px!important;
+  color: #333333;
+}
+.h4{
+  font-size: 14px;
+  color: #151515;
+  line-height: 16px;
+  font-weight: normal;
+}
+.next-btn button.adds{
+  font-size: 18px;
+  color: #FF8200;
+  background: #FFFFFF;
+  border: 1px solid #FF8200;
+  border-radius: 5px;
+  margin-right: 40px;
 }
 
 .basic-header {

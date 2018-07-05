@@ -13,17 +13,17 @@
             </ul>
         </div>
         <div class="basic-main basic2">
-            <h3>教学经历</h3>
-            <small>如果是已经退休的教师或目前不在学校任职，请填写最新一段教学经历</small>
+            <h3>教学经历 <small class="tishi"> 如果是已经退休的教师或目前不在学校任职，请填写最新一段教学经历</small></h3>
+            
             <div class="full-name email">
                 <h4>
-                    Current School Teaching At
+                    <span class="tishi">*</span>Current School Teaching At
                 </h4>
                 <input type="text" placeholder="please input">
             </div>
             <div class="full-name">
                 <div class="street">
-                    <span class="street-name">*Current Teaching Location</span>
+                    <span class="street-name"><span class="tishi">*</span>Current Teaching Location</span>
                     <span class="street-input">
                         <select name="">
                             <option value=""></option>
@@ -31,7 +31,7 @@
                     </span>
                 </div>
                 <div class="street">
-                    <span class="street-name">* Current Teaching State </span>
+                    <span class="street-name"><span class="tishi">*</span>Current Teaching State </span>
                     <span class="street-input">
                         <select name="">
                             <option value=""></option>
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="full-name">
-                <h4>*Current Teaching Academic Subject</h4>
+                <h4><span class="tishi">*</span>Current Teaching Academic Subject</h4>
                 <div class="street">
                     <span class="street-input">
                         <select name="">
@@ -61,7 +61,7 @@
             </div>
             <div class="full-name">
                 <div class="street">
-                    <span class="street-name">*Current Teaching Grade</span>
+                    <span class="street-name"><span class="tishi">*</span>Current Teaching Grade</span>
                     <span class="street-input">
                         <select name="">
                             <option value="">12</option>
@@ -79,24 +79,24 @@
                         </span>
                     <span>
                             <input type="checkbox">
-                            Kindergarten幼儿园
+                            Middle School初中
                         </span>
                     <span>
                             <input type="checkbox">
-                            Kindergarten幼儿园
+                            High School高中
                         </span>
                     <span>
                             <input type="checkbox">
-                            Kindergarten幼儿园
+                            College大学
                         </span>
                     <span>
                             <input type="checkbox">
-                            Kindergarten幼儿园
+                            Adults成人
                         </span>
                 </div>
             </div>
             <div class="full-name">
-                <h4>*Other Teaching Academic Subject</h4>
+                <h4><span class="tishi">*</span>Other Teaching Academic Subject</h4>
                 <div class="street">
                     <span class="street-input">
                         <select name="">
@@ -117,7 +117,7 @@
             </div>
             <div class="full-name">
                 <div class="street">
-                    <span class="street-name">*Current Teaching Grade</span>
+                    <span class="street-name">Other Teaching Grade</span>
                     <span class="street-input">
                         <select name="">
                             <option value=""></option>
@@ -127,7 +127,7 @@
             </div>
             <div class="full-name">
                 <div class="street">
-                    <span class="street-name">*Current Teaching Grade</span>
+                    <span class="street-name"><span class="tishi">*</span>Total Teaching Years</span>
                     <span class="street-input">
                         <select name="">
                             <option value=""></option>
@@ -135,6 +135,9 @@
                     </span>
                 </div>
             </div>
+            <h4 class="h4">
+                <span class="tishi">*</span>Most Current Resume
+            </h4>
             <div class="full-name basic2-resume">
                 <span>上传简历</span>
                 <span>已上传\预览</span>
@@ -173,6 +176,22 @@
 </script>
 
 <style scoped>
+    .h4{
+        font-size: 14px;
+        color: #151515;
+        line-height: 16px;
+        font-weight: normal;
+    }
+    .street .tishi{
+        display: inline;
+    }
+    .tishi{
+        margin: 0!important;
+        font-size: 12px;
+        color: #FF4433;
+    }
+
+
     .basicinfor {
         width: 1000px;
         min-height: 800px;
