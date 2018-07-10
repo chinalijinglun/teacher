@@ -19,131 +19,93 @@
 			<div class="full-name basic1-degree">
 				<h4><span class="tishi">*</span>Degree</h4>
 				<el-radio-group v-model="form.degree">
-					<el-radio :label="1">本科</el-radio>
-					<el-radio :label="2">硕士</el-radio>
-					<el-radio :label="3">博士</el-radio>
-					<el-radio :label="4">博士后</el-radio>
+					<el-radio :label="'bachelor_degree'">本科</el-radio>
+					<el-radio :label="'master_degree'">硕士</el-radio>
+					<el-radio :label="'doctor_degree'">博士</el-radio>
+					<el-radio :label="'post-doctoral'">博士后</el-radio>
 				</el-radio-group>
 			</div>
-      <h3 class="xueli">学历 1</h3>
-			<div class="full-name">
-				<div class="street">
-					<span class="street-name"><span class="tishi">*</span>Period</span>
-					<span class="street-input">
-						<select name="">
-							<option value=""></option>
-						</select>
-					</span>
-				</div>
-				<div class="street">
-					<span class="street-name none"><span class="tishi">*</span>Period</span>
-					<span class="street-input">
-						<select name="">
-							<option value=""></option>
-						</select>
-					</span>
-				</div>
-			</div>
-			<div class="full-name email">
-				<h4>
-					<span class="tishi">*</span>School 
-				</h4>
-				<input type="text" placeholder="please input">
-			</div>
-			<div class="full-name email">
-				<h4>
-					<span class="tishi">*</span>Major
-				</h4>
-				<input type="text" placeholder="please input">
-			</div>
-			<div class="full-name">
-        <h4>
-					<span class="tishi">*</span>Certificate
-				</h4>
-				<div class="full-name basic2-resume">
-					<span>上传学历证明</span>
-					<span>已上传\预览</span>
-				</div>
-			</div>
-      <h3 class="xueli">学历 1</h3>
-			<div class="full-name">
-				<h4><span class="tishi">*</span>Period</h4>
-				<div class="street">
-					<span class="street-input">
-						<select name="">
-							<option value=""></option>
-						</select>
-					</span>
-				</div>
-				<div class="street">
-					<span class="street-input">
-						<select name="">
-							<option value=""></option>
-						</select>
-					</span>
-				</div>
-			</div>
-			<div class="full-name email">
-				<h4>
-					<span class="tishi">*</span>School 
-				</h4>
-				<input type="text" placeholder="please input">
-			</div>
-			<div class="full-name email">
-				<h4>
-					<span class="tishi">*</span>Major
-				</h4>
-				<input type="text" placeholder="please input">
-			</div>
-      <h4 class="h4">
-        <span class="tishi">*</span>Certificate
-      </h4>
-			<div class="full-name basic2-resume">
-				<span>上传学历证明</span>
-				<span>已上传\预览</span>
-			</div>
+      <div v-for="(item, index) in form.education_history_ls" :key="index">
+        <h3 class="xueli">学历 {{index}}</h3>
+        <div class="full-name">
+          <h4><span class="tishi">*</span>Period</h4>
+          <div class="street">
+            <span class="street-input">
+              <el-date-picker
+                v-model="item.start"
+                type="date"
+                placeholder="选择日期">
+              </el-date-picker>
+            </span>
+          </div>
+          <div class="street">
+            <span class="street-input">
+              <el-date-picker
+                v-model="item.end"
+                type="date"
+                placeholder="选择日期">
+              </el-date-picker>
+            </span>
+          </div>
+        </div>
+        <div class="full-name email">
+          <h4>
+            <span class="tishi">*</span>School 
+          </h4>
+          <input type="text" placeholder="please input" v-model="item.schoole">
+        </div>
+        <div class="full-name email">
+          <h4>
+            <span class="tishi">*</span>Major
+          </h4>
+          <input type="text" placeholder="please input" v-model="item.major">
+        </div>
+        <h4 class="h4">
+          <span class="tishi">*</span>Certificate
+        </h4>
+        <div class="full-name basic2-resume">
+          <upload-button v-model="item.certificate" text="上传学历证明"></upload-button>
+        </div>
+      </div>
 		</div>
 		<div class="next-btn">
-      <button class="adds">增加教育背景</button>
-			<button>下一步</button>
+      <button class="adds" @click="addEducation">增加教育背景</button>
+			<button @click="nextStep">下一步</button>
 		</div>
 	</div>
 </template>
-
 <script>
+import EducationHistory from '@/model/EducationHistory';
+import { userinfo,auth,basicCache } from '@/mixins';
 export default {
+  name: 'basicInformation1',
+  mixins: [userinfo,auth,basicCache],
   data() {
     return {
       form: {
-        first_name: '',
-        middle_name: '',
-        last_name: '',
         degree: '',
-        email: '',
-        mobile: '',
-        country: '',
-        state: '',
-        city: '',
-        street: '',
-        zipone: '',
-        timezone: ''
+        education_history: '',
+        education_history_ls: [new EducationHistory({})]
       }
     };
   },
   created() {
-    //            this.sendAjax();
+
   },
   methods: {
-    sendAjax() {
-      var _that = this;
-      this.baseAxios
-        .post("/auth/smsverify", {
-          country_code: "86",
-          mobile_no: "15510591359"
-        })
-        .then(function(data) {
-          console.log(data);
-        });
+    valid() {
+      if(!this.degree) {
+        this.$message.error('请选择最高学历！')
+        return false;
+      }
+      return true;
+    },
+    addEducation() {
+      this.form.education_history_ls.push(new EducationHistory({}))
+    },
+    nextStep () {
+      this.form.education_history = JSON.stringify(this.form.education_history_ls.filter(item => item.start&&item.end&&item.certificate&&item.major&&item.school))
+      this.$router.push('/basic2')
     }
   }
 };
@@ -369,10 +331,6 @@ export default {
 .basic2-checkbox span input {
   margin-right: 7px;
 }
-
-.basic2-resume {
-}
-
 .basic2-resume span {
   display: inline-block;
   width: 198px;

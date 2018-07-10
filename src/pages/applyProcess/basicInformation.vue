@@ -67,18 +67,14 @@
 			<div class="street">
 				<span class="street-name">*City</span>
 				<span class="street-input">
-					<select v-model="form.city" @change="handlerCityChange">
+					<select v-model="form.city">
 						<option v-for="(item, index) in cityLs" :value="item.id" :key="index">{{item.name}}</option>
 					</select>
 				</span>
 			</div>
-			<div class="street">
+			<div class="street name">
 				<span class="street-name">*Street</span>
-				<span class="street-input">
-					<select v-model="form.street">
-						<option v-for="(item, index) in streetLs" :value="item.id" :key="index">{{item.name}}</option>
-					</select>
-				</span>
+				<input type="text" v-model="form.street">
 			</div>
 			<div class="street">
 				<span class="street-name">*Time Zone</span>
@@ -88,18 +84,14 @@
 					</select>
 				</span>
 			</div>
-			<div class="street">
+			<div class="street name">
 				<span class="street-name">*Zip Code</span>
-				<span class="street-input">
-					<select name="">
-						<option v-for="(item, key) in $ZIP_CODE" :value="key" :key="key">{{item}}</option>
-					</select>
-				</span>
+				<input type="text" v-model="form.zipone">
 			</div>
 		</div>
 	</div>
 	<div class="next-btn">
-		<button @click="$router.push('/basic2')">下一步</button>
+		<button @click="$router.push('/basic1')">下一步</button>
 	</div>
 </div>
 </template>
@@ -170,12 +162,6 @@ export default {
       this.cityLs = await this.getAreaByPid(countryId);
       this.streetLs = [];
       this.form.city = '';
-      this.form.street = '';
-      return;
-    },
-    async handlerCityChange(e) {
-      const countryId = e.target.value;
-      this.streetLs = await this.getAreaByPid(countryId);
       this.form.street = '';
       return;
     }
@@ -400,5 +386,11 @@ export default {
   left: 175px;
   top: 16px;
   pointer-events: none;
+}
+.street.name {
+  margin-right: 0;
+}
+.street.name input {
+  margin-top: 0;
 }
 </style>
