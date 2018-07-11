@@ -60,8 +60,12 @@
 						</select>
 					</span>
 				</div>
-				<div class="street basic2-input">
-					<input type="text">
+				<div class="street">
+					<span class="street-input">
+						<select name="">
+							<option value=""></option>
+						</select>
+					</span>
 				</div>
 			</div>
 			<div class="full-name">
@@ -69,25 +73,10 @@
 					<span class="street-name">
 						<span class="tishi">*</span>Current Teaching Grade
 					</span>
-				</div>
-				<div class="basic2-checkbox">
-					<span>
-						<input type="checkbox"> Kindergarten幼儿园
-					</span>
-					<span>
-						<input type="checkbox"> Elementary School小学
-					</span>
-					<span>
-						<input type="checkbox"> Middle School初中
-					</span>
-					<span>
-						<input type="checkbox"> High School高中
-					</span>
-					<span>
-						<input type="checkbox"> College大学
-					</span>
-					<span>
-						<input type="checkbox"> Adults成人
+					<span class="street-input">
+						<select name="">
+							<option value=""></option>
+						</select>
 					</span>
 				</div>
 			</div>
@@ -108,8 +97,12 @@
 						</select>
 					</span>
 				</div>
-				<div class="street basic2-input">
-					<input type="text">
+				<div class="street">
+					<span class="street-input">
+						<select name="">
+							<option value=""></option>
+						</select>
+					</span>
 				</div>
 			</div>
 			<div class="full-name">
