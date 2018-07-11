@@ -53,7 +53,7 @@
 						<span class="tishi">*</span>Current Teaching Grade
 					</span>
 					<el-select name="" v-model="form.cur.grade">
-						<el-option v-for="(item, key) in $GRADE" :value="key" :label="key" :key="key"></el-option>
+						<el-option v-for="(item, key) in $DEGREE_VALUE" :value="key" :label="item" :key="key"></el-option>
 					</el-select>
 				</div>
 			</div>
@@ -67,7 +67,7 @@
 				<div class="street">
 					<span class="street-name">Other Teaching Grade</span>
 					<el-select name="" v-model="form.other.grade">
-						<el-option v-for="(item, key) in $GRADE" :value="key" :label="key" :key="key"></el-option>
+						<el-option v-for="(item, key) in $DEGREE_VALUE" :value="key" :label="item" :key="key"></el-option>
 					</el-select>
 				</div>
 			</div>
@@ -87,7 +87,7 @@
 			</div>
 		</div>
 		<div class="next-btn">
-			<button>确定</button>
+			<button @click="submit">确定</button>
 		</div>
 	</div>
 </template>
@@ -97,6 +97,12 @@ import {
 	getCountry,
 	getRegionByPid
 } from '@/api/region'
+import {
+ 	teacherPutByTeacherid
+} from '@/api/teacher'
+import {
+	teacherHistoryPost
+} from '@/api/teacher_history'
 import { userinfo,auth,basicCache } from '@/mixins';
 export default {
 	mixins: [userinfo,auth,basicCache],
@@ -159,6 +165,56 @@ export default {
 		handlerCountryChange(id) {
 			this.form.cur_province = '';
 			this.getProvinceLs(id);
+		},
+		submit() {
+			const form1 = JSON.parse(this.$getSession('/basic'));
+			const form2 = JSON.parse(this.$getSession('/basic1'));
+			const form3 = this.form;
+			const form = {
+				...form1,
+				degree: form2.degree,
+				education_history: form2.education_history,
+				education_history: form2.education_history,
+				education_history: form2.education_history,
+				cur_school: form3.cur_school,
+				cur_country: form3.cur_country,
+				cur_province: form3.cur_province,
+				teacher_age: form3.teacher_age,
+				resume_url: form3.resume_url,
+				state: 3,
+				updated_at: new Date(),
+				updated_by: this.userName
+			};
+			const promise = [];
+			// 当前教育经历
+			promise.push(
+				teacherHistoryPost({
+					...form3.cur,
+					teacher_id: this.userId,
+					type: 2,
+					created_at: new Date(),
+					delete_flag: 1,
+					updated_at: new Date(),
+					updated_by: this.userName
+				})
+			);
+			// 其他教育经历
+			promise.push(
+				teacherHistoryPost({
+					...form3.other,
+					teacher_id: this.userId,
+					type: 1,
+					created_at: new Date(),
+					delete_flag: 1,
+					updated_at: new Date(),
+					updated_by: this.userName
+				})
+			);
+			// 更新教师资料
+			promise.push(teacherPutByTeacherid(this.userId,form));
+			Promise.all(promise).then(resp => {
+				this.$message.success('资料补充完成！');
+			})
 		}
 	}
 };

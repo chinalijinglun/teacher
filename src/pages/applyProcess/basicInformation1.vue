@@ -19,10 +19,10 @@
 			<div class="full-name basic1-degree">
 				<h4><span class="tishi">*</span>Degree</h4>
 				<el-radio-group v-model="form.degree">
-					<el-radio :label="'bachelor_degree'">本科</el-radio>
-					<el-radio :label="'master_degree'">硕士</el-radio>
-					<el-radio :label="'doctor_degree'">博士</el-radio>
-					<el-radio :label="'post-doctoral'">博士后</el-radio>
+					<el-radio :label="2">本科</el-radio>
+					<el-radio :label="4">硕士</el-radio>
+					<el-radio :label="5">博士</el-radio>
+					<el-radio :label="6">博士后</el-radio>
 				</el-radio-group>
 			</div>
       <div v-for="(item, index) in form.education_history_ls" :key="index">
@@ -30,29 +30,25 @@
         <div class="full-name">
           <h4><span class="tishi">*</span>Period</h4>
           <div class="street">
-            <span class="street-input">
-              <el-date-picker
-                v-model="item.start"
-                type="date"
-                placeholder="选择日期">
-              </el-date-picker>
-            </span>
+            <el-date-picker
+              v-model="item.start"
+              type="date"
+              placeholder="选择日期">
+            </el-date-picker>
           </div>
           <div class="street">
-            <span class="street-input">
-              <el-date-picker
-                v-model="item.end"
-                type="date"
-                placeholder="选择日期">
-              </el-date-picker>
-            </span>
+            <el-date-picker
+              v-model="item.end"
+              type="date"
+              placeholder="选择日期">
+            </el-date-picker>
           </div>
         </div>
         <div class="full-name email">
           <h4>
             <span class="tishi">*</span>School 
           </h4>
-          <input type="text" placeholder="please input" v-model="item.schoole">
+          <input type="text" placeholder="please input" v-model="item.school">
         </div>
         <div class="full-name email">
           <h4>
@@ -255,7 +251,7 @@ export default {
 }
 
 .street {
-  width: 210px;
+  margin-right: 10px;
   margin-bottom: 10px;
   float: left;
 }

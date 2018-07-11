@@ -79,7 +79,7 @@
 			<div class="street">
 				<span class="street-name">*Time Zone</span>
 				<span class="street-input">
-					<select name="">
+					<select name="" v-model="form.timezone">
 						<option v-for="(item, key) in $TIME_ZONE" :value="key" :key="key">{{item}}</option>
 					</select>
 				</span>
