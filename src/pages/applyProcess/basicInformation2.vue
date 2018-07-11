@@ -21,147 +21,144 @@
 				<h4>
 					<span class="tishi">*</span>Current School Teaching At
 				</h4>
-				<input type="text" placeholder="please input">
+				<input type="text" placeholder="please input" v-model="form.cur_school">
 			</div>
 			<div class="full-name">
 				<div class="street">
 					<span class="street-name">
-						<span class="tishi">*</span>Current Teaching Location</span>
-					<span class="street-input">
-						<select name="">
-							<option value=""></option>
-						</select>
+						<span class="tishi">*</span>Current Teaching Location
 					</span>
+					<el-select name="" v-model="form.cur_country" @change="handlerCountryChange">
+						<el-option v-for="(item, index) in countryLs" :key="index" :value="item.id" :label="item.name"></el-option>
+					</el-select>
 				</div>
 				<div class="street">
 					<span class="street-name">
-						<span class="tishi">*</span>Current Teaching State </span>
-					<span class="street-input">
-						<select name="">
-							<option value=""></option>
-						</select>
+						<span class="tishi">*</span>Current Teaching State 
 					</span>
+					<el-select name="" v-model="form.cur_province">
+						<el-option v-for="(item, index) in provinceLs" :key="index" :value="item.id" :label="item.name"></el-option>
+					</el-select>
 				</div>
 			</div>
 			<div class="full-name">
 				<h4>
-					<span class="tishi">*</span>Current Teaching Academic Subject</h4>
-				<div class="street">
-					<span class="street-input">
-						<select name="">
-							<option value=""></option>
-						</select>
-					</span>
-				</div>
-				<div class="street">
-					<span class="street-input">
-						<select name="">
-							<option value=""></option>
-						</select>
-					</span>
-				</div>
-				<div class="street">
-					<span class="street-input">
-						<select name="">
-							<option value=""></option>
-						</select>
-					</span>
-				</div>
+					<span class="tishi">*</span>Current Teaching Academic Subject
+				</h4>
+				<curriculum-select v-model="curSubjects"></curriculum-select>
 			</div>
 			<div class="full-name">
 				<div class="street">
 					<span class="street-name">
 						<span class="tishi">*</span>Current Teaching Grade
 					</span>
-					<span class="street-input">
-						<select name="">
-							<option value=""></option>
-						</select>
-					</span>
+					<el-select name="" v-model="form.cur.grade">
+						<el-option v-for="(item, key) in $GRADE" :value="key" :label="key" :key="key"></el-option>
+					</el-select>
 				</div>
 			</div>
 			<div class="full-name">
 				<h4>
-					<span class="tishi">*</span>Other Teaching Academic Subject</h4>
-				<div class="street">
-					<span class="street-input">
-						<select name="">
-							<option value=""></option>
-						</select>
-					</span>
-				</div>
-				<div class="street">
-					<span class="street-input">
-						<select name="">
-							<option value=""></option>
-						</select>
-					</span>
-				</div>
-				<div class="street">
-					<span class="street-input">
-						<select name="">
-							<option value=""></option>
-						</select>
-					</span>
-				</div>
+					<span class="tishi">*</span>Other Teaching Academic Subject
+				</h4>
+				<curriculum-select v-model="otherSubjects"></curriculum-select>
 			</div>
 			<div class="full-name">
 				<div class="street">
 					<span class="street-name">Other Teaching Grade</span>
-					<span class="street-input">
-						<select name="">
-							<option value=""></option>
-						</select>
-					</span>
+					<el-select name="" v-model="form.other.grade">
+						<el-option v-for="(item, key) in $GRADE" :value="key" :label="key" :key="key"></el-option>
+					</el-select>
 				</div>
 			</div>
 			<div class="full-name">
-				<div class="street">
+				<div class="street years">
 					<span class="street-name">
-						<span class="tishi">*</span>Total Teaching Years</span>
-					<span class="street-input">
-						<select name="">
-							<option value=""></option>
-						</select>
+						<span class="tishi">*</span>Total Teaching Years
 					</span>
+					<input type="text" placeholder="please input" v-model="form.teacher_age">
 				</div>
 			</div>
 			<h4 class="h4">
 				<span class="tishi">*</span>Most Current Resume
 			</h4>
 			<div class="full-name basic2-resume">
-				<span>上传简历</span>
-				<span @click="openIframe">已上传\预览</span>
+				<upload-button v-model="form.resume_url" text="上传简历"></upload-button>
 			</div>
 		</div>
 		<div class="next-btn">
 			<button>确定</button>
 		</div>
-		<iframe-dialog :visible.sync="visible" :src="src"></iframe-dialog>
 	</div>
 </template>
 
 <script>
+import {
+	getCountry,
+	getRegionByPid
+} from '@/api/region'
+import { userinfo,auth,basicCache } from '@/mixins';
 export default {
+	mixins: [userinfo,auth,basicCache],
+	watch: {
+		curSubjects(v) {
+			if(v[2]) {
+				this.form.cur.subject_id = v[2];
+			}
+		},
+		otherSubjects(v) {
+			if(v[2]) {
+				this.form.other.subject_id = v[2];
+			}
+		}
+	},
   data() {
     return {
 			form: {
 				cur_school: '',
+				cur_country: '',
+				cur_province: '',
+				cur: {
+					subject_id: '',
+					grade: ''
+				},
+				other: {
+					subject_id: '',
+					grade: ''
+				},
+				teacher_age: '',
+				resume_url: ''
 			},
 			visible: false,
 			src: '',
 			countryLs: [],
-			proviceLs: []
+			provinceLs: [],
+			curSubjects: [],
+			otherSubjects: []
     };
   },
   created() {
-
+		this.getCountry();
 	},
   methods: {
 		openIframe() {
 			this.src = this.$baseApiUrl + '/download/1c47b24a5f9a3c570e512964ee32fc3071a811d2d2a6f547a4e4587488ddf7f0';
 			console.log(this.src)
 			this.visible = true;
+		},
+		getCountry() {
+			return getCountry().then(resp => {
+				this.countryLs = resp.data.objects;
+			})
+		},
+		getProvinceLs() {
+			return getRegionByPid().then(resp => {
+				this.provinceLs = resp.data.objects;
+			})
+		},
+		handlerCountryChange(id) {
+			this.form.cur_province = '';
+			this.getProvinceLs(id);
 		}
 	}
 };
@@ -374,5 +371,14 @@ export default {
 }
 .basic2-resume span:first-child {
   margin-right: 200px;
+}
+.years input {
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	border-radius: 3px;
+	border: 1px solid #d8d8d8;
+	outline: none;
 }
 </style>
