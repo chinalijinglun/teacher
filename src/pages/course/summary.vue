@@ -17,10 +17,18 @@
         <div class="table">
             <div class="tab-bars">
                 <ul>
-                    <li>已上课程</li>
-                    <li>已约课程</li>
-                    <li class="click">课程总结</li>
-                    <li>成绩单</li>
+                    <li>
+                        <router-link :to="{path: '/finish-course', query: {'id': this.$route.query.id}}">已上课程</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{path: '/dated-course', query: {'id': this.$route.query.id}}">已约课程</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">课程总结</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">成绩单</router-link>
+                    </li>
                 </ul>
             </div>
             <div class="table-tit">
@@ -132,7 +140,7 @@ ul,li{
         background: #FAFAFA;
         border: 1px solid #DCDCDC;
     }
-    .tab-bars ul li{
+    .tab-bars ul li a{
         float: left;
         width: 150px;
         height: 50px;
@@ -141,11 +149,11 @@ ul,li{
         font-size: 16px;
         color: #666666;
         cursor: pointer;
+        text-decoration: none;
     }
-    .tab-bars ul li.click{
+    .tab-bars ul li a.router-link-active{
         background: #FFFFFF;
         border-top: 2px solid #FF8200;
-        color: #FF8200 
     }
     .table-tit{
         width: 740px;

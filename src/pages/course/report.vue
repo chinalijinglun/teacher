@@ -17,10 +17,18 @@
         <div class="table">
             <div class="tab-bars">
                 <ul>
-                    <li>已上课程</li>
-                    <li>已约课程</li>
-                    <li>课程总结</li>
-                    <li class="click">成绩单</li>
+                    <li>
+                        <router-link :to="{path: '/finish-course', query: {'id': this.$route.query.id}}">已上课程</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{path: '/dated-course', query: {'id': this.$route.query.id}}">已约课程</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">课程总结</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">成绩单</router-link>
+                    </li>
                 </ul>
             </div>
             <div class="add-report">
@@ -33,22 +41,56 @@
                 <div class="timer">时间</div>
                 <div class="oparet">操作</div>
             </div>
-            <div class="list">
-                <div class="course-name">Jesse Chen</div>
-                <div class="state">名称1</div>
-                <div class="timer">2018.5.1-2018.6.1</div>
+            <div class="list" v-for="(item, index) in tableData" :key="item.id">
+                <div class="course-name">{{item.student_name}}</div>
+                <div class="state">{{item.report_card_name}}</div>
+                <div class="timer">{{item.start}}-{{item.end}}</div>
                 <div class="oparet">
                     <span>查看</span>
                     <span>删除</span>
                 </div>
             </div>
+            <el-row>
+				<el-pagination
+					@current-change="handleCurrentChange"
+					:current-page.sync="form.page_no"
+					:page-size="form.page_limit"
+					layout="prev, pager, next, jumper"
+					:total="total">
+				</el-pagination>
+			</el-row>
         </div>
     </div>
 </template>
-
 <script>
+    import { teacherMyCourseResult } from  '@/api/teacher'
     export default {
-        
+        data() {
+            return {
+                form : {
+                    course_id: this.$route.query.id,
+                    page_limit: 10,
+                    page_no: 1
+                },
+                total: 0,
+                tableData: []
+            }
+        },
+        created() {
+            this.query();
+        },
+        methods: {
+            handleCurrentChange(page) {
+                this.page_no = page;
+                this.query();
+            },
+            query() {
+                return teacherMyCourseResult(this.$deleteEmptyProps(this.form)).then(resp => {
+                    this.tableData = resp.data.objects;
+                    this.total = resp.data.num_results;
+                })
+            },
+        }
     }
 </script>
 
@@ -100,7 +142,7 @@ ul,li{
         background: #FAFAFA;
         border: 1px solid #DCDCDC;
     }
-    .tab-bars ul li{
+    .tab-bars ul li a{
         float: left;
         width: 150px;
         height: 50px;
@@ -109,11 +151,11 @@ ul,li{
         font-size: 16px;
         color: #666666;
         cursor: pointer;
+        text-decoration: none;
     }
-    .tab-bars ul li.click{
+    .tab-bars ul li a.router-link-active{
         background: #FFFFFF;
         border-top: 2px solid #FF8200;
-        color: #FF8200 
     }
     .table-tit{
         width: 740px;
