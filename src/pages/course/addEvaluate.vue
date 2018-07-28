@@ -16,8 +16,10 @@
 			Completion status:
 		</div>
 		<div class="radio">
-			<span> <input type="radio" name="Completed" id=""> Completed </span>
-			<span> <input type="radio" name="Completed" id=""> Not Completed </span>
+      <el-radio-group v-model="evaluate.completion_status.status">
+        <el-radio label="Completed"></el-radio>
+        <el-radio label="Not Completed"></el-radio>
+      </el-radio-group>
 		</div>
 		<vue-editor v-model="evaluate.completion_status.text"></vue-editor>
 		<div class="stat">
@@ -25,30 +27,36 @@
 		</div>
 		<div class="overall">
 			<span class="word">Overall:</span>
-			<select name="" id="">
-				<option value=""></option>
-			</select>
+      <el-select v-model="evaluate.performace.overall">
+				<el-option v-for="(item, key) in OVERALL_ENUM" :value="item" :key="item" :label="item"></el-option>
+      </el-select>
 		</div>
 		<div class="overall">
 			<span class="word">On Time:</span>
-			<input type="radio" name="on" id=""> YES
-			<input type="radio" name="on" class="mar"> NO
+      <el-radio-group v-model="evaluate.performace.onTime">
+        <el-radio label="YES"></el-radio>
+        <el-radio label="NO"></el-radio>
+      </el-radio-group>
 		</div>
 		<div class="overall">
 			<span class="word">Missing Time:</span>
-			<input type="text" name="" id="" class="inp"> min
+			<input type="text" name="" id="" v-model="evaluate.performace.missTime" class="inp"> min
 		</div>
 		<div class="overall">
 			<span class="word">Learning Attitude:</span>
-			<input type="radio" name="on" id=""> Excellent
-			<input type="radio" name="on" class="mar"> Good
-			<input type="radio" name="on" class="mar"> Poor
+      <el-radio-group v-model="evaluate.performace.attitude">
+        <el-radio label="Excellent"></el-radio>
+        <el-radio label="Good"></el-radio>
+        <el-radio label="Poor"></el-radio>
+      </el-radio-group>
 		</div>
 		<div class="overall">
 			<span class="word">Positive interaction:</span>
-			<input type="radio" name="on" id=""> Excellent
-			<input type="radio" name="on" class="mar"> Good
-			<input type="radio" name="on" class="mar"> Poor
+      <el-radio-group v-model="evaluate.performace.interaction">
+        <el-radio label="Excellent"></el-radio>
+        <el-radio label="Good"></el-radio>
+        <el-radio label="Poor"></el-radio>
+      </el-radio-group>
 		</div>
 		<div class="stat">
 			Summary of the class:
@@ -67,10 +75,10 @@
 		</div>
 		<vue-editor v-model="evaluate.suggest"></vue-editor>
 		<div class="btn">
-			<div class="submit">
+			<div class="submit" @click="submit">
 				提交
 			</div>
-			<div class="back">
+			<div class="back" @click="goback">
 				取消
 			</div>
 		</div>
@@ -89,11 +97,21 @@ export default {
   components: {
     VueEditor
   },
-
   data() {
     return {
-      evaluate: new TeacherEvaluate({})
+      evaluate: new TeacherEvaluate({}),
+      OVERALL_ENUM,
+      INTERACTION_ENUM,
+      ATTITUDE_ENUM
     };
+  },
+  methods: {
+    submit() {
+      
+    },
+    goback() {
+      this.$router.back();
+    }
   }
 };
 </script>

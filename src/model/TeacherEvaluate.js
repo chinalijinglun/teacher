@@ -1,6 +1,6 @@
 class CompletionStatus {
   constructor({
-    status  = 0,
+    status  = 'Completed',
     text = ''
   }) {
     this.status = status;
@@ -11,10 +11,10 @@ class CompletionStatus {
 class Performace {
   constructor({
     overall = '',
-    onTime = '',
+    onTime = 'YES',
     missTime = '',
-    attitude = '',
-    interaction = ''
+    attitude = 'Excellent',
+    interaction = 'Excellent'
   }) {
     this.overall = overall;
     this.onTime = onTime;
@@ -25,19 +25,21 @@ class Performace {
 }
 
 const OVERALL_ENUM = {
-  '1': 'Greade 1',
-  '2': 'Greade 2',
-  '3': 'Greade 3',
+  'Greade 1': 'Greade 1',
+  'Greade 2': 'Greade 2',
+  'Greade 3': 'Greade 3',
+  'Greade 4': 'Greade 4',
+  'Greade 5': 'Greade 5'
 }
 const ATTITUDE_ENUM = {
-  '1': 'Excellent',
-  '2': 'Good',
-  '3': 'Poor'
+  'Excellent': 'Excellent',
+  'Good': 'Good',
+  'Poor': 'Poor'
 }
 const INTERACTION_ENUM = {
-  '1': 'Excellent',
-  '2': 'Good',
-  '3': 'Poor'
+  'Excellent': 'Excellent',
+  'Good': 'Good',
+  'Poor': 'Poor'
 }
 
 export {
