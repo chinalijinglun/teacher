@@ -56,7 +56,8 @@ export default class TeacherEvaluate {
     summary = '',
     skills = '',
     improved = '',
-    suggest = ''
+    suggest = '',
+    created_at
   }) {
     this.lesson_objective  = lesson_objective;
     this.completion_status = completion_status;
@@ -65,5 +66,6 @@ export default class TeacherEvaluate {
     this.skills            = skills;
     this.improved          = improved;
     this.suggest           = suggest;
+    this.created_at = created_at;
   }
 }

@@ -375,3 +375,41 @@ export const HAVE_SENIORITY = {
   '1': '有'
 }
 export const TEACHER_WEEK = ['1','2','3','4','5','6','7']
+
+export const TEACHER_WEEK_ENUM = {
+  1: '周一',
+  2: '周二',
+  3: '周三',
+  4: '周四',
+  5: '周五',
+  6: '周六',
+  7: '周日'
+}
+export const GO_ABROAD = {
+  YES: '是',
+  NO: '否'
+}
+export const APPOINTMENT_STATE_ENUM = {
+  'WRITE_APPOINTMENT': '待预约',
+  'WRITE_ACCEPT': '待接受',
+  'WRITE_CLASS': '待上课',
+  'FINISH': '已完成'
+}
+export const COURSE_APPOINTMENT_STATE_ENUM = {
+  'APPLY': '未接受',
+  'REFUSE': '拒绝',
+  'ACCEPT': '接受'
+}
+
+export const COURSE_SCHEDULE_STATE_ENUM = {
+  'COMMON_CLASS': '正常课',
+  'CANCEL': '取消',
+  'TROUBLE_CLASS': '问题课程',
+  'MAKE_UP_CLASS': '补偿课'
+}
+export const COURSE_SCHEDULE_STATE_NUMBER = {
+  'COMMON_CLASS': 1,
+  'CANCEL': 2,
+  'TROUBLE_CLASS': 3,
+  'MAKE_UP_CLASS': 4
+}

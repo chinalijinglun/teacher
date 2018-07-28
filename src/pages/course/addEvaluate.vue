@@ -92,22 +92,45 @@ import TeacherEvaluate, {
   INTERACTION_ENUM,
   ATTITUDE_ENUM
 } from "@/model/TeacherEvaluate";
+import {
+  studySchedulePutById
+} from '@/api/study_schedule';
+import { mapState } from 'vuex'
 
 export default {
   components: {
     VueEditor
+  },
+  computed: {
+    ...mapState({
+      userName: state=>state.auth.userName
+    })
   },
   data() {
     return {
       evaluate: new TeacherEvaluate({}),
       OVERALL_ENUM,
       INTERACTION_ENUM,
-      ATTITUDE_ENUM
+      ATTITUDE_ENUM,
+      study_schedule_id: ''
     };
+  },
+  created() {    
+    this.evaluate = new TeacherEvaluate({"lesson_objective":"<p><span style=\"color: rgb(51, 51, 51);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.</span></p>","completion_status":{"status":"Completed","text":"<p><span style=\"color: rgb(51, 51, 51);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.</span></p>"},"performace":{"overall":"Greade 5","onTime":"YES","missTime":"10","attitude":"Excellent","interaction":"Excellent"},"summary":"<p><span style=\"color: rgb(51, 51, 51);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.</span></p>","skills":"<p><span style=\"color: rgb(51, 51, 51);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.</span></p>","improved":"<p><span style=\"color: rgb(51, 51, 51);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.</span></p>","suggest":"<p><span style=\"color: rgb(51, 51, 51);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.</span></p>"})
+    this.study_schedule_id = this.$route.query.id;
   },
   methods: {
     submit() {
-      
+      // 记录总结时间
+      this.evaluate.created_at = new Date();
+      studySchedulePutById(this.study_schedule_id, {
+        teacher_evaluation: JSON.stringify(this.evaluate),
+        updated_by: this.userName,
+        updated_at: new Date()
+      }).then(resp => {
+        this.$message.success('添加成功！');
+        this.goback();
+      })
     },
     goback() {
       this.$router.back();
