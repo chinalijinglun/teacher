@@ -56,7 +56,7 @@ const actions = {
       page_limit: 1,
       page_no: 1
     }).then(res => {
-      const course = res.objects[0];
+      const course = res.data.objects[0];
       commit(COURSE_SET, course)
       return course;
     })
