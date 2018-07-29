@@ -8,6 +8,8 @@ export const teacherPost = (form) => baseAxios.post('/api/v1/teacher', form);
 
 export const teacherGetByTeacherid = (teacherid) => baseAxios.get(`/api/v1/teacher/${teacherid}`);
 
+export const teacherGetBareById = (teacherid) => baseAxios.get(`/api/v1/_bare/teacher/${teacherid}`);
+
 export const teacherPutByTeacherid = (teacherid, form) => baseAxios.put(`/api/v1/teacher/${teacherid}`, form);
 
 export const teacherDeleteByTeacherid = (teacherid) => teacherPutByTeacherid(teacherid, {delete_flag: DELETE_FLAG.DELETED});
