@@ -1,9 +1,9 @@
 <template>
     <div class="check-homework">
         <div class="main-body">
-            <div class="title">Lesson 1 Exploring Space and Astronomy</div>
-            <div class="time">2018.04.30 13:00 - 13:50</div>
-            <div class="home-work-name"><img src="../../assets/dian_01.png" alt="">  Exploring Space and Astronomy 作业名称</div>
+            <div class="title">{{course.course_name}}</div>
+            <div class="time">{{course.course_times}}</div>
+            <div class="home-work-name"><img src="../../assets/dian_01.png" alt="">  {{homeworkInfo.question_name || '作业名称'}}</div>
             <div class="desc">Alex and I practiced writing a narrative story together. I wrote a sentence, and he followed by writing 
 the next. I taught him that each sentence, no matter how crazy, needs to logically follow the sentence before. By the end of the story, he was doing that a lot better. Skills the student exhibited well: Good writing!</div>
             <div class="dowmload">
@@ -14,7 +14,7 @@ the next. I taught him that each sentence, no matter how crazy, needs to logical
                         <div class="down-btn">下载附件</div>
                     </div>
                 </div>
-                <div class="left">
+                <div class="left"> 
                     <img src="../../assets/fujian.png" alt="">
                     <div class="detail">
                         <div class="names">Alex and I practiced writing </div>
@@ -34,23 +34,73 @@ the next. I taught him that each sentence, no matter how crazy, needs to logical
                     </ul>
                 </div>
                 <div class="list">
-                    <ul>
-                        <li class="student">ALEX ren</li>
-                        <li class="homework-name">EL D作业</li>
-                        <li class="describe">Homework</li>
-                        <li class="times">2018.04.27  13:00</li>
+                    <ul v-for="(item, index) in tableData" :key="item.id">
+                        <li class="student">{{item.student_name}}</li>
+                        <li class="homework-name">{{item.question_name}}</li>
+                        <li class="describe">{{item.question_text}}</li>
+                        <li class="times">{{item.created_at}}</li>
                         <li class="oprate dianping">作业点评</li>
                     </ul>
                 </div>
+                <el-row>
+                    <el-pagination
+                        @current-change="handleCurrentChange"
+                        :current-page.sync="form.page_no"
+                        :page-size="form.page_limit"
+                        layout="prev, pager, next, jumper"
+                        :total="total">
+                    </el-pagination>
+                </el-row>
             </div>
         </div>
-        
     </div>
 </template>
 
 <script>
+    import { mapState } from 'vuex';
+    import { teacherViewHomework, teacherHomeworkTop } from '@/api/teacher';
     export default {
-        
+        data() {
+            return {
+                form : {
+                    course_schedule_id: this.$route.query.id.toString(),
+                    page_limit: 10,
+                    page_no: 1
+                },
+                homeworkId: this.$route.query.id,
+                homeworkInfo: {},
+                total: 0,
+                tableData: []
+            }
+        },
+        computed: {
+            ...mapState({
+                course: state=>state.course.course
+            })
+        },
+        created() {
+            const course_id = this.$route.query.course_id;
+            this.$store.dispatch('COURSE_GET_BY_ID', course_id);
+            this.queryTop();
+            this.query();
+        },
+        methods: {
+            handleCurrentChange(page) {
+                this.page_no = page;
+                this.query();
+            },
+            query() {
+                return teacherViewHomework(this.$deleteEmptyProps(this.form)).then(resp => {
+                    this.tableData = resp.data.objects;
+                    this.total = resp.data.num_results;
+                })
+            },
+            queryTop() {
+                return teacherHomeworkTop(this.homeworkId).then(resp => {
+                    this.homeworkInfo = resp.data;
+                })
+            }
+        }
     }
 </script>
 

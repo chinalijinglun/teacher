@@ -94,7 +94,7 @@
         data() {
             return {
                 form : {
-                    course_id: this.$route.query.id,
+                    course_id: this.$route.query.id.toString(),
                     page_limit: 10,
                     page_no: 1
                 },
@@ -124,7 +124,7 @@
                 })
             },
             goHomework(id) {
-                this.$router.push({path: '/homework', query: {'id': id}});
+                this.$router.push({path: '/homework', query: {'course_id': this.$route.query.id, 'id': id}});
             },
             goEval(id) {
                 this.$router.push({path: '/evaluate', query: {'course_id': this.$route.query.id, 'id': id}});

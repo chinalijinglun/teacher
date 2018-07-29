@@ -78,7 +78,7 @@
         data() {
             return {
                 form : {
-                    course_id: this.$route.query.id,
+                    course_id: this.$route.query.id.toString(),
                     page_limit: 10,
                     page_no: 1
                 },

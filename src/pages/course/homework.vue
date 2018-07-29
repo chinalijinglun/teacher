@@ -3,14 +3,14 @@
         <div class="main-body">
             <div class="describe">
                 <div class="top">
-                    <span class="left">Lesson 1 Exploring Space and Astronomy</span>
-                    <span class="right"><img src="../../assets/fanhui.png" alt=""> 返回</span>
+                    <span class="left">{{course.course_name}}</span>
+                    <span class="right" @click="goBack"><img src="../../assets/fanhui.png" alt=""> 返回</span>
                 </div>
                 <div class="mid">
-                    2018.04.30 13:00 - 13:50
+                    {{course.course_times}}
                 </div>
             </div>
-            <div class="add-homework">
+            <div class="add-homework" @click="addWork">
                 <img src="../../assets/shangchuan.png" alt="">添加作业
             </div>
             <div class="table">
@@ -22,53 +22,87 @@
                         <li class="oprate">操作</li>
                     </ul>
                 </div>
-                <div class="line">
+                <div class="line" v-for="(item, index) in tableData" :key="item.id">
                     <div class="homework-name">
-                        Lesson 3 Exploring Space and Astronomy
+                        {{item.question_name}}
                     </div>
                     <div class="desc">
-                        Homework
+                        {{item.question_text}}
                     </div>
                     <div class="time">
-                        2018.04.27  13:00
+                        {{item.created_at}}
                     </div>
                     <div class="oprate">
-                        <span>查看</span>
-                        <span>删除</span>
-                    </div>
-                </div>
-                <div class="line">
-                    <div class="homework-name">
-                        Lesson 3 Exploring Space and Astronomy
-                    </div>
-                    <div class="desc">
-                        Homework
-                    </div>
-                    <div class="time">
-                        2018.04.27  13:00
-                    </div>
-                    <div class="oprate">
-                        <span>查看</span>
+                        <span @click="goDetail(item.id)">查看</span>
                         <span>删除</span>
                     </div>
                 </div>
             </div>
+            <el-row>
+				<el-pagination
+					@current-change="handleCurrentChange"
+					:current-page.sync="form.page_no"
+					:page-size="form.page_limit"
+					layout="prev, pager, next, jumper"
+					:total="total">
+				</el-pagination>
+			</el-row>
         </div>
-        <edit></edit>
+        <edit :show="showEdit"></edit>
     </div>
 </template>
 
 <script>
-    import edit from '@/components/editor'
+    import { mapState } from 'vuex';
+    import edit from '@/components/editor';
+    import { teacherViewHomework } from  '@/api/teacher'
     export default {
-        data(){
+        data() {
             return {
-                
+                form: {
+                    course_schedule_id: this.$route.query.id.toString(),
+                    page_limit: 10,
+                    page_no: 1
+                },
+                total: 0,
+                tableData: [],
+                showEdit: false
+            }
+        },
+        computed: {
+            ...mapState({
+                course: state=>state.course.course
+            })
+        },
+        created() {
+            const course_id = this.$route.query.course_id;
+            this.$store.dispatch('COURSE_GET_BY_ID', course_id);
+            this.query();
+        },
+        methods: {
+            handleCurrentChange(page) {
+                this.page_no = page;
+                this.query();
+            },
+            query() {
+                return teacherViewHomework(this.$deleteEmptyProps(this.form)).then(resp => {
+                    this.tableData = resp.data.objects;
+                    this.total = resp.data.num_results;
+                })
+            },
+            addWork() {
+                this.showEdit = !this.showEdit;
+            },
+            goDetail(id){
+                this.$router.push({path: '/check-homework', query: {'course_id': this.$route.query.course_id, 'id':id}})
+            },
+            goBack(){
+                this.$router.push({path: '/finish-course', query: {'id': this.$route.query.course_id}})
             }
         },
         components:{
             edit
-        }   
+        } 
     }
 </script>
 
@@ -99,6 +133,7 @@ ul,li{
         font-size: 14px;
         color: #333333;
         overflow: hidden;
+        cursor: pointer;
     }
     .right img{
         float: left;
@@ -169,6 +204,8 @@ ul,li{
         line-height: 52px;
         text-align: center;
         border-right: 1px solid #E8E8E8;
+        height: 52px;
+        overflow: hidden;
     }
     .line div.homework-name{
         text-indent: 15px;
@@ -179,7 +216,7 @@ ul,li{
         color: #FF8244;
     }
     .line div.oprate span:first-child{
-        margin-right: 20px;
+        margin-right: 5px;
     }
     .line div:last-child{
         border: none;

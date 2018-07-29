@@ -1,4 +1,5 @@
-<template>  
+<template>
+<div class="bgray" v-show="editShow">
    <div id="apps"> 
         <div class="title">
             <span>添加作业</span>
@@ -35,6 +36,7 @@
             </div>
         </div>
    </div>  
+</div>  
  </template>  
   
  <script>  
@@ -45,15 +47,30 @@
    components: {  
       VueEditor  
    },  
-  
+    watch: {
+        show(val, oval){
+            this.editShow = !this.showEdit;
+        }
+    },
+    props: ['show'],
    data() {  
        return {  
-         content: '<h1>Some initial content</h1>'    
+         content: '<h1>Some initial content</h1>',
+         editShow: false    
        }  
      }  
    }  
  </script>  
  <style scoped>
+    .bgray{
+        position: fixed;
+        background: rgba(0, 0, 0, 0.5);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 999;
+    }
     #apps{
         width: 830px;
         height: 650px;

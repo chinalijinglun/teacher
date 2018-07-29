@@ -21,3 +21,8 @@ export const teacherMyCourseOff = (form) => baseAxios.post('/teacher/my_course_o
 export const teacherMyCourseOn = (form) => baseAxios.post('/teacher/my_course_on', form);
 
 export const teacherMyCourseResult = (form) => baseAxios.post('/teacher/my_course_result', form);
+
+export const teacherViewHomework = (form) => baseAxios.post('/teacher/view_homework', form);
+
+export const teacherHomeworkTop = (homeworkId) => baseAxios.get(`/api/v1/_bare/homework/${homeworkId}`);
+
