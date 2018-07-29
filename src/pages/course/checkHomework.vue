@@ -4,8 +4,7 @@
             <div class="title">{{course.course_name}}</div>
             <div class="time">{{course.course_times}}</div>
             <div class="home-work-name"><img src="../../assets/dian_01.png" alt="">  {{homeworkInfo.question_name || '作业名称'}}</div>
-            <div class="desc">Alex and I practiced writing a narrative story together. I wrote a sentence, and he followed by writing 
-the next. I taught him that each sentence, no matter how crazy, needs to logically follow the sentence before. By the end of the story, he was doing that a lot better. Skills the student exhibited well: Good writing!</div>
+            <div class="desc">{{homeworkInfo.question_text}}</div>
             <div class="dowmload">
                 <div class="left">
                     <img src="../../assets/fujian.png" alt="">
@@ -58,12 +57,13 @@ the next. I taught him that each sentence, no matter how crazy, needs to logical
 
 <script>
     import { mapState } from 'vuex';
-    import { teacherViewHomework, teacherHomeworkTop } from '@/api/teacher';
+    import { courseViewHomework, courseHomeworkTop } from '@/api/course';
     export default {
         data() {
             return {
-                form : {
-                    course_schedule_id: this.$route.query.id.toString(),
+                form: {
+                    course_schedule_id: this.$route.query.course_schedule_id.toString(),
+                    homework_id: this.$route.query.id.toString(), 
                     page_limit: 10,
                     page_no: 1
                 },
@@ -90,13 +90,13 @@ the next. I taught him that each sentence, no matter how crazy, needs to logical
                 this.query();
             },
             query() {
-                return teacherViewHomework(this.$deleteEmptyProps(this.form)).then(resp => {
+                return courseViewHomework(this.$deleteEmptyProps(this.form)).then(resp => {
                     this.tableData = resp.data.objects;
                     this.total = resp.data.num_results;
                 })
             },
             queryTop() {
-                return teacherHomeworkTop(this.homeworkId).then(resp => {
+                return courseHomeworkTop(this.homeworkId).then(resp => {
                     this.homeworkInfo = resp.data;
                 })
             }

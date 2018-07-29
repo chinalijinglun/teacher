@@ -24,3 +24,7 @@ export const courseStudent = (id) => baseAxios.post('/teacher/students', {
   page_limit: 1000,
   page_no: 1
 });
+
+export const courseViewHomework = (form) => baseAxios.post('/course/common_homework_student', form);
+
+export const courseHomeworkTop = (homeworkId) => baseAxios.get(`/api/v1/_bare/homework/${homeworkId}`);

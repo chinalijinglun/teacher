@@ -94,7 +94,7 @@
                 this.showEdit = !this.showEdit;
             },
             goDetail(id){
-                this.$router.push({path: '/check-homework', query: {'course_id': this.$route.query.course_id, 'id':id}})
+                this.$router.push({path: '/check-homework', query: {'course_id': this.$route.query.course_id, 'course_schedule_id':this.$route.query.id, 'id':id}})
             },
             goBack(){
                 this.$router.push({path: '/finish-course', query: {'id': this.$route.query.course_id}})
