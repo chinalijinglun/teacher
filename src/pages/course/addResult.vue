@@ -49,7 +49,7 @@
 			<div class="submit" @click="submit">
 				提交
 			</div>
-			<div class="back">
+			<div class="back" @click="goback">
 				取消
 			</div>
 		</div>
