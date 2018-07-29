@@ -2,9 +2,6 @@ import {
   teacherMyCourse
 } from '@/api/teacher'
 import {
-  COURSE_GET_BY_ID
-} from './actionType'
-import {
   getCourseTime
 } from '@/utils'
 
@@ -50,7 +47,7 @@ const mutations = {
 }
 
 const actions = {
-  [COURSE_GET_BY_ID]({ state, commit }, course_id) {
+  COURSE_GET_BY_ID({ state, commit }, course_id) {
     if(state.last_id === course_id) {
       return Promise.resolve(state.course)
     }
