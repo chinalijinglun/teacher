@@ -4,7 +4,7 @@
             <div class="first-line">
                 <div class="left">
                     ESL英语综合提升中级
-                </div>
+                </div>  
                 <div class="right">
                     <span class="study-time">上课时间：2018.05.25-08.31</span>
                     <span>进度：01/10</span>
@@ -17,10 +17,18 @@
         <div class="table">
             <div class="tab-bars">
                 <ul>
-                    <li class="click">已上课程</li>
-                    <li>已约课程</li>
-                    <li>课程总结</li>
-                    <li>成绩单</li>
+                    <li>
+                        <router-link :to="{path: '/finish-course', query: {'id': this.$route.query.id}}">已上课程</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{path: '/dated-course', query: {'id': this.$route.query.id}}">已约课程</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">课程总结</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">成绩单</router-link>
+                    </li>
                 </ul>
             </div>
             <div class="table-tit">
@@ -28,65 +36,79 @@
                 <div class="state">状态</div>
                 <div class="oparet">操作</div>
             </div>
-            <div class="table-list">
+            <div class="table-list" v-for="(item, index) in tableData" :key="item.id"> 
                 <div class="list-tit">
-                    <span>上课时间(当前时区：Hawaii)：2018.04.27  13:00 - 13:50</span>
+                    <span>上课时间(当前时区：Hawaii)：{{item.start}} — {{item.end}}</span>
                 </div>
                 <div class="list-detail">
                     <div class="lesson-name">
-                        Lesson 3 Exploring Space and Astronomy
+                        {{item.name}}
                     </div>
-                    <div class="lesson-state">
-                        补偿课 <img src="../../assets/shuoming.png" alt="">
-                    </div>
-                    <div class="oprate-lesson">
-                        <span class="colo">回放 </span>
-                        <span class="colo">作业</span>
-                        <span class="colo">课后小结</span>
-                    </div>
+                    <template v-if="item.class_type == 2">
+                        <div class="lesson-state">
+                            异常课（系统原因）
+                        </div>
+                        <div class="oprate-lesson">
+                            原因：XXXXXXXXXXXXXXXXXXXX
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div class="lesson-state" v-if="item.class_type == 3">
+                            补偿课<img src="../../assets/shuoming.png" alt="">
+                        </div>
+                        <div class="lesson-state" v-if="item.class_type == 1">
+                            正常课
+                        </div>
+                        <div class="oprate-lesson">
+                            <span class="colo">回放 </span>
+                            <span class="colo">作业</span>
+                            <span class="colo">课后小结</span>
+                        </div>
+                    </template>
                 </div>
             </div>
-            <div class="table-list">
-                <div class="list-tit">
-                    <span>上课时间(当前时区：Hawaii)：2018.04.27  13:00 - 13:50</span>
-                </div>
-                <div class="list-detail">
-                    <div class="lesson-name">
-                        Lesson 3 Exploring Space and Astronomy
-                    </div>
-                    <div class="lesson-state">
-                        异常课（系统原因）
-                    </div>
-                    <div class="oprate-lesson">
-                        原因：XXXXXXXXXXXXXXXXXXXX
-                    </div>
-                </div>
-            </div>
-            <div class="table-list">
-                <div class="list-tit">
-                    <span>上课时间(当前时区：Hawaii)：2018.04.27  13:00 - 13:50</span>
-                </div>
-                <div class="list-detail">
-                    <div class="lesson-name">
-                        Lesson 3 Exploring Space and Astronomy
-                    </div>
-                    <div class="lesson-state">
-                        正常课
-                    </div>
-                    <div class="oprate-lesson">
-                        <span class="colo">回放 </span>
-                        <span class="colo">作业</span>
-                        <span class="colo">课后小结</span>
-                    </div>
-                </div>
-            </div>
+            <el-row>
+				<el-pagination
+					@current-change="handleCurrentChange"
+					:current-page.sync="form.page_no"
+					:page-size="form.page_limit"
+					layout="prev, pager, next, jumper"
+					:total="total">
+				</el-pagination>
+			</el-row>
         </div>
     </div>
 </template>
 
 <script>
+    import { teacherMyCourseOn } from  '@/api/teacher'
     export default {
-        
+        data() {
+            return {
+                form : {
+                    course_id: this.$route.query.id,
+                    page_limit: 10,
+                    page_no: 1
+                },
+                total: 0,
+                tableData: []
+            }
+        },
+        created() {
+            this.query();
+        },
+        methods: {
+            handleCurrentChange(page) {
+                this.page_no = page;
+                this.query();
+            },
+            query() {
+                return teacherMyCourseOn(this.$deleteEmptyProps(this.form)).then(resp => {
+                    this.tableData = resp.data.objects;
+                    this.total = resp.data.num_results;
+                })
+            },
+        }
     }
 </script>
 
@@ -138,7 +160,7 @@ ul,li{
         background: #FAFAFA;
         border: 1px solid #DCDCDC;
     }
-    .tab-bars ul li{
+    .tab-bars ul li a{
         float: left;
         width: 150px;
         height: 50px;
@@ -147,8 +169,9 @@ ul,li{
         font-size: 16px;
         color: #666666;
         cursor: pointer;
+        text-decoration: none;
     }
-    .tab-bars ul li.click{
+    .tab-bars ul li a.router-link-active{
         background: #FFFFFF;
         border-top: 2px solid #FF8200;
     }
@@ -209,9 +232,13 @@ ul,li{
         line-height: 53px;
         border-right: 1px solid #F5F5F5;
         width: 336px;
+        height: 53px;
+        overflow: hidden;
     }
     .lesson-state{
         width: 193px;
+        height: 53px;
+        overflow: hidden;
         text-align: center;
         line-height: 53px;
         float: left;
@@ -222,6 +249,8 @@ ul,li{
     .oprate-lesson{
         float: left;
         width: 205px;
+        height: 53px;
+        overflow: hidden;
         line-height: 53px;
         font-size: 12px;
         text-align: center;

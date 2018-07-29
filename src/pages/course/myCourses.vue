@@ -43,7 +43,7 @@
 					<li class="process">{{item.finish}}/{{item.classes_number}}</li>
 					<li class="student">{{item.student_name}}</li>
 					<li class="state under-way">进行中</li>
-					<li class="oprate check">查看详情</li>
+					<li class="oprate check" @click="goDetail(item.id)">查看详情</li>
 				</ul>
 			</div>
 			<el-row>
@@ -89,6 +89,9 @@ export default {
 				this.tableData = resp.data.objects;
 				this.total = resp.data.num_results;
 			})
+		},
+		goDetail(id) {
+			this.$router.push({path: '/finish-course', query: {'id': id}});
 		}
 	}
 };
@@ -175,9 +178,12 @@ li {
 .list-table ul li {
   float: left;
   text-align: center;
-  line-height: 53px;
+  line-height: 53px; 
   font-size: 12px;
   color: #333333;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .list-table ul li:first-child {
   text-align: left;

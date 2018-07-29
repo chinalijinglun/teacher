@@ -17,10 +17,18 @@
         <div class="table">
             <div class="tab-bars">
                 <ul>
-                    <li>已上课程</li>
-                    <li class="click">已约课程</li>
-                    <li>课程总结</li>
-                    <li>成绩单</li>
+                    <li>
+                        <router-link :to="{path: '/finish-course', query: {'id': this.$route.query.id}}">已上课程</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{path: '/dated-course', query: {'id': this.$route.query.id}}">已约课程</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">课程总结</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">成绩单</router-link>
+                    </li>
                 </ul>
             </div>
             <div class="table-tit">
@@ -28,16 +36,18 @@
                 <div class="state">状态</div>
                 <div class="oparet">操作</div>
             </div>
-            <div class="table-list">
+            <div class="table-list" v-for="(item, index) in tableData" :key="item.id">
                 <div class="list-tit">
-                    <span>上课时间(当前时区：Hawaii)：2018.04.27  13:00 - 13:50</span>
+                    <span>上课时间(当前时区：Hawaii)：{{item.start}} — {{item.end}}</span>
                 </div>
                 <div class="list-detail">
                     <div class="lesson-name">
-                        Lesson 3 Exploring Space and Astronomy
+                        {{item.name}}
                     </div>
                     <div class="lesson-state">
-                        <span class="up">待上传</span>
+                        <span class="up" v-if="item.class_type == 1">待上传</span>
+                        <span class="up" v-if="item.class_type == 2">审核通过</span>
+                        <span class="up" v-if="item.class_type == 3">审核驳回</span>
                     </div>
                     <div class="oprate-lesson">
                         <span class="colo">进入教室  </span>
@@ -46,49 +56,48 @@
                     </div>
                 </div>
             </div>
-            <div class="table-list">
-                <div class="list-tit">
-                    <span>上课时间(当前时区：Hawaii)：2018.04.27  13:00 - 13:50</span>
-                </div>
-                <div class="list-detail">
-                    <div class="lesson-name">
-                        Lesson 3 Exploring Space and Astronomy
-                    </div>
-                    <div class="lesson-state">
-                       审核通过
-                    </div>
-                    <div class="oprate-lesson">
-                        <span class="colo">进入教室  </span>
-                        <span class="colo">查看课件</span>
-                        <span class="colo">申请修改时间</span>
-                    </div>
-                </div>
-            </div>
-            <div class="table-list">
-                <div class="list-tit">
-                    <span>上课时间(当前时区：Hawaii)：2018.04.27  13:00 - 13:50</span>
-                </div>
-                <div class="list-detail">
-                    <div class="lesson-name">
-                        Lesson 1 Exploring Space and Astronomy
-                    </div>
-                    <div class="lesson-state">
-                        <span class="back">审核驳回</span>
-                    </div>
-                    <div class="oprate-lesson">
-                        <span class="colo">进入教室  </span>
-                        <span class="colo">查看课件</span>
-                        <span class="colo">申请修改时间</span>
-                    </div>
-                </div>
-            </div>
+            <el-row>
+				<el-pagination
+					@current-change="handleCurrentChange"
+					:current-page.sync="form.page_no"
+					:page-size="form.page_limit"
+					layout="prev, pager, next, jumper"
+					:total="total">
+				</el-pagination>
+			</el-row>
         </div>
     </div>
 </template>
 
 <script>
+    import { teacherMyCourseOn } from  '@/api/teacher'
     export default {
-        
+        data() {
+            return {
+                form : {
+                    course_id: this.$route.query.id,
+                    page_limit: 10,
+                    page_no: 1
+                },
+                total: 0,
+                tableData: []
+            }
+        },
+        created() {
+            this.query();
+        },
+        methods: {
+            handleCurrentChange(page) {
+                this.page_no = page;
+                this.query();
+            },
+            query() {
+                return teacherMyCourseOn(this.$deleteEmptyProps(this.form)).then(resp => {
+                    this.tableData = resp.data.objects;
+                    this.total = resp.data.num_results;
+                })
+            },
+        }
     }
 </script>
 
@@ -140,7 +149,7 @@ ul,li{
         background: #FAFAFA;
         border: 1px solid #DCDCDC;
     }
-    .tab-bars ul li{
+    .tab-bars ul li a{
         float: left;
         width: 150px;
         height: 50px;
@@ -149,11 +158,11 @@ ul,li{
         font-size: 16px;
         color: #666666;
         cursor: pointer;
+        text-decoration: none;
     }
-    .tab-bars ul li.click{
+    .tab-bars ul li a.router-link-active{
         background: #FFFFFF;
         border-top: 2px solid #FF8200;
-        color: #FF8200 
     }
     .table-tit{
         width: 740px;
@@ -212,6 +221,8 @@ ul,li{
         line-height: 53px;
         border-right: 1px solid #F5F5F5;
         width: 336px;
+        height: 53px;
+        overflow: hidden;
     }
     .lesson-state{
         width: 144px;
@@ -221,6 +232,8 @@ ul,li{
         border-right: 1px solid #F5F5F5;
         font-size: 12px;
         color: #333333;
+        height: 53px;
+        overflow: hidden;
     }
     .oprate-lesson{
         float: left;
@@ -228,6 +241,8 @@ ul,li{
         line-height: 53px;
         font-size: 12px;
         text-align: center;
+        height: 53px;
+        overflow: hidden;
     }
     .colo{
         font-size: 12px;
