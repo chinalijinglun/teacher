@@ -3,15 +3,15 @@
         <div class="top-title">
             <div class="first-line">
                 <div class="left">
-                    ESL英语综合提升中级
+                    {{course.course_name}}
                 </div>
                 <div class="right">
-                    <span class="study-time">上课时间：2018.05.25-08.31</span>
-                    <span>进度：01/10</span>
+                    <span class="study-time">上课时间：{{course.course_times}}</span>
+                    <span>进度：{{course.finish}}/{{course.classes_number}}</span>
                 </div>
             </div>
             <div class="bottom-line">
-学生：Kira Yuan、Kira Yuan 、Kira Yuan 、Kira Yuan…   
+                {{course.student_name}}
             </div>
         </div>
         <div class="table">
@@ -42,12 +42,14 @@
                 </div>
                 <div class="list-detail">
                     <div class="lesson-name">
-                        {{item.name}}
+                        {{item.name || '未命名'}}
                     </div>
                     <div class="lesson-state">
-                        <span class="up" v-if="item.class_type == 1">待上传</span>
-                        <span class="up" v-if="item.class_type == 2">审核通过</span>
-                        <span class="up" v-if="item.class_type == 3">审核驳回</span>
+                        <span class="up" v-if="item.checked_result == 'BEFORE_CHECK'">待审核</span>
+                        <span v-if="item.checked_result == 'CHECK_PASSED'">审核通过</span>
+                        <span class="up" v-if="item.checked_result == 'CHECK_DENY'">审核驳回</span>
+                        <span class="up" v-if="item.checked_result == 'PREVIEW'">可以预览</span>
+                        <span class="up" v-if="item.checked_result == 'NO_PREVIEW'">不可以预览</span>
                     </div>
                     <div class="oprate-lesson">
                         <span class="colo">进入教室  </span>
@@ -70,7 +72,8 @@
 </template>
 
 <script>
-    import { teacherMyCourseOn } from  '@/api/teacher'
+    import { mapState } from 'vuex';
+    import { teacherMyCourseOff } from  '@/api/teacher'
     export default {
         data() {
             return {
@@ -83,6 +86,11 @@
                 tableData: []
             }
         },
+        computed: {
+            ...mapState({
+                course: state=>state.course.course
+            })
+        },
         created() {
             this.query();
         },
@@ -92,7 +100,7 @@
                 this.query();
             },
             query() {
-                return teacherMyCourseOn(this.$deleteEmptyProps(this.form)).then(resp => {
+                return teacherMyCourseOff(this.$deleteEmptyProps(this.form)).then(resp => {
                     this.tableData = resp.data.objects;
                     this.total = resp.data.num_results;
                 })

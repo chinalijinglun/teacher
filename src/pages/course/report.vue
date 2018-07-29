@@ -3,15 +3,15 @@
         <div class="top-title">
             <div class="first-line">
                 <div class="left">
-                    ESL英语综合提升中级
+                    {{course.course_name}}
                 </div>
                 <div class="right">
-                    <span class="study-time">上课时间：2018.05.25-08.31</span>
-                    <span>进度：01/10</span>
+                    <span class="study-time">上课时间：{{course.course_times}}</span>
+                    <span>进度：{{course.finish}}/{{course.classes_number}}</span>
                 </div>
             </div>
             <div class="bottom-line">
-学生：Kira Yuan、Kira Yuan 、Kira Yuan 、Kira Yuan…   
+                {{course.student_name}}
             </div>
         </div>
         <div class="table">
@@ -63,6 +63,7 @@
     </div>
 </template>
 <script>
+    import { mapState } from 'vuex';
     import { teacherMyCourseResult } from  '@/api/teacher'
     export default {
         data() {
@@ -70,11 +71,17 @@
                 form : {
                     course_id: this.$route.query.id,
                     page_limit: 10,
-                    page_no: 1
+                    page_no: 1,
+                    type: 'ACHIEVEMENT'
                 },
                 total: 0,
                 tableData: []
             }
+        },
+        computed: {
+            ...mapState({
+                course: state=>state.course.course
+            })
         },
         created() {
             this.query();

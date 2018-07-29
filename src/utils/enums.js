@@ -402,14 +402,21 @@ export const COURSE_APPOINTMENT_STATE_ENUM = {
 }
 
 export const COURSE_SCHEDULE_STATE_ENUM = {
-  'COMMON_CLASS': 1, //'正常课',
-  //'CANCEL': 2, //'取消',
-  'TROUBLE_CLASS': 2, //'问题课程',
-  'MAKE_UP_CLASS': 3 //'补偿课'
+  'COMMON_CLASS': '正常课',
+  'CANCEL': '取消',
+  'TROUBLE_CLASS': '问题课程',
+  'MAKE_UP_CLASS': '补偿课'
 }
 export const COURSE_SCHEDULE_STATE_NUMBER = {
   'COMMON_CLASS': 1,
   'CANCEL': 2,
   'TROUBLE_CLASS': 3,
   'MAKE_UP_CLASS': 4
+}
+export const COURSE_SCHEDULE_CHEKED_ENUM = {
+  'BEFORE_CHECK': '待审核',
+  'CHECK_PASSED':'审核通过',
+  'CHECK_DENY':'审核驳回',
+  'PREVIEW':'可以预览',
+  'NO_PREVIEW':'不可以预览'
 }

@@ -3,15 +3,15 @@
         <div class="top-title">
             <div class="first-line">
                 <div class="left">
-                    ESL英语综合提升中级
+                    {{course.course_name}}
                 </div>
                 <div class="right">
-                    <span class="study-time">上课时间：2018.05.25-08.31</span>
-                    <span>进度：01/10</span>
+                    <span class="study-time">上课时间：{{course.course_times}}</span>
+                    <span>进度：{{course.finish}}/{{course.classes_number}}</span>
                 </div>
             </div>
             <div class="bottom-line">
-学生：Kira Yuan、Kira Yuan 、Kira Yuan 、Kira Yuan…   
+                {{course.student_name}}
             </div>
         </div>
         <div class="table">
@@ -36,22 +36,14 @@
                 <div class="state">时间</div>
                 <div class="oparet">操作</div>
             </div>
-            <div class="box">
+            <div class="box" v-for="(item, index) in tableData" :key="item.id">
                 <div class="student">
-                   Jesse Chen
+                   {{item.student_name}}
                 </div>
                 <div class="time-oprate">
                     <div class="line-one">
                         <div class="time">
-                            2018.5.1-2018.6.1
-                        </div>
-                        <div class="check">
-                            查看
-                        </div>
-                    </div>
-                    <div class="line-one">
-                        <div class="time">
-                            2018.5.1-2018.6.1
+                            {{item.start}}-{{item.end}}
                         </div>
                         <div class="check">
                             查看
@@ -59,36 +51,55 @@
                     </div>
                 </div>
             </div>
-            <div class="box">
-                <div class="student">
-                   Jesse Chen
-                </div>
-                <div class="time-oprate">
-                    <div class="line-one">
-                        <div class="time">
-                            2018.5.1-2018.6.1
-                        </div>
-                        <div class="check">
-                            查看
-                        </div>
-                    </div>
-                    <div class="line-one">
-                        <div class="time">
-                            2018.5.1-2018.6.1
-                        </div>
-                        <div class="check">
-                            查看
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <el-row>
+				<el-pagination
+					@current-change="handleCurrentChange"
+					:current-page.sync="form.page_no"
+					:page-size="form.page_limit"
+					layout="prev, pager, next, jumper"
+					:total="total">
+				</el-pagination>
+			</el-row>
         </div>
     </div>
 </template>
 
 <script>
+    import { mapState } from 'vuex';
+    import { teacherMyCourseResult } from  '@/api/teacher'
     export default {
-        
+        data() {
+            return {
+                form : {
+                    course_id: this.$route.query.id,
+                    page_limit: 10,
+                    page_no: 1,
+                    type: 'SUMMARY'
+                },
+                total: 0,
+                tableData: []
+            }
+        },
+        computed: {
+            ...mapState({
+                course: state=>state.course.course
+            })
+        },
+        created() {
+            this.query();
+        },
+        methods: {
+            handleCurrentChange(page) {
+                this.page_no = page;
+                this.query();
+            },
+            query() {
+                return teacherMyCourseResult(this.$deleteEmptyProps(this.form)).then(resp => {
+                    this.tableData = resp.data.objects;
+                    this.total = resp.data.num_results;
+                })
+            },
+        }
     }
 </script>
 
@@ -185,7 +196,7 @@ ul,li{
         overflow: hidden;
         font-size: 12px;
         color: #333333;
-        height: 102px;
+        height: 51px;
         border: 1px solid #E8E8E8;
         border-top: none;
     }
@@ -193,7 +204,7 @@ ul,li{
         width: 208px;
         float: left;
         text-align: center;
-        line-height: 102px;
+        line-height: 51px;
     }
     .time-oprate{
         width: 527px;

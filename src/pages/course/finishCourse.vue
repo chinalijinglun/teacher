@@ -3,15 +3,15 @@
         <div class="top-title">
             <div class="first-line">
                 <div class="left">
-                    ESL英语综合提升中级
-                </div>  
+                    {{course.course_name}}
+                </div>
                 <div class="right">
-                    <span class="study-time">上课时间：2018.05.25-08.31</span>
-                    <span>进度：01/10</span>
+                    <span class="study-time">上课时间：{{course.course_times}}</span>
+                    <span>进度：{{course.finish}}/{{course.classes_number}}</span>
                 </div>
             </div>
             <div class="bottom-line">
-学生：Kira Yuan、Kira Yuan 、Kira Yuan 、Kira Yuan…   
+                {{course.student_name}}
             </div>
         </div>
         <div class="table">
@@ -42,9 +42,9 @@
                 </div>
                 <div class="list-detail">
                     <div class="lesson-name">
-                        {{item.name}}
+                        {{item.name || '未命名'}}
                     </div>
-                    <template v-if="item.class_type == 2">
+                    <template v-if="item.class_type == 3">
                         <div class="lesson-state">
                             异常课（系统原因）
                         </div>
@@ -52,8 +52,14 @@
                             原因：XXXXXXXXXXXXXXXXXXXX
                         </div>
                     </template>
+                    <template v-if="item.class_type == 2">
+                        <div class="lesson-state">
+                            取消课
+                        </div>
+                        <div class="oprate-lesson"></div>
+                    </template>
                     <template v-else>
-                        <div class="lesson-state" v-if="item.class_type == 3">
+                        <div class="lesson-state" v-if="item.class_type == 4">
                             补偿课<img src="../../assets/shuoming.png" alt="">
                         </div>
                         <div class="lesson-state" v-if="item.class_type == 1">
@@ -81,6 +87,7 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex';
     import { teacherMyCourseOn } from  '@/api/teacher'
     export default {
         data() {
@@ -93,6 +100,11 @@
                 total: 0,
                 tableData: []
             }
+        },
+        computed: {
+            ...mapState({
+                course: state=>state.course.course
+            })
         },
         created() {
             this.query();
