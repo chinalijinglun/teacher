@@ -12,7 +12,7 @@
 		<div class="time" style="margin-bottom:40px;">
 			<span class="demonstration">学生：</span>
       <el-select v-model="form.student_id">
-        <el-option v-for="item in studentLs" :key="item.id" :value="item.id" :label="item.name"></el-option>
+        <el-option v-for="item in studentLs" :key="item.id" :value="item.id" :label="item.student_name"></el-option>
       </el-select>
 		</div>
 		<div class="text-tit">
@@ -62,7 +62,8 @@ import CourseSummary, {
   GRADE_ENUMS
 } from '@/model/CourseSummary';
 import {
-  courseSummaryAdd
+  courseSummaryAdd,
+  courseStudent
 } from '@/api/course'
 
 export default {
@@ -77,7 +78,8 @@ export default {
 	created() {
 		const course_id = this.$route.query.id;
 		this.form.course_id = course_id;
-		this.$store.dispatch('COURSE_GET_BY_ID', course_id)
+    this.$store.dispatch('COURSE_GET_BY_ID', course_id)
+    this.getStudentLs()
 	},
   data() {
     return {
@@ -85,7 +87,7 @@ export default {
 			content: '',
 			form: {
         course_id: '',
-        student_id: '1',
+        student_id: '',
         start: '',
         end: ''
       },
@@ -108,6 +110,9 @@ export default {
       this.$router.back()
     },
     getStudentLs() {
+      return courseStudent(this.form.course_id).then(resp => {
+        this.studentLs = resp.data.objects;
+      })
     }
   }
 };

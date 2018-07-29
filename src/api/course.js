@@ -19,3 +19,8 @@ export const courseSummaryAdd = (form) => baseAxios.post('/course/common_summary
 
 export const courseSummary = (form) => baseAxios.post('/course/common_summary', form);
 
+export const courseStudent = (id) => baseAxios.post('/teacher/students', {
+  course_id: id,
+  page_limit: 1000,
+  page_no: 1
+});
