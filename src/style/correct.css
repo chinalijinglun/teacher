@@ -1,0 +1,8 @@
+*{
+    word-break: break-all;
+}
+.el-pagination {
+    padding: 0;
+    margin: 10px 0;
+    text-align: right;
+}

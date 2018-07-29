@@ -1,19 +1,30 @@
 <template>
     <div class="aside">
         <div class="teacher-header">
-            <div class="teacher-header-img"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529042088081&di=3b2dcc0ce07472e0065ce84835a24814&imgtype=jpg&src=http%3A%2F%2Fimg1.imgtn.bdimg.com%2Fit%2Fu%3D2408925581%2C6212506%26fm%3D214%26gp%3D0.jpg" alt=""></div>
-            <div class="teacher-header-name">Alexander</div>
+            <div class="teacher-header-img">
+                <template v-if="teacher.avatar">
+                    <img :src="this.$baseApiUrl+teacher.avatar" alt="">
+                </template>
+                <template v-else>
+                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529042088081&di=3b2dcc0ce07472e0065ce84835a24814&imgtype=jpg&src=http%3A%2F%2Fimg1.imgtn.bdimg.com%2Fit%2Fu%3D2408925581%2C6212506%26fm%3D214%26gp%3D0.jpg" alt="">
+                </template>
+            </div>
+            <div class="teacher-header-name">{{teacher.username || 'username'}}</div>
             <div class="teacher-header-btn">个人中心</div>
         </div>
         <div class="select-bar">
             <ul class="bars">
                 <li class="active">
-                    <img class="imgs" src="@/assets/kechengbiao_h.png" alt="">
-                    <span>课程表</span>
+                    <router-link :to="{path: '/schedule'}">
+                        <img class="imgs" src="@/assets/kechengbiao_h.png" alt="">
+                        <span>课程表</span>
+                    </router-link>
                 </li>
                 <li class="active">
-                    <img class="imgs" src="@/assets/kecheng_h.png" alt="">
-                    <span>我的课程</span>
+                    <router-link :to="{path: '/course'}">
+                        <img class="imgs" src="@/assets/kecheng_h.png" alt="">
+                        <span>我的课程</span>
+                    </router-link>
                 </li>
                 <li class="active">
                     <img class="imgs" src="@/assets/chengzhang_h.png" alt="">
@@ -25,8 +36,20 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex';
     export default {
-        name: 'asides'
+        name: 'asides',
+        computed: {
+            ...mapState({
+                teacher: state=>state.userinfo.teacher
+            })
+        },
+        created() {
+            console.log(this.$store.state.auth)
+            const teacher_id = this.$store.state.auth.id;
+            this.$store.dispatch('TEACHER_GET_BY_ID', teacher_id)
+            console.log('this.$store',this.$store);
+        }
     }
 </script>
 
@@ -49,6 +72,14 @@
         color: #333333;
         line-height: 60px;
         cursor: pointer;
+    }
+    .bars li a{
+        display: block;
+        color: #333333;
+        text-decoration: none;
+    }
+    .bars li a.router-link-active{
+        color: #FF8200; 
     }
     .imgs{
         float: left;

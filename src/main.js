@@ -10,6 +10,7 @@ import fullCalendar from 'vue-fullcalendar'
 import selfComponents from './components';
 import utils from './utils';
 import store from './store';
+import './style/correct.css';
 
 
 // import myVueEditor from 'my-vue-editor'

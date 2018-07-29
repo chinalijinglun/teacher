@@ -7,7 +7,7 @@
                 </div>
                 <div class="right">
                     <span class="study-time">上课时间：{{course.course_times}}</span>
-                    <span>进度：{{course.finish}}/{{course.classes_number}}</span>
+                    <span>进度：{{course.course_progress}}</span>
                 </div>
             </div>
             <div class="bottom-line">
@@ -92,6 +92,8 @@
             })
         },
         created() {
+            const course_id = this.$route.query.id;
+            this.$store.dispatch('COURSE_GET_BY_ID', course_id);
             this.query();
         },
         methods: {
