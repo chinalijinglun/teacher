@@ -43,6 +43,24 @@ function deleteEmptyProps(form) {
   return f;
 }
 
+function getCourseScheduleTime(start, end) {
+  if(!start||!end) {
+    return ''
+  }
+  const day = dateFmt(new Date(start), 'yyyy.MM.dd');
+  const timeStart = dateFmt(new Date(start), 'hh.mm');
+  const timeEnd = dateFmt(new Date(end), 'hh.mm');
+  return day+' '+timeStart+'-'+timeEnd;
+}
+
+function getCourseTime(start, end) {
+  if(!start||!end) {
+    return ''
+  }
+  const daystart = dateFmt(new Date(start), 'yyyy.MM.dd');
+  const dayend = dateFmt(new Date(end), 'MM.dd');
+  return daystart+'-'+dayend;
+}
 const install = (Vue) => {
   Vue.prototype.$dateFmt = dateFmt;
   Vue.prototype.$DATE_FMT_DEFAULT = DATE_FMT_DEFAULT;
@@ -61,6 +79,8 @@ const install = (Vue) => {
   Vue.prototype.$getQueryParams = getQueryParams;
   Vue.prototype.$getNopageQueryParams = getNopageQueryParams;
   Vue.prototype.$deleteEmptyProps = deleteEmptyProps;
+  Vue.prototype.$getCourseTime = getCourseTime;
+  Vue.prototype.$getCourseScheduleTime = getCourseScheduleTime;
 
   
   Vue.prototype.$setSession = setSession;
@@ -81,6 +101,11 @@ const install = (Vue) => {
   Vue.prototype.$MINI_LIMIT = 5;
   // 不需要分页的时候的最大数据条数
   Vue.prototype.$NO_PAGE_LIMIT = 100;
+}
+
+export {
+  getCourseScheduleTime,
+  getCourseTime
 }
 
 export default {

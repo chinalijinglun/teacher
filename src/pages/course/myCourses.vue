@@ -140,8 +140,10 @@ li {
   width: 118px;
 }
 .student,
-.state {
-  width: 119px;
+.state {    
+	width: 119px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .oprate {
   width: 116px;
