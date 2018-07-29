@@ -61,9 +61,14 @@
 <script>
     import edit from '@/components/editor'
     export default {
-         components:{
-             edit
-         }   
+        data(){
+            return {
+                
+            }
+        },
+        components:{
+            edit
+        }   
     }
 </script>
 

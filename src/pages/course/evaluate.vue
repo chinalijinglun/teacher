@@ -1,13 +1,13 @@
 <template>
     <div class="evaluate">
         <div class="title">
-            Lesson 1 Exploring Space and Astronomy
+            {{course.course_name}}
         </div>
         <div class="time">
-            2018.04.30 13:00 - 13:50
+            {{course.course_times}}
         </div>
         <div class="my-student">
-我的学生
+            我的学生
         </div>
         <div class="table">
             <ul class="list-tit">
@@ -17,11 +17,14 @@
                 <li class="oprate">操作</li>
             </ul>
             <div class="list">
-                <ul>
-                    <li class="student">ALEX ren</li>
-                    <li class="performance">等待点评</li>
-                    <li class="list-time">——</li>
-                    <li class="oprate">点评</li>
+                <ul v-for="(item, index) in tableData" :key="index">
+                    <li class="student">{{item.student_name}}</li>
+                    <li class="performance">{{item.overall}}</li>
+                    <li class="list-time">{{item.created_at || '——'}}</li>
+                    <li class="oprate">
+                        <span v-if="item.overall=='等待点评'" @click="dianPing(item.study_schedule_id)">点评</span>
+                        <span v-else >查看</span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -29,8 +32,60 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex';
+    import { courseSummary } from  '@/api/course'
     export default {
-        
+        data() {
+            return {
+                course_schedule_id: this.$route.query.id,
+                total: 0,
+                tableData: []
+            }
+        },
+        computed: {
+            ...mapState({
+                course: state=>state.course.course
+            })
+        },
+        created() {
+            const course_id = this.$route.query.course_id;
+            this.$store.dispatch('COURSE_GET_BY_ID', course_id);
+            this.query();
+        },
+        methods: {
+            handleCurrentChange(page) {
+                this.page_no = page;
+                this.query();
+            },
+            query() {
+                const filter = this.$json2filter({course_schedule_id:[this.course_schedule_id]})
+                return courseSummary({
+                    course_schedule_id: this.course_schedule_id,
+                    page_limit: 1000,
+                    page_no: 1
+                }).then(resp => {
+                    this.tableData = resp.data.objects.map(item => {
+                        const summary = {
+                            overall: '',
+                            created_at: '--'
+                        }
+                        if(item.teacher_evaluation) {
+                            const evaluationJson = JSON.parse(item.teacher_evaluation);
+                            summary.created_at = evaluationJson.created_at;
+                            summary.overall = evaluationJson.performace.overall;
+                        }
+                        return {
+                            id: item.study_schedule_id,
+                            student_name: item.student_name,
+                            ...summary
+                        }
+                    });
+                })
+            },
+            dianPing(id) {
+                this.$router.push({path: '/add-evaluate', query: {'course_id':this.$route.query.course_id,'id': id}});
+            }
+        }
     }
 </script>
 
@@ -74,6 +129,8 @@
         line-height: 38px;
         font-size: 12px;
         color: #333333;
+        height: 38px;
+        overflow: hidden;
     }
     .student{
         width: 168px;
@@ -102,8 +159,14 @@
         font-size: 12px;
         color: #333333;
         border-right: 1px solid #E8E8E8;
+        height: 52px;
+        overflow: hidden;
     }
     .list ul li:last-child{
         border: none;
+    }
+    .list ul li span{
+        color: #FF8200;
+        cursor: pointer;
     }
 </style>

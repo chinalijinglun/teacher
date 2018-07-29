@@ -31,6 +31,10 @@
                     </li>
                 </ul>
             </div>
+            <div class="add-report" @click="addSumm">
+                <img src="@/assets/shangchuan.png" alt="">
+                添加课程总结
+            </div>
             <div class="table-tit">
                 <div class="course-name">学生</div>
                 <div class="state">时间</div>
@@ -46,7 +50,7 @@
                             {{item.start}}-{{item.end}}
                         </div>
                         <div class="check">
-                            查看
+                            <span>查看</span>
                         </div>
                     </div>
                 </div>
@@ -101,6 +105,9 @@
                     this.total = resp.data.num_results;
                 })
             },
+            addSumm(id) {
+                this.$router.push({path: '/add-result', query: {'id': id}});
+            }
         }
     }
 </script>
@@ -152,6 +159,21 @@ ul,li{
         height: 50px;
         background: #FAFAFA;
         border: 1px solid #DCDCDC;
+    }
+    .add-report{
+        background: #FF8200;
+        border-radius: 5px;
+        width: 160px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+        color: #FFFFFF;
+        cursor: pointer;
+        margin-top: 19px;
+    }
+    .add-report img{
+        float: left;
+        margin: 10px 15px;
     }
     .tab-bars ul li a{
         float: left;
@@ -237,5 +259,8 @@ ul,li{
         color: #FF8244;
         height: 51px;
         line-height: 51px;
+    }
+    .check span {
+        cursor: pointer;
     }
 </style>

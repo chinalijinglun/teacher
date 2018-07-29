@@ -67,8 +67,8 @@
                         </div>
                         <div class="oprate-lesson">
                             <span class="colo">回放 </span>
-                            <span class="colo">作业</span>
-                            <span class="colo">课后小结</span>
+                            <span class="colo" @click="goHomework(item.id)">作业</span>
+                            <span class="colo" @click="goEval(item.id)">课后小结</span>
                         </div>
                     </template>
                 </div>
@@ -88,7 +88,8 @@
 
 <script>
     import { mapState } from 'vuex';
-    import { teacherMyCourseOn } from  '@/api/teacher'
+    import { teacherMyCourseOn } from  '@/api/teacher';
+    import homework from './homework'
     export default {
         data() {
             return {
@@ -122,6 +123,12 @@
                     this.total = resp.data.num_results;
                 })
             },
+            goHomework(id) {
+                this.$router.push({path: '/homework', query: {'id': id}});
+            },
+            goEval(id) {
+                this.$router.push({path: '/evaluate', query: {'course_id': this.$route.query.id, 'id': id}});
+            }
         }
     }
 </script>

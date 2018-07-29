@@ -16,3 +16,6 @@ export const courseBareGetByCourseId = (courseId) => baseAxios.get(`/api/v1/_bar
 export const coursePackageQuery = (params) => baseAxios.post('/course/package_query', params);
 
 export const courseSummaryAdd = (form) => baseAxios.post('/course/common_summary_add', form);
+
+export const courseSummary = (form) => baseAxios.post('/course/common_summary', form);
+

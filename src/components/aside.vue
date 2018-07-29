@@ -45,10 +45,8 @@
             })
         },
         created() {
-            console.log(this.$store.state.auth)
             const teacher_id = this.$store.state.auth.id;
-            this.$store.dispatch('TEACHER_GET_BY_ID', teacher_id)
-            console.log('this.$store',this.$store);
+            this.$store.dispatch('TEACHER_GET_BY_ID', teacher_id);
         }
     }
 </script>
