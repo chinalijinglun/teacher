@@ -1,7 +1,6 @@
 import {
   setLocalStorage,
-  getLocalStorage,
-  deleteLocalStorage
+  getLocalStorage
 } from '@/utils/localStorage';
 
 const state = {
@@ -36,6 +35,7 @@ const actions = {
 
 export default {
   state,
+  actions,
   mutations,
   namespaced: true
 }

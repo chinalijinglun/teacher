@@ -6,15 +6,11 @@ import router from './router'
 import ElementUI from 'element-ui';
 import './style/index.css';
 import fullCalendar from 'vue-fullcalendar'
-
 import selfComponents from './components';
 import utils from './utils';
 import store from './store';
+import load from './router/load';
 import './style/correct.css';
-
-
-// import myVueEditor from 'my-vue-editor'
-// Vue.use(myVueEditor, options)
 
 Vue.component('full-calendar', fullCalendar)
 
@@ -28,12 +24,16 @@ Vue.prototype.$loginOut = function() {
   router.push('/login');
   store.dispatch('auth/loginOut')
 }
-
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  components: { App },
-  template: '<App/>'
-});
+load().then(url => {
+  if(url !== true) {
+    router.push(url)
+  }
+  /* eslint-disable no-new */
+  new Vue({
+    el: '#app',
+    router,
+    store,
+    components: { App },
+    template: '<App/>'
+  });
+})

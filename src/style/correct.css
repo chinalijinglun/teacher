@@ -1,8 +1,11 @@
 *{
-    word-break: break-all;
+	word-break: break-all;
 }
 .el-pagination {
-    padding: 0;
-    margin: 10px 0;
-    text-align: right;
+	padding: 0;
+	margin: 10px 0;
+	text-align: right;
+}
+.button-point {
+	cursor: pointer;
 }

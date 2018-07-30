@@ -5,7 +5,7 @@
 				<span class="login-right">
 					Sign in
 				</span>
-				<span class="login-left">
+				<span class="login-left button-point" @click="$router.push('/regist')">
 					Join us
 					<img src="../assets/jian.png" alt="">
 				</span>
@@ -21,7 +21,7 @@
 				</div>
 			</div>
 			<button class="btn" @click="login">登录</button>
-			<div class="regist-now">
+			<div class="regist-now button-point" @click="$router.push('/reset')">
 				Forgot your password?
 			</div>
 		</div>
@@ -29,6 +29,7 @@
 </template>
 <script>
 import { authLoginPost } from "@/api/auth";
+import load from '@/router/load'
 export default {
   data() {
     return {
@@ -41,8 +42,15 @@ export default {
   methods: {
     login() {
       authLoginPost(this.form).then(resp => {
-				console.log(resp);
-				this.$router.push('/basic')
+				// console.log(resp);
+        // this.$router.push('/basic')
+        return load()
+      }).then(url => {
+        if(url === true) {
+          this.$router.push('/center')
+        } else {
+          this.$router.push(url)
+        }
       });
     }
   }
