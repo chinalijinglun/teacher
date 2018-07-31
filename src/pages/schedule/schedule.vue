@@ -4,8 +4,7 @@
     startDate="2018-07-31" 
     :dateData="dateData.Object" 
     :firstDay="1"
-    :onPrev="getSchedule"
-    :onNext="getSchedule"
+    :onMonthChange="getSchedule"
     mode="week"
   >
     <div slot-scope="item">
@@ -20,11 +19,13 @@
   </Calendar>
 </template>
 <script>
-import dateData from './data' 
+import {
+  mySchedule
+} from '@/api/teacher'
 export default {
   data() {
     return {
-      dateData
+      dateData: {}
     };
   },
   filters: {
@@ -36,8 +37,35 @@ export default {
     isToday(day) {
       return this.$dateFmt(new Date(day), 'yyyy-MM-dd') === this.$dateFmt(new Date(), 'yyyy-MM-dd');
     },
-    getSchedule() {
-      console.log(arguments)
+    getSchedule({startDay, endDay}) {
+      this.query(new Date(startDay.full), new Date(endDay.full))
+    },
+    query(start, end) {
+      mySchedule({
+        start,
+        end,
+        page_no: 1,
+        page_limit: 1000
+      }).then(resp => {
+        const schedules = resp.data.objects;
+        const ArrayData = schedules.map(item => ({
+          title: item.class_name + '\n\r' + this.$dateFmt(new Date(start), 'yyyy-MM-dd hh:mm') + '-' + this.$dateFmt(new Date(end), 'yyyy-MM-dd hh:mm'),
+          date: this.$dateFmt(new Date(start), 'yyyy-MM-dd')
+        }))
+        let ObjectData = {}
+
+        ArrayData.forEach(item => {
+          if(ObjectData[item.date]) {
+            ObjectData[item.date].push({ title: item.title })
+          } else {
+            ObjectData[item.date] = [{ title: item.title }]
+          }
+        })
+        this.dateData = {
+          Array: ArrayData,
+          Object: ObjectData
+        }
+      })
     }
   }
 };
@@ -79,7 +107,7 @@ export default {
   padding: 5px 2px;
 }
 .agenda-container .agenda-item {
-  padding: 10px;
+  padding: 5px;
   background: #F5A623;
   color: #333;
   display: block;
