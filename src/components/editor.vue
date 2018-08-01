@@ -21,13 +21,12 @@
           附件
         </div>
         <div class="right">
-          <!-- <div class="up">
+          <div class="up">
             <img src="@/assets/shangchuan.png" alt="">上传附件
-          </div> -->
-          <el-button icon="ms-add-file-upload">
-            上传附件
-          </el-button>
-          <span>AP心理学第一课作业.docx</span>
+          </div>
+          <div class="file-list">
+            <span>AP心理学第一课作业.docx</span>
+          </div>
         </div>
       </div>
       <div class="btn">
@@ -60,6 +59,9 @@ export default {
       content: "<h1>Some initial content</h1>",
       editShow: false
     };
+  },
+  methods: {
+
   }
 };
 </script>  
@@ -164,7 +166,6 @@ i.ms-add-file-upload {
   overflow: hidden;
   line-height: 40px;
   cursor: pointer;
-  float: left;
 }
 .up img {
   float: left;
@@ -206,6 +207,9 @@ i.ms-add-file-upload {
   font-size: 14px;
   color: #333333;
   text-align: center;
+}
+.file-list {
+  overflow: hidden;
 }
 </style>
  
