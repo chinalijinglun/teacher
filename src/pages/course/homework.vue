@@ -43,7 +43,7 @@
 				</el-pagination>
 			</el-row>
 		</div>
-		<edit :show="showEdit"></edit>
+		<edit :show="showEdit" :course-schedule-id="form.course_schedule_id"></edit>
 	</div>
 </template>
 
