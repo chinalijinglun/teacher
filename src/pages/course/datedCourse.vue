@@ -54,7 +54,6 @@
                     <div class="oprate-lesson">
                         <span class="colo">进入教室  </span>
                         <span class="colo" @click="goCourseware(item.id)">查看课件</span>
-                        <span class="colo">申请修改时间</span>
                     </div>
                 </div>
             </div>

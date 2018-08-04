@@ -19,10 +19,13 @@ function load() {
         case 10:
           return '/reservation';
         case 11:
-          return '/reservation1';
+          return '/contract';
         case 20:
           return true;
       }
+    }).catch( error => {
+      console.log(error)
+      return Promise.resolve('/login')
     })
   } else {
     return Promise.resolve('/login')
