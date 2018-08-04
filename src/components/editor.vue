@@ -27,7 +27,7 @@
           </div>
           <div class="file-list">
             <ul class="file-list-text">
-              <li v-for="(item, index) in fileLs">
+              <li v-for="(item, index) in fileLs" :key="index">
                 <a :href="item.url" target="_blank">{{item.name}}</a>
                 <i class="el-icon-close" @click="removeFile(index)"></i>
               </li>
