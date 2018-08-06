@@ -20,16 +20,16 @@
 				</div>
 				<div class="phone">
 					<div class="phone-left">
-						Email
+						mobile
 					</div>
-					<input type="text" class="inps" v-model="form.username" placeholder="Email address">
+					<input type="text" class="inps" v-model="form.username" placeholder="mobile no">
 				</div>
 				<div class="phone">
 					<div class="phone-left">
 						Verification code
 					</div>
 					<div class="inps">
-						<input type="text" class="yan-num" v-model="form.verify_code" placeholder="Get code from your Email">
+						<input type="text" class="yan-num" v-model="form.verify_code" placeholder="Get code from your mobile">
 						<div class="click-btn" ref="countDown" @click="getVerifyCode">
 							{{verifyBtn.text}}
 						</div>
@@ -37,7 +37,7 @@
 				</div>
 				<div class="phone">
 					<div class="phone-left">
-						Get Code
+						Pass Word
 					</div>
 					<input type="password" class="inps" v-model="form.password" placeholder="at least 6 characters">
 				</div>
@@ -60,7 +60,7 @@
 </template>
 <script>
 import {
-	authEmailverifyPost,
+	authSmsverifyPost,
 	authRegisterPost 
 } from '@/api/auth'
 export default {
@@ -96,11 +96,11 @@ export default {
 			const error = this.$message.error.bind(this.$message);
 
 			if(!username) {
-				error('请输入邮箱! ');
+				error('请输入手机号! ');
 				return false;
 			}
-			if(!this.$EMAIL_REG_EXP.test(username)) {
-				error('邮箱格式不对! ');
+			if(!this.$MOBILE_REG_EXP_NATIONAL.test(username)) {
+				error('手机号格式不对! ');
 				return false;
 			}
 			if(type === 'verify_code') {
@@ -144,8 +144,8 @@ export default {
 			} = this.form;
 			if(this.valid('verify_code')){
 				this.countDown(60);
-				authEmailverifyPost({
-					email_address: username
+				authSmsverifyPost({
+					mobile_no: username
 				}).then(resp => {
 					console.log(resp);
 				});
