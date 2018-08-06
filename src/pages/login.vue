@@ -34,7 +34,7 @@ export default {
         username: "",
         password: ""
       },
-      keep: false
+      keep: true
     };
   },
   methods: {
