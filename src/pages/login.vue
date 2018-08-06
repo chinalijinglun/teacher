@@ -15,10 +15,7 @@
 				<input type="password" v-model="form.password" placeholder="Password">
 			</div>
 			<div class="remember-num">
-				<input type="checkbox" class="check">
-				<div class="text">
-					<span>Keep me signed in.</span>
-				</div>
+        <el-checkbox v-model="keep">Keep me signed in.</el-checkbox>
 			</div>
 			<button class="btn" @click="login">登录</button>
 			<div class="regist-now button-point" @click="$router.push('/reset')">
@@ -36,14 +33,13 @@ export default {
       form: {
         username: "",
         password: ""
-      }
+      },
+      keep: false
     };
   },
   methods: {
     login() {
-      authLoginPost(this.form).then(resp => {
-				// console.log(resp);
-        // this.$router.push('/basic')
+      authLoginPost(this.form, this.keep).then(resp => {
         return load()
       }).then(url => {
         if(url === true) {

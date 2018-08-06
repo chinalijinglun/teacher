@@ -25,6 +25,7 @@ Vue.prototype.$loginOut = function() {
   store.dispatch('auth/loginOut')
 }
 load().then(url => {
+  console.log(url)
   if(url !== true) {
     router.push(url)
   }

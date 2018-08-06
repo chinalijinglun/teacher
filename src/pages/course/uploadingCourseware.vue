@@ -72,9 +72,6 @@
 	</div>
 </template>
 <script>
-import {
-
-} from ''
 export default {
 	data() {
 		return {

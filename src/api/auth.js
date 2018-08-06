@@ -5,12 +5,15 @@ export const authSmsverifyPost = form => baseAxios.post('/auth/smsverify',form);
 
 export const authEmailverifyPost = form => baseAxios.post('/auth/emailverify',form);
 
-export const authLoginPost = form => {
+export const authLoginPost = (form, keep) => {
   form.usertype = store.state.auth.userType;
   return baseAxios.post('/auth/login',form).then(resp => {
-    store.commit('auth/setUserName', form.username);
-    store.commit('auth/setAuthorization', resp.data.Authorization);
-    store.commit('auth/setId', resp.data.id);
+    store.commit('auth/setUserName', {value: ''});
+    store.commit('auth/setAuthorization', {value: ''});
+    store.commit('auth/setId', {value: ''});
+    store.commit('auth/setUserName', {value: form.username, keep});
+    store.commit('auth/setAuthorization', {value: resp.data.Authorization, keep});
+    store.commit('auth/setId', {value: resp.data.id, keep});
     return resp;
   })
 };
@@ -18,9 +21,9 @@ export const authLoginPost = form => {
 export const authRegisterPost = form => {
   form.usertype = store.state.auth.userType;
   return baseAxios.post('/auth/register',form).then(resp => {
-    store.commit('auth/setUserName', '');
-    store.commit('auth/setAuthorization', '');
-    store.commit('auth/setId', '');
+    store.commit('auth/setUserName', {value: ''});
+    store.commit('auth/setAuthorization', {value: ''});
+    store.commit('auth/setId', {value: ''});
     return resp;
   })
 };
@@ -28,9 +31,9 @@ export const authRegisterPost = form => {
 export const authResetpasswordPost = form => {
   form.usertype = store.state.auth.userType;
   return baseAxios.post('/auth/resetpassword',form).then(resp => {
-    store.commit('auth/setUserName', '');
-    store.commit('auth/setAuthorization', '');
-    store.commit('auth/setId', '');
+    store.commit('auth/setUserName', {value: ''});
+    store.commit('auth/setAuthorization', {value: ''});
+    store.commit('auth/setId', {value: ''});
     return resp;
   });
 };

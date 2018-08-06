@@ -9,6 +9,7 @@ function load() {
       const {
         state
       } = teacher;
+      console.log(state)
       switch (state) {
         case 1: 
         case 2:
@@ -21,6 +22,7 @@ function load() {
         case 11:
           return '/contract';
         case 20:
+        default:
           return true;
       }
     }).catch( error => {
