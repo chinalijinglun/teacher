@@ -40,7 +40,7 @@
                 <div class="state">时间</div>
                 <div class="oparet">操作</div>
             </div>
-            <div class="box" v-for="(item, index) in tableData" :key="item.id">
+            <div class="box" v-for="item in tableData" :key="item.id">
                 <div class="student">
                    {{item.student_name}}
                 </div>

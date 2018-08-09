@@ -90,7 +90,7 @@ export default {
   methods: {
     getInterview() {
 			const filter = this.$json2filter({
-				teacher_id: [64]
+				teacher_id: [this.userId]
 			})
 			interviewGetBare(filter).then(resp => {
 				if(resp.data.objects[0].set_time) {
