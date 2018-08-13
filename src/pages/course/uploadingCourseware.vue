@@ -5,67 +5,41 @@
 		</div>
 		<div class="class-name">
 			<span>课节名称：</span>
-			<input type="text" class="inp" v-model="course_schedule_name" placeholder="请输入作业的标题">
+			<input type="text" class="inp" v-model="form.course_schedule_name" placeholder="请输入作业的标题">
 		</div>
 		<div class="upload">
 			<span>
 				上传附件：
 			</span>
-			<div class="uploading">
-				<img src="@/assets/shangchuan.png" alt=""> 本地上传
-			</div>
+			<ware-upload 
+				v-model="coursewareLs"
+				:schedule-id="form.course_schedule_id"
+			/>
 		</div>
 		<div class="kejian">
-			<div class="singal">
+			<div class="singal" v-for="(item, index) in coursewareLs" :key="index">
 				<div class="left">
 					<img src="@/assets/fujian.png" alt="">
 				</div>
 				<div class="right">
-					<div class="rig-tit">Alex and I practiced writing </div>
-					<div class="del">删除</div>
-					<div class="radio"><input type="radio" name="allow" id=""> 允许学生预习</div>
-					<div class="radio"><input type="radio" name="allow" id=""> 不允许</div>
-				</div>
-			</div>
-			<div class="singal">
-				<div class="left">
-					<img src="@/assets/fujian.png" alt="">
-				</div>
-				<div class="right">
-					<div class="rig-tit">Alex and I practiced writing </div>
-					<div class="del">删除</div>
-					<div class="radio"><input type="radio" name="allow" id=""> 允许学生预习</div>
-					<div class="radio"><input type="radio" name="allow" id=""> 不允许</div>
-				</div>
-			</div>
-			<div class="singal">
-				<div class="left">
-					<img src="@/assets/fujian.png" alt="">
-				</div>
-				<div class="right">
-					<div class="rig-tit">Alex and I practiced writing </div>
-					<div class="del">删除</div>
-					<div class="radio"><input type="radio" name="allow" id=""> 允许学生预习</div>
-					<div class="radio"><input type="radio" name="allow" id=""> 不允许</div>
-				</div>
-			</div>
-			<div class="singal">
-				<div class="left">
-					<img src="@/assets/fujian.png" alt="">
-				</div>
-				<div class="right">
-					<div class="rig-tit">Alex and I practiced writing </div>
-					<div class="del">删除</div>
-					<div class="radio"><input type="radio" name="allow" id=""> 允许学生预习</div>
-					<div class="radio"><input type="radio" name="allow" id=""> 不允许</div>
+					<div class="rig-tit"> {{item.ware_name}} </div>
+					<div class="del" @click="deleteWare(index)">删除</div>
+					<el-radio-group v-model="item.is_view" class="radio-group">
+						<el-row>
+							<el-radio label="YES">允许学生预习</el-radio>
+						</el-row>
+						<el-row>
+							<el-radio label="NO">不允许</el-radio>
+						</el-row>
+					</el-radio-group>
 				</div>
 			</div>
 		</div>
 		<div class="btn-box">
-			<div class="submit">
+			<div class="submit" @click="updateWare">
 				提交
 			</div>
-			<div class="close">
+			<div class="close" @click="toBack">
 				关闭
 			</div>
 		</div>
@@ -73,17 +47,32 @@
 </template>
 <script>
 import { mapState } from "vuex";
-import {courseScheduleBareGetById} from '@/api/course_schedule'
+import { 
+	courseScheduleBareGetById,
+	courseSchedulePutById
+} from '@/api/course_schedule'
+import { 
+	getCourseWareBySchedule,
+	uploadCourseware,
+	coursewareDeleteById
+} from '@/api/courseware'
+import CourseWare from '@/model/CourseWare'
+import wareUpload from '@/components/upload/wareUpload'
 export default {
 	data() {
 		return {
-			course_schedule_id: '',
-			course_schedule_name: ''
+			form: {
+				course_schedule_id: '',
+				course_schedule_name: ''
+			},
+			coursewareLs: [],
+			oldWareLs: []
 		}
 	},
   computed: {
     ...mapState({
-      course: state => state.course.course
+			course: state => state.course.course,
+			userName: state => state.auth.userName
     })
 	},
 	created() {
@@ -91,14 +80,52 @@ export default {
 		this.$store.dispatch('COURSE_GET_BY_ID', course_id);
 		const course_schedule_id = this.$route.query.id;
 		this.getCourseSchedule(course_schedule_id)
+		this.getCourseWare(course_schedule_id);
 	},
 	methods: {
 		getCourseSchedule(id) {
 			courseScheduleBareGetById(id).then(resp => {
-				this.course_schedule_name = resp.data.name;
-				this.course_schedule_id = id;
+				this.form.course_schedule_name = resp.data.name;
+				this.form.course_schedule_id = id;
+			})
+		},
+		getCourseWare(id) {
+			getCourseWareBySchedule(id).then(resp => {
+				console.log(resp)
+			})
+		},
+		deleteWare(index) {
+			this.coursewareLs.splice(index, 1);
+		},
+		toBack() {
+			this.$router.back()
+		},
+		updateWare() {
+			const updates = [...this.addWare(), ...this.deleteWare(), this.updateSchedule()];
+			Promise.all(updates).then(resp => {
+				this.$message.success('success！')
+				this.toBack()
+			}).then(error => {
+				this.$message.error(error)
+			})
+		},
+		addWare() {
+			return this.coursewareLs.map(item => uploadCourseware(item))
+		},
+		deleteWare() {
+			return this.oldWareLs.map(id => coursewareDeleteById(id))
+		},
+		updateSchedule() {
+			return courseSchedulePutById(this.form.course_schedule_id, {
+				name: this.form.course_schedule_name,
+				course_id: this.$route.query.course_id,
+				updated_at: new Date(),
+				updated_by: this.userName
 			})
 		}
+	},
+	components: {
+		wareUpload
 	}
 };
 </script>
@@ -172,12 +199,17 @@ export default {
   font-size: 14px;
   color: #ff8200;
   text-decoration: underline;
-  cursor: pointer;
+	cursor: pointer;
+	line-height: 20px;
+	margin-top: 5px;
+	margin-bottom: 7px;
 }
-.radio {
+.radio-group {
   font-size: 12px;
   color: #333333;
-  margin-top: 14px;
+}
+.radio-group .el-row {
+	padding: 6px 0;
 }
 .btn-box {
   width: 272px;
