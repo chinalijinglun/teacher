@@ -1,11 +1,11 @@
 <template>
 	<div class="uploading-courseware">
 		<div class="course-name">
-			课包名称：ESL英语综合提升中级
+			课包名称：{{course.course_name}}
 		</div>
 		<div class="class-name">
-			<span>课节名称：Lesson 3</span>
-			<input type="text" class="inp" placeholder="请输入作业的标题">
+			<span>课节名称：</span>
+			<input type="text" class="inp" v-model="course_schedule_name" placeholder="请输入作业的标题">
 		</div>
 		<div class="upload">
 			<span>
@@ -72,14 +72,33 @@
 	</div>
 </template>
 <script>
+import { mapState } from "vuex";
+import {courseScheduleBareGetById} from '@/api/course_schedule'
 export default {
 	data() {
 		return {
-
+			course_schedule_id: '',
+			course_schedule_name: ''
 		}
 	},
+  computed: {
+    ...mapState({
+      course: state => state.course.course
+    })
+	},
+	created() {
+		const course_id = this.$route.query.course_id;
+		this.$store.dispatch('COURSE_GET_BY_ID', course_id);
+		const course_schedule_id = this.$route.query.id;
+		this.getCourseSchedule(course_schedule_id)
+	},
 	methods: {
-
+		getCourseSchedule(id) {
+			courseScheduleBareGetById(id).then(resp => {
+				this.course_schedule_name = resp.data.name;
+				this.course_schedule_id = id;
+			})
+		}
 	}
 };
 </script>

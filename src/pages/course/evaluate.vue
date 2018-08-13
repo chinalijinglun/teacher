@@ -23,7 +23,7 @@
                     <li class="list-time">{{item.created_at || '——'}}</li>
                     <li class="oprate">
                         <span v-if="item.overall=='等待点评'" @click="dianPing(item.study_schedule_id)">点评</span>
-                        <span v-else >查看</span>
+                        <span v-else @click="dianPing(item.study_schedule_id)">查看</span>
                     </li>
                 </ul>
             </div>
