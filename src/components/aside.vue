@@ -7,7 +7,9 @@
 				</template>
 			</div>
 			<div class="teacher-header-name">{{teacher.username || 'username'}}</div>
-			<div class="teacher-header-btn">个人中心</div>
+      <div class="teacher-header-btn" @click="$router.push('/center')">
+        个人中心
+      </div>
 		</div>
 		<div class="select-bar">
 			<ul class="bars">
@@ -109,5 +111,6 @@ export default {
   font-size: 14px;
   color: #ffffff;
   margin-left: 21px;
+  cursor: pointer;
 }
 </style>

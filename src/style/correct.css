@@ -26,3 +26,14 @@
 .el-checkbox__input.is-checked+.el-checkbox__label {
 	color: #ff8200;
 }
+
+.el-button--text {
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #ff8200;
+	line-height: 34px;
+}
+
+.el-button--text:focus, .el-button--text:hover {
+	color: #FFBA73;
+}
