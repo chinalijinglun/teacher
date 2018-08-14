@@ -105,8 +105,8 @@
                     this.total = resp.data.num_results;
                 })
             },
-            addSumm(id) {
-                this.$router.push({path: '/add-result', query: {'id': id}});
+            addSumm() {
+                this.$router.push({path: '/add-result', query: {'id': this.$route.query.id}});
             }
         }
     }

@@ -91,7 +91,11 @@ export default {
 		},
 		getCourseWare(id) {
 			getCourseWareBySchedule(id).then(resp => {
-				console.log(resp)
+				this.coursewareLs = resp.data.objects.map(item => new CourseWare({
+					...item,
+					file_url: item.ware_url
+				}))
+				this.oldWareLs = resp.data.objects.map(item => item.id)
 			})
 		},
 		deleteWare(index) {
