@@ -24,7 +24,7 @@
           const value = [...this.value]
           value.push(new CourseWare({
             ware_name: resp.data[0].upload_file,
-            file_url: resp.data[0].upload_file,
+            file_url: this.$baseApiUrl + resp.data[0].download_file,
             course_schedule_id: this.scheduleId,
             is_view: 'YES'
           }))
