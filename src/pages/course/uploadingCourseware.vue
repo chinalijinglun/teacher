@@ -105,7 +105,7 @@ export default {
 			this.$router.back()
 		},
 		updateWare() {
-			const updates = [...this.addWare(), ...this.deleteWare(), this.updateSchedule()];
+			const updates = [...this.addWare(), ...this.removeWare(), this.updateSchedule()];
 			Promise.all(updates).then(resp => {
 				this.$message.success('success！')
 				this.toBack()
@@ -116,7 +116,7 @@ export default {
 		addWare() {
 			return this.coursewareLs.map(item => uploadCourseware(item))
 		},
-		deleteWare() {
+		removeWare() {
 			return this.oldWareLs.map(id => coursewareDeleteById(id))
 		},
 		updateSchedule() {
