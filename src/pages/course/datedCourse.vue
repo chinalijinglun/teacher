@@ -38,7 +38,7 @@
 			</div>
 			<div class="table-list" v-for="(item, index) in tableData" :key="item.id">
 				<div class="list-tit">
-					<span>上课时间(当前时区：Hawaii)：{{item.start}} — {{item.end}}</span>
+					<span>上课时间：{{$getCourseScheduleTime(item.start, item.end)}}</span>
 				</div>
 				<div class="list-detail">
 					<div class="lesson-name">

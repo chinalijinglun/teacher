@@ -48,8 +48,8 @@ function getCourseScheduleTime(start, end) {
     return ''
   }
   const day = dateFmt(new Date(start), 'yyyy.MM.dd');
-  const timeStart = dateFmt(new Date(start), 'hh.mm');
-  const timeEnd = dateFmt(new Date(end), 'hh.mm');
+  const timeStart = dateFmt(new Date(start), 'hh:mm');
+  const timeEnd = dateFmt(new Date(end), 'hh:mm');
   return day+' '+timeStart+'-'+timeEnd;
 }
 

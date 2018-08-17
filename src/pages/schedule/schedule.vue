@@ -1,7 +1,7 @@
 <template>
   <Calendar 
     class="schedule"
-    startDate="2018-07-31" 
+    :startDate="startDate" 
     :dateData="dateData.Object" 
     :firstDay="1"
     :onMonthChange="getSchedule"
@@ -14,6 +14,7 @@
       </div>
       <div class="agenda-container" v-for="(item, index) in item.data[0]" :key="index">
         <span class="agenda-item">{{item.title}}</span>
+        <span class="time agenda-item">{{item.time}}</span>
       </div>
     </div>
   </Calendar>
@@ -25,7 +26,8 @@ import {
 export default {
   data() {
     return {
-      dateData: {}
+      dateData: {},
+      startDate: new Date()
     };
   },
   filters: {
@@ -49,16 +51,16 @@ export default {
       }).then(resp => {
         const schedules = resp.data.objects;
         const ArrayData = schedules.map(item => ({
-          title: item.class_name + '\n\r' + this.$dateFmt(new Date(start), 'yyyy-MM-dd hh:mm') + '-' + this.$dateFmt(new Date(end), 'yyyy-MM-dd hh:mm'),
-          date: this.$dateFmt(new Date(start), 'yyyy-MM-dd')
+          title: item.class_name,
+          time: this.$dateFmt(new Date(item.start), 'hh:mm') + '-' + this.$dateFmt(new Date(item.end), 'hh:mm'),
+          date: this.$dateFmt(new Date(item.start), 'yyyy-MM-dd')
         }))
         let ObjectData = {}
-
         ArrayData.forEach(item => {
           if(ObjectData[item.date]) {
-            ObjectData[item.date].push({ title: item.title })
+            ObjectData[item.date].push({ ...item })
           } else {
-            ObjectData[item.date] = [{ title: item.title }]
+            ObjectData[item.date] = [{ ...item }]
           }
         })
         this.dateData = {
@@ -114,5 +116,8 @@ export default {
   cursor: pointer;
   font-size: 14px;
   word-break: normal;
+}
+.agenda-container .agenda-item.time {
+  font-size: 10px;
 }
 </style>
