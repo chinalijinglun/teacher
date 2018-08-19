@@ -173,7 +173,7 @@ export default {
 .basicinfor {
   width: 1000px;
   min-height: 800px;
-  margin: 0 auto;
+  margin: 0 auto 30px;
   overflow: hidden;
   margin-top: 20px;
   background: #ffffff;
@@ -216,6 +216,7 @@ export default {
   position: absolute;
   left: 50%;
   top: -9px;
+  margin-left: -12px;
 }
 
 .step1::after {
@@ -284,6 +285,7 @@ export default {
 
 .next-btn {
   text-align: center;
+  padding-bottom: 30px;
 }
 
 .next-btn button {
