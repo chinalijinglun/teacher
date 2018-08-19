@@ -4,7 +4,7 @@
 			<p class="title">试听课邀请</p>
 			<p class="content">
 				您有<span class="class-num">3</span>节试听课上课邀请
-				<el-button type="text">查看详情</el-button>
+				<el-button type="text" @click="goDetail">查看详情</el-button>
 			</p>
 		</div>
 		<div class="soon-come">
@@ -61,7 +61,11 @@
 				}).then(resp => {
 					console.log(resp)
 				})
+			},
+			goDetail() {
+				this.$router.push({path: '/center/inviteDetail'})
 			}
+			
 		}
 	}
 </script>

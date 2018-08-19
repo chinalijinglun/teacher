@@ -27,3 +27,7 @@ export const teacherViewHomework = (form) => baseAxios.post('/teacher/view_homew
 export const mySchedule = (form) => baseAxios.post('/teacher/my_schedule', form);
 
 export const createHomework = (form) => baseAxios.post('/teacher/create_homework', form);
+
+export const teacherApplyStudents = (form) => baseAxios.post('/teacher/apply_students', form);
+
+export const teacherAcceptStudents = (form) => baseAxios.post('/teacher/accept_students', form);
