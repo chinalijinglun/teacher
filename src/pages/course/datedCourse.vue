@@ -45,11 +45,13 @@
 						{{item.name || '未命名'}}
 					</div>
 					<div class="lesson-state">
-						<span class="up" v-if="item.checked_result == 'BEFORE_CHECK'">待审核</span>
+						<span v-if="item.checked_result == 'BEFORE_CHECK'">待审核</span>
 						<span v-if="item.checked_result == 'CHECK_PASSED'">审核通过</span>
 						<span class="up" v-if="item.checked_result == 'CHECK_DENY'">审核驳回</span>
 						<span class="up" v-if="item.checked_result == 'PREVIEW'">可以预览</span>
 						<span class="up" v-if="item.checked_result == 'NO_PREVIEW'">不可以预览</span>
+						<span v-if="!item.checked_result">未上传</span>
+            
 					</div>
 					<div class="oprate-lesson">
 						<span class="colo">进入教室 </span>

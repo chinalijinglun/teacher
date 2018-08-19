@@ -19,11 +19,11 @@
             <div class="list">
                 <ul v-for="(item, index) in tableData" :key="index">
                     <li class="student">{{item.student_name}}</li>
-                    <li class="performance">{{item.overall}}</li>
+                    <li class="performance">{{item.overall || '等待点评'}}</li>
                     <li class="list-time">{{item.created_at || '——'}}</li>
                     <li class="oprate">
-                        <span v-if="item.overall=='等待点评'" @click="dianPing(item.study_schedule_id)">点评</span>
-                        <span v-else @click="dianPing(item.study_schedule_id)">查看</span>
+                        <span v-if="!item.overall" @click="dianPing(item.id)">点评</span>
+                        <span v-else @click="$router.push(`/view-evaluate?id=${item.id}`)">查看</span>
                     </li>
                 </ul>
             </div>
@@ -83,7 +83,7 @@
                 })
             },
             dianPing(id) {
-                this.$router.push({path: '/add-evaluate', query: {'course_id':this.$route.query.course_id,'id': id}});
+                this.$router.push({path: '/add-evaluate', query: {'course_id':this.$route.query.course_id,id}});
             }
         }
     }

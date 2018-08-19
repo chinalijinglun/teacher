@@ -9,7 +9,6 @@ function load() {
       const {
         state
       } = teacher;
-      console.log(state)
       switch (state) {
         case 1: 
         case 2:
@@ -26,7 +25,6 @@ function load() {
           return true;
       }
     }).catch( error => {
-      console.log(error)
       return Promise.resolve('/login')
     })
   } else {
