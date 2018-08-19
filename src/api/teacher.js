@@ -33,4 +33,3 @@ export const teacherApplyStudents = (form) => baseAxios.post('/teacher/apply_stu
 export const teacherAcceptStudents = (form) => baseAxios.post('/teacher/accept_students', form);
 
 export const teacherCourseRoom = (course_schedule_id) => baseAxios.post('/teacher/get_enter_room_url', {course_schedule_id});
-

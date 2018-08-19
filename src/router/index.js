@@ -10,6 +10,7 @@ import basic2 from '@/pages/applyProcess/basicInformation2'
 import reservation from '@/pages/applyProcess/reservation'
 import reservation1 from '@/pages/applyProcess/reservation1'
 import contract from '@/pages/applyProcess/contract'
+import afterSubmit from '@/pages/applyProcess/afterSubmit'
 import center from '@/pages/center/soon'
 import inviteDetail from '@/pages/center/inviteDetail'
 import schedule from '@/pages/schedule/schedule'
@@ -28,6 +29,7 @@ import addEvaluate from '@/pages/course/addEvaluate'
 import addResult from '@/pages/course/addResult'
 import viewResult from '@/pages/course/viewResult'
 import viewEvaluate from '@/pages/course/viewEvaluate'
+
 
 Vue.use(Router)
 
@@ -88,6 +90,12 @@ export default new Router({
 			path: '/contract',
 			name: 'contract',
 			component: contract
+		},
+		{
+			title: '提交后预约',
+			path: '/afterSubmit',
+			name: 'afterSubmit',
+			component: afterSubmit
 		},
 		{
 			// 主页
