@@ -14,9 +14,9 @@
 	</div>
 	<div class="basic-main">
 		<div class="tip-info">
-      <p>1.感谢你的申！你的资料正在审核中，请等待审核结果。 </p>
-      <p>2.很遗憾，你的资料审核不通过，请修改后再提交，原因：XXXXXXXXXXXXX。</p>
-      <p>3. 恭喜，你的资料审核通过，请等待预约面试。</p>
+      <p v-if="teacher.state === 3">感谢你的申请！你的资料正在审核中，请等待审核结果。 </p>
+      <p v-if="teacher.state === 4">很遗憾，你的资料审核不通过，请修改后再提交，原因：XXXXXXXXXXXXX。</p>
+      <p v-if="teacher.state === 5">恭喜，你的资料审核通过，请等待预约面试。</p>
     </div>
     <div class="basic-info">
       <p class="basic-info-title">Basic Info</p>
@@ -49,11 +49,11 @@
         <li class="info-li2">{{teacher.street}}</li>
       </ul>
       <ul>
-        <li class="info-li1"><em>*</em>Time</li>
-        <li class="info-li2">{{teacher.created_at}}</li>
+        <li class="info-li1"><em>*</em> Time Zone</li>
+        <li class="info-li2">{{$TIME_ZONE[teacher.timezone]}}</li>
       </ul>
       <ul>
-        <li class="info-li1"><em>*</em>Zone</li>
+        <li class="info-li1"><em>*</em> Education Background</li>
         <li class="info-li2">{{teacher.created_at}}</li>
       </ul>
       <ul>

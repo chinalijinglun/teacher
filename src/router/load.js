@@ -16,6 +16,7 @@ function load() {
         case 3:
         case 4:
         case 5:
+          return '/afterSubmit';
         case 10:
           return '/reservation';
         case 11:

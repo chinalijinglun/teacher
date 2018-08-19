@@ -213,6 +213,7 @@ export default {
 			promise.push(teacherPutByTeacherid(this.userId,form));
 			Promise.all(promise).then(resp => {
 				this.$message.success('资料补充完成！');
+				this.$router.push('/afterSubmit')
 			})
 		}
 	}
