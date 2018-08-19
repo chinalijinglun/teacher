@@ -54,7 +54,7 @@
             
 					</div>
 					<div class="oprate-lesson">
-						<span class="colo">进入教室 </span>
+						<span class="colo" @click="toRoom(item.id)">进入教室 </span>
 						<span class="colo" @click="goCourseware(item.id)">查看课件</span>
 					</div>
 				</div>
@@ -93,6 +93,9 @@ export default {
     this.query();
   },
   methods: {
+    toRoom(id) {
+			window.open(`#/room?id=${id}`)
+    },
     handleCurrentChange(page) {
       this.page_no = page;
       this.query();

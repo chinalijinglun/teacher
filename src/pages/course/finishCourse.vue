@@ -106,9 +106,7 @@ export default {
   },
   methods: {
     toRoom(id) {
-      teacherCourseRoom(id).then(resp => {
-        console.log(resp);
-      });
+			window.open(`#/room?id=${id}`)
     },
     handleCurrentChange(page) {
       this.page_no = page;

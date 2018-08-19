@@ -27,6 +27,7 @@ import addEvaluate from '@/pages/course/addEvaluate'
 import addResult from '@/pages/course/addResult'
 import viewResult from '@/pages/course/viewResult'
 import viewEvaluate from '@/pages/course/viewEvaluate'
+import room from '@/pages/room'
 
 Vue.use(Router)
 
@@ -34,6 +35,12 @@ export default new Router({
 	routes: [
 		//注册
 		//邮箱注册
+		{
+			title: '教室',
+			path: '/room',
+			name: 'room',
+			component: room
+		},
 		{
 			title: '个人中心',
 			path: '',

@@ -43,10 +43,10 @@
 			<div class="list" v-for="(item, index) in tableData" :key="item.id">
 				<div class="course-name">{{item.student_name}}</div>
 				<div class="state">{{item.report_card_name}}</div>
-				<div class="timer">{{item.start | courseTime(item.end)}}</div>
+				<div class="timer">{{course.course_times}}</div>
 				<div class="oparet">
-					<span>查看</span>
-					<span>删除</span>
+          <a :href="$baseApiUrl + item.report_card_url.url" target="block">查看</a>
+					<span @click="deleteReport(item.id)">删除</span>
 				</div>
 			</div>
 			<el-row>
@@ -54,12 +54,15 @@
 				</el-pagination>
 			</el-row>
 		</div>
-		<report-add :show="showEdit"></report-add>
+		<report-add :show="showEdit" @on-submit="query"></report-add>
 	</div>
 </template>
 <script>
 import { mapState } from "vuex";
 import { teacherMyCourseResult } from "@/api/teacher";
+import {
+  studyResultDeleteById
+} from '@/api/study_result'
 import reportAdd from '@/components/dialog/reportAdd';
 export default {
   data() {
@@ -93,10 +96,20 @@ export default {
     query() {
       return teacherMyCourseResult(this.$deleteEmptyProps(this.form)).then(
         resp => {
-          this.tableData = resp.data.objects;
+          this.tableData = resp.data.objects.map(item => ({
+            ...item,
+            report_card_url: JSON.parse(item.report_card_url)
+          }));
           this.total = resp.data.num_results;
         }
       );
+    },
+    deleteReport(id) {
+      this.$confirm('确认删除？').then(_=>{
+        studyResultDeleteById(id).then(resp => {
+          this.query()
+        })
+      })
     }
   },
 	components: {
@@ -232,7 +245,7 @@ li {
   margin: 10px 15px;
 }
 .oparet span {
-  font-size: 12px;
+  font-size: 14px;
   color: #ff8244;
   cursor: pointer;
 }

@@ -41,7 +41,7 @@
 				<ul>
 					<li class="course-name">{{item.course_name}}</li>
 					<li class="process">{{item.finish}}/{{item.classes_number}}</li>
-					<li class="student">{{item.student_name}}</li>
+					<li class="student">{{item.student_name || '-'}}</li>
 					<li class="state under-way">进行中</li>
 					<li class="oprate check" @click="goDetail(item.id)">查看详情</li>
 				</ul>

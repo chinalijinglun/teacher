@@ -16,7 +16,7 @@
         <div class="word">
           标题
         </div>
-        <input type="text" class="inp" v-model="form.title" placeholder="请输入作业的标题">
+        <input type="text" class="inp" v-model="form.report_card_name" placeholder="请输入作业的标题">
       </div>
       <div class="fujian">
         <div class="word">
@@ -27,11 +27,11 @@
             <img src="@/assets/shangchuan.png" alt="">上传附件
             <input type="file" ref="uploadInput" name="file" class="uploadInput" @change="addFile">
           </div>
-          <div class="file-list">
+          <div class="file-list" v-if="form.report_card_url">
             <ul class="file-list-text">
-              <li v-for="(item, index) in fileLs" :key="index">
-                <a :href="item.url" target="_blank">{{item.name}}</a>
-                <i class="el-icon-close" @click="removeFile(index)"></i>
+              <li>
+                <a :href="$baseApiUrl + form.report_card_url.url" target="_blank">{{form.report_card_url.name}}</a>
+                <i class="el-icon-close" @click="removeFile()"></i>
               </li>
             </ul>
           </div>
@@ -52,11 +52,12 @@
 <script>
 import { VueEditor } from "vue2-editor";
 import {
-  createHomework
-} from '@/api/teacher'
+  studyResultPost
+} from '@/api/study_result'
 import {
   courseStudent
 } from '@/api/course'
+import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -72,12 +73,20 @@ export default {
 		const course_id = this.$route.query.id;
 		this.form.course_id = course_id;
     this.getStudentLs()
-	},
+  },
+  computed: {
+    ...mapState({
+      userName: state => state.auth.userName
+    })
+  },
   data() {
     return {
       form: {
         course_id: '',
-
+        student_id: '',
+        report_card_name: '',
+        report_card_url: null,
+        result_type: 'ACHIEVEMENT'
       },
       studentLs: [],
       fileLs: [],
@@ -98,32 +107,37 @@ export default {
       const formData = new FormData();
       formData.append('file', file);
       this.$axios.post(this.$baseApiUrl + '/upload', formData).then(resp => {
-        this.fileLs.push({
+        this.form.report_card_url = {
           name: resp.data[0].upload_file,
           url: resp.data[0].download_file
-        })
+        }
         e.target.value = ''
       });
     },
-    removeFile(index) {
-      this.fileLs.splice(index, 1)
+    removeFile() {
+      this.form.report_card_url = null
     },
     submit() {
-      // this.form.attachment_url = JSON.stringify(this.fileLs);
-      // this.form.course_schedule_id = this.courseScheduleId;
-      // createHomework(this.form).then(resp => {
-      //   this.$emit('on-submit', resp)
-      //   this.close()
-      // })
+      studyResultPost({
+        ...this.form,
+        created_at: new Date(),
+        updated_by: this.userName,
+        report_card_url: JSON.stringify(this.form.report_card_url)
+      }).then(resp => {
+        this.close()
+        this.$emit('on-submit', resp)
+        this.$message.success('添加成功！');
+      })
     },
     close() {
       this.fileLs = []
       this.$refs.uploadInput.value = ''
       this.form = {
-        desc: '',
-        title: '',
-        course_schedule_id: '',
-        attachment_url: ''
+        course_id: '',
+        student_id: '',
+        report_card_name: '',
+        report_card_url: null,
+        result_type: 'ACHIEVEMENT'
       }
       this.editShow = false
     }
