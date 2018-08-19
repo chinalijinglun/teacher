@@ -17,7 +17,6 @@
 				<div class="tab-tit">
 					<ul>
 						<li class="homework-name">作业名称</li>
-						<li class="desc">描述</li>
 						<li class="time">时间</li>
 						<li class="oprate">操作</li>
 					</ul>
@@ -26,15 +25,12 @@
 					<div class="homework-name">
 						{{item.question_name}}
 					</div>
-					<div class="desc">
-						{{item.question_text}}
-					</div>
 					<div class="time">
 						{{item.created_at}}
 					</div>
 					<div class="oprate">
 						<span @click="goDetail(item.id)">查看</span>
-						<span>删除</span>
+						<span @click="toDelete(item.id)">删除</span>
 					</div>
 				</div>
 			</div>
@@ -51,6 +47,9 @@
 import { mapState } from "vuex";
 import edit from "@/components/editor";
 import { teacherViewHomework } from "@/api/teacher";
+import {
+  homeworkDeleteByhomeworkid
+} from '@/api/homework'
 export default {
   data() {
     return {
@@ -75,6 +74,11 @@ export default {
     this.query();
   },
   methods: {
+    toDelete(id) {
+      this.$confirm('确认删除？').then(_=>{
+        homeworkDeleteByhomeworkid(id).then(resp => this.query())
+      })
+    },
     handleCurrentChange(page) {
       this.page_no = page;
       this.query();

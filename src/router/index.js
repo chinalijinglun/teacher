@@ -33,6 +33,11 @@ export default new Router({
 		//注册
 		//邮箱注册
 		{
+			title: '个人中心',
+			path: '',
+			redirect: { name: 'center' }
+		},
+		{
 			title: '注册页',
 			path: '/regist',
 			name: 'regist',
@@ -91,11 +96,11 @@ export default new Router({
 		{
 			title: '个人中心',
 			path: '/center',
-			name: 'center',
 			component: main,
 			children: [
 				{
 					path: '',
+					name: 'center',
 					component: center
 				}
 			]

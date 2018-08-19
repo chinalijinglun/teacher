@@ -216,7 +216,7 @@ ul,li{
         width: 337px;
     }
     .state{
-        width: 194px;
+        width: 144px;
     }
     .oparet{
         width: 205px;

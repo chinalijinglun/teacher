@@ -12,7 +12,7 @@
         <span class="calendar-item-date-span">{{item.date.date}}</span>
         <span>{{item.date.day | weekDay_EN}}</span>
       </div>
-      <div class="agenda-container" v-for="(item, index) in item.data[0]" :key="index">
+      <div class="agenda-container" v-for="(item, index) in item.data[0]" :key="index" @click="toCourseDetail(item.id)">
         <span class="agenda-item">{{item.title}}</span>
         <span class="time agenda-item">{{item.time}}</span>
       </div>
@@ -36,6 +36,9 @@ export default {
     }
   },
   methods: {
+    toCourseDetail(id) {
+      this.$router.push(`/dated-course?id=${id}`)
+    },
     isToday(day) {
       return this.$dateFmt(new Date(day), 'yyyy-MM-dd') === this.$dateFmt(new Date(), 'yyyy-MM-dd');
     },
@@ -52,6 +55,7 @@ export default {
         const schedules = resp.data.objects;
         const ArrayData = schedules.map(item => ({
           title: item.class_name,
+          id: item.course_id,
           time: this.$dateFmt(new Date(item.start), 'hh:mm') + '-' + this.$dateFmt(new Date(item.end), 'hh:mm'),
           date: this.$dateFmt(new Date(item.start), 'yyyy-MM-dd')
         }))

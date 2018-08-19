@@ -44,6 +44,27 @@
 		</div>
 	</div>
 </template>
+<script>
+	import {
+		mySchedule
+	} from '@/api/teacher'
+	export default {
+		created() {
+			this.getNextCourse()
+		},
+		methods: {
+			getNextCourse() {
+				mySchedule({
+					start: new Date(),
+					page_no: 1,
+					page_limit: 1000
+				}).then(resp => {
+					console.log(resp)
+				})
+			}
+		}
+	}
+</script>
 <style scoped>
 .soon {
   width: 800px;

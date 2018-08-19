@@ -22,7 +22,7 @@
 					<img src="@/assets/fujian.png" alt="">
 				</div>
 				<div class="right">
-					<div class="rig-tit"> {{item.ware_name}} </div>
+					<div class="rig-tit"> <a :href="item.file_url" target="block">{{item.ware_name}}</a> </div>
 					<div class="del" @click="deleteWare(index)">删除</div>
 					<el-radio-group v-model="item.is_view" class="radio-group">
 						<el-row>

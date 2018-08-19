@@ -37,3 +37,14 @@
 .el-button--text:focus, .el-button--text:hover {
 	color: #FFBA73;
 }
+
+a {
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #ff8200;
+	line-height: 34px;
+}
+
+a:hover {
+	color: #FFBA73;
+}

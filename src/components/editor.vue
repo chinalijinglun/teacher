@@ -104,7 +104,8 @@ export default {
     },
     close() {
       this.fileLs = []
-      this.$refs.uploadInput.$el.value = ''
+      console.log(this.$refs.uploadInput)
+      this.$refs.uploadInput.value = ''
       this.form = {
         desc: '',
         title: '',
