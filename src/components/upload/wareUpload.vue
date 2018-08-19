@@ -28,7 +28,6 @@
             course_schedule_id: this.scheduleId,
             is_view: 'YES'
           }))
-          console.log(value)
           this.$emit('input', value);
         });
       }

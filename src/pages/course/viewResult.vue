@@ -1,13 +1,6 @@
 <template>
   <div class="student-schedule-result">
     <el-row class="content-row">
-      <h2>课节名称：{{ 'Lesson 2 Exploring Space and Astronomy' }}</h2>
-      <div>
-        <span>总结周期：{{ $getCourseTime(start, end) }}</span>
-        <span>学生：{{ studentName }}</span>
-      </div>
-    </el-row>
-    <el-row class="content-row">
       <h3>Summary of what have been taught in last stage (List key points, vocabulary, skills, etc.):</h3>
       <div class="edit-container" v-html="evaluate.summary">
       </div>

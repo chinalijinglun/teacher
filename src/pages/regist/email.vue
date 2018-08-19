@@ -147,7 +147,6 @@ export default {
 				authSmsverifyPost({
 					mobile_no: username
 				}).then(resp => {
-					console.log(resp);
 				});
 			}
 		},

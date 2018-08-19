@@ -149,7 +149,6 @@ export default {
   methods: {
 		openIframe() {
 			this.src = this.$baseApiUrl + '/download/1c47b24a5f9a3c570e512964ee32fc3071a811d2d2a6f547a4e4587488ddf7f0';
-			console.log(this.src)
 			this.visible = true;
 		},
 		getCountry() {

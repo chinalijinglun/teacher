@@ -27,6 +27,7 @@ import common from '@/pages/common/question'
 import addEvaluate from '@/pages/course/addEvaluate'
 import addResult from '@/pages/course/addResult'
 import viewResult from '@/pages/course/viewResult'
+import viewEvaluate from '@/pages/course/viewEvaluate'
 
 Vue.use(Router)
 
@@ -266,7 +267,7 @@ export default new Router({
 				}
 			]
 		}, {
-			title: '添加评价',
+			title: '查看评价',
 			path: '/view-result',
 			name: 'view-result',
 			component: main,
@@ -274,6 +275,17 @@ export default new Router({
 				{
 					path: '',
 					component: viewResult
+				}
+			]
+		}, {
+			title: '查看小结',
+			path: '/view-evaluate',
+			name: 'view-evaluate',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: viewEvaluate
 				}
 			]
 		}
