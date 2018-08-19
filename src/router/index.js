@@ -11,6 +11,7 @@ import reservation from '@/pages/applyProcess/reservation'
 import reservation1 from '@/pages/applyProcess/reservation1'
 import contract from '@/pages/applyProcess/contract'
 import center from '@/pages/center/soon'
+import inviteDetail from '@/pages/center/inviteDetail'
 import schedule from '@/pages/schedule/schedule'
 import course from '@/pages/course/myCourses'
 import finishCourse from '@/pages/course/finishCourse'
@@ -111,6 +112,11 @@ export default new Router({
 					path: '',
 					name: 'center',
 					component: center
+				},
+				{
+					path: 'inviteDetail',
+					name: 'inviteDetail',
+					component: inviteDetail
 				}
 			]
 		}, {
