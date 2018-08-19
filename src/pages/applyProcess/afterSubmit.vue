@@ -52,16 +52,16 @@
         <li class="info-li1"><em>*</em> Time Zone</li>
         <li class="info-li2">{{$TIME_ZONE[teacher.timezone]}}</li>
       </ul>
-      <ul>
+      <!-- <ul>
         <li class="info-li1"><em>*</em> Education Background</li>
         <li class="info-li2">{{teacher.created_at}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Education Background</li>
         <li class="info-li2">{{teacher.education_history}}</li>
-      </ul>
+      </ul> -->
     </div> 
-    <div class="basic-info experience-info">
+    <!-- <div class="basic-info experience-info">
       <p class="basic-info-title">Teaching Experience</p>
       <ul>
         <li class="info-li1"><em>*</em>School Currently Teaching</li>
@@ -103,10 +103,10 @@
         <li class="info-li1">Please describe any professional highlights</li>
         <li class="info-li2">{{teacher.experience_sharing}}</li>
       </ul>
-    </div> 
+    </div>  -->
 	</div>
 	<div class="next-btn">
-		<button>Modify</button>
+		<button @click="$router.push('/basic')">Modify</button>
 	</div>
 </div>
 </template>

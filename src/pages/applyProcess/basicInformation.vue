@@ -14,6 +14,12 @@
 	</div>
 	<div class="basic-main">
 		<h3>基本信息</h3>
+    <div class="basic-avatar">
+      <div class="portraits-img">
+        <img :src="$baseApiUrl+form.avatar" alt=""/>
+      </div>
+      <el-button type="text" @click="addAvatar">upload</el-button>
+    </div>
 		<div class="full-name">
 			<div class="name">
 				<label for="">*First Name</label><br/>
@@ -107,6 +113,7 @@ export default {
   data() {
     return {
       form: {
+        avatar: '',
         first_name: '',
         middle_name: '',
         last_name: '',
@@ -164,12 +171,32 @@ export default {
       this.form.city = '';
       this.form.street = '';
       return;
+    },
+    addAvatar() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.name = 'file';
+      input.onchange = (e) => {
+        const file = e.target.files[0]
+        this.upload(file)
+      }
+      input.click()
+    },
+    upload(file) {
+      const formData = new FormData();
+      formData.append('file', file);
+      this.$axios.post(this.$baseApiUrl + '/upload', formData).then(resp => {
+        this.form.avatar = resp.data[0].download_file;
+      });
     }
 	}
 };
 </script>
 
 <style scoped>
+.basic-avatar {
+  margin-top: 20px;
+}
 .basicinfor {
   width: 1000px;
   min-height: 800px;
@@ -394,5 +421,22 @@ export default {
 }
 .street.name input {
   margin-top: 0;
+}
+.portraits-img {
+  width: 108px;
+  height: 108px;
+  border: 5px solid #FFDF77;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+}
+.portraits-img img{
+  width: 100%;
+  height: 100%;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 </style>
