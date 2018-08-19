@@ -25,6 +25,7 @@ import report from '@/pages/course/report'
 import common from '@/pages/common/question'
 import addEvaluate from '@/pages/course/addEvaluate'
 import addResult from '@/pages/course/addResult'
+import viewResult from '@/pages/course/viewResult'
 
 Vue.use(Router)
 
@@ -256,6 +257,17 @@ export default new Router({
 				{
 					path: '',
 					component: addResult
+				}
+			]
+		}, {
+			title: '添加评价',
+			path: '/view-result',
+			name: 'view-result',
+			component: main,
+			children: [
+				{
+					path: '',
+					component: viewResult
 				}
 			]
 		}

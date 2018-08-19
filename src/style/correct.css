@@ -38,6 +38,18 @@
 	color: #FFBA73;
 }
 
+.el-button--primary {
+	color: #fff;
+	background-color: #ff8200;
+	border-color: #ff8200;
+}
+
+.el-button--primary:focus, .el-button--primary:hover {
+	background: #FFBA73;
+	border-color: #FFBA73;
+	color: #fff;
+}
+
 a {
 	font-family: PingFangSC-Regular;
 	font-size: 14px;

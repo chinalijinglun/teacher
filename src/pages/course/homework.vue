@@ -26,7 +26,7 @@
 						{{item.question_name}}
 					</div>
 					<div class="time">
-						{{item.created_at}}
+						{{item.created_at | noTime}}
 					</div>
 					<div class="oprate">
 						<span @click="goDetail(item.id)">查看</span>

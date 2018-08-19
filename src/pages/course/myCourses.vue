@@ -36,7 +36,7 @@
 			</div>
 			<div class="list-table" v-for="(item, index) in tableData" :key="index">
 				<div class="list-states">
-					<span>上课时间：{{item.start}} — {{item.end}}</span>
+					<span>上课时间：{{ item.start | courseTime(item.end)}}</span>
 				</div>
 				<ul>
 					<li class="course-name">{{item.course_name}}</li>
