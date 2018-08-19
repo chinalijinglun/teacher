@@ -24,85 +24,84 @@
         <li class="info-li1">Portraits</li>
         <li class="info-li2">
           <div class="portraits-img">
-            <img src="../../assets/zhaosheng02.png"/>
+            <img :src="this.$baseApiUrl+teacher.avatar" alt=""/>
           </div>
         </li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Name</li>
-        <li class="info-li2">Barack Hussein Obama</li>
+        <li class="info-li2">{{teacher.name}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Contact Email</li>
-        <li class="info-li2">XXXXXXXXXXXXXXXXX(填写完的内容)</li>
+        <li class="info-li2">{{teacher.email}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Contact Phone Number</li>
-        <li class="info-li2">XXXXXXXXXXXXXXXXX(填写完的内容)</li>
+        <li class="info-li2">{{teacher.mobile}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Country</li>
-        <li class="info-li2">XXXXXXXXXXXXXXXXX(填写完的内容)</li>
+        <li class="info-li2">{{teacher.country}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Street</li>
-        <li class="info-li2">XXXXXXXXXXXXXXXXX(填写完的内容)</li>
+        <li class="info-li2">{{teacher.street}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Time</li>
-        <li class="info-li2">XXXXXXXXXXXXXXXXX(填写完的内容)</li>
+        <li class="info-li2">{{teacher.created_at}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Zone</li>
-        <li class="info-li2">XXXXXXXXXXXXXXXXX(填写完的内容)</li>
+        <li class="info-li2">{{teacher.created_at}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Education Background</li>
-        <li class="info-li2">XXXXXXXXXXXXXXXXX(填写完的内容)</li>
+        <li class="info-li2">{{teacher.education_history}}</li>
       </ul>
     </div> 
     <div class="basic-info experience-info">
       <p class="basic-info-title">Teaching Experience</p>
       <ul>
         <li class="info-li1"><em>*</em>School Currently Teaching</li>
-        <li class="info-li2">Barack Hussein Obama</li>
+        <li class="info-li2">{{teacher.cur_school}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Current Teaching Academic Subject</li>
-        <li class="info-li2">XXXXXXXXXXXXXXXXX(填写完的内容)</li>
+        <li class="info-li2">{{teacher.education_history}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Geographical region(s) where you had taught</li>
-        <li class="info-li2">XXXXXXXXXXXXXXXXX(填写完的内容)</li>
+        <li class="info-li2">{{teacher.education_history}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>State(s) where you have taught</li>
-        <li class="info-li2">XXXXXXXXXXXXXXXXX(填写完的内容)</li>
+        <li class="info-li2">{{teacher.province}}</li>
       </ul>
       <ul>
         <li class="info-li1">Qualified Teaching Academic Subject(s)</li>
-        <li class="info-li2">XXXXXXXXXXXXXXXXX(填写完的内容)</li>
+        <li class="info-li2">{{teacher.education_history}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Total Teaching Years</li>
-        <li class="info-li2">XXXXXXXXXXXXXXXXX(填写完的内容)</li>
+        <li class="info-li2">{{teacher.teacher_age}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Most Current Resume</li>
         <li class="info-li2">
-          <span>Resume.doc</span>
+          <span>{{teacher.resume_url}}</span>
         </li>
       </ul>
       <ul>
         <li class="info-li1">Credentials</li>
         <li class="info-li2">
-          <span>Credentials.doc</span>
-          <span>Credentials1.doc</span>        
+          <span>{{teacher.seniority_url}}</span>
         </li>
       </ul>
       <ul>
         <li class="info-li1">Please describe any professional highlights</li>
-        <li class="info-li2">XXXXXXXXXXXXXXXXX(填写完的内容)</li>
+        <li class="info-li2">{{teacher.experience_sharing}}</li>
       </ul>
     </div> 
 	</div>
@@ -113,14 +112,18 @@
 </template>
 
 <script>
-import { userinfo,auth,basicCache } from '@/mixins';
-
+import { mapState } from "vuex";
 export default {
   name: 'afterSubmit',
   data() {
     return {
       
-    };
+      };
+  },
+  computed: {
+    ...mapState({
+      teacher: state => state.userinfo.teacher
+    })
   },
   created() {
     
