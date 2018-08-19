@@ -34,3 +34,7 @@ export const teacherAcceptStudents = (form) => baseAxios.post('/teacher/accept_s
 
 export const teacherCourseRoom = (course_schedule_id) => baseAxios.post('/teacher/get_enter_room_url', {course_schedule_id});
 
+export const previewDoc = (course_schedule_id) => baseAxios.post('/teacher/get_preview_doc', {course_schedule_id, page_limit: 10, page_no: 1});
+
+export const checkHomeworkLs = () => baseAxios.post('/teacher/check_homework', {page_limit: 10, page_no: 1})
+

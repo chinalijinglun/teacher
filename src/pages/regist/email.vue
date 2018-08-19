@@ -13,13 +13,6 @@
 			<div class="form">
 				<div class="phone">
 					<div class="phone-left">
-						Your name
-					</div>
-					<input type="text" class="register" v-model="form.first_name" placeholder="First name">
-					<input type="text" class="register" v-model="form.last_name" placeholder="Last name">
-				</div>
-				<div class="phone">
-					<div class="phone-left">
 						mobile
 					</div>
 					<input type="text" class="inps" v-model="form.username" placeholder="mobile no">
@@ -68,8 +61,6 @@ export default {
   data() {
     return {
       form: {
-        first_name: "",
-        last_name: "",
         username: "",
         password: "",
         verify_code: ""
@@ -85,8 +76,6 @@ export default {
 	methods: {
 		valid(type) {
 			const {
-        first_name,
-        last_name,
         username,
 				password,
 				usertype,

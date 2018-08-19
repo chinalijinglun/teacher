@@ -16,12 +16,15 @@
 			<div class="list-table" v-for="(item, index) in tableData" :key="index">
 				<ul>
 					<li class="li1">{{parseInt(index+1)}}</li>
-					<li class="li2">{{item.start}}-{{item.end}}</li>
+					<li class="li2">{{item.start | courseScheduleTime(item.end)}}</li>
 					<li class="li3">{{item.student_name}}</li>
 					<li class="li4">
-						<span v-if="item.apply_state=0" @click="getInvite(item.id)">接受邀请</span>
-						<span v-else @click="refusedInvite(item.id)">拒绝</span>
-						<span v-if="item.apply_state>1" class="has-invite">已被其他教师接受</span>
+						<span v-if="new Date(item.start) <= new Date()" class="has-invite">已过期</span>
+						<template v-else>
+							<span v-if="item.apply_state === 0" @click="getInvite(item.id)">接受邀请</span>
+							<span v-if="item.apply_state === 0" @click="refusedInvite(item.id)">拒绝</span>
+							<span v-if="item.apply_state>1" class="has-invite">已被其他教师接受</span>
+						</template>
 					</li>
 				</ul>
 			</div>
@@ -62,21 +65,18 @@ export default {
 		},
 		query() {
 			return teacherApplyStudents(this.$deleteEmptyProps(this.form)).then(resp => {
-				console.log('55555', resp)
 				this.tableData = resp.data.objects;
 				this.total = resp.data.num_results;
 			})
 		},
 		getInvite(id) {
 			teacherAcceptStudents({'course_appointment_id':id}).then(resp => {
-				console.log('55555', resp)
 				this.$message.success('邀请成功!');
 				this.query();
 			})
 		}, 
 		refusedInvite(id) {
 			courseAppointmentPutById(id,{appointment_state: 'REFUSE'}).then(resp => {
-				console.log('55555', resp)
 				this.$message.success('拒绝成功!');
 				this.query();
 			})
@@ -181,7 +181,7 @@ li {
 	cursor: pointer;
 	color: #ff8244;
 }
-.has-invite {
+.list-table .li4 span.has-invite {
 	color: #ccc;
 }
 </style>

@@ -26,8 +26,10 @@
 					</router-link>
 				</li>
 				<li class="active">
-					<img class="imgs" src="@/assets/chengzhang_h.png" alt="">
-					<span>成长报告</span>
+					<router-link :to="{path: '/common'}">
+            <img class="imgs" src="@/assets/wenti01.png" alt="">
+            <span>常见问题</span>
+					</router-link>
 				</li>
 			</ul>
 		</div>

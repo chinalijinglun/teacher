@@ -38,36 +38,23 @@
 			</div>
 			<div class="table-list" v-for="item in tableData" :key="item.id">
 				<div class="list-tit">
-					<span>上课时间(当前时区：Hawaii)：{{item.start | courseScheduleTime(item.end)}}</span>
+					<span>上课时间：{{item.start | courseScheduleTime(item.end)}}</span>
 				</div>
 				<div class="list-detail">
 					<div class="lesson-name">
 						{{item.name || '未命名'}}
 					</div>
-					<template v-if="item.class_type == 3">
-						<div class="lesson-state">
-							异常课
-						</div>
-					</template>
-					<template v-if="item.class_type == 2">
-						<div class="lesson-state">
-							取消课
-						</div>
-						<div class="oprate-lesson"></div>
-					</template>
-					<template v-else>
-						<div class="lesson-state" v-if="item.class_type == 4">
-							补偿课<img src="../../assets/shuoming.png" alt="">
-						</div>
-						<div class="lesson-state" v-if="item.class_type == 1">
-							正常课
-						</div>
-						<div class="oprate-lesson">
+					<div class="lesson-state">
+						{{$COURSE_SCHEDULE_STATE_ENUM[item.class_type]}}
+					</div>
+					<div class="oprate-lesson">
+						<span class="colo" v-if="item.class_type === 'TROUBLE_CLASS'"></span>
+						<template v-else>
 							<span class="colo" @click="toRoom(item.id)">回放 </span>
 							<span class="colo" @click="goHomework(item.id)">作业</span>
 							<span class="colo" @click="goEval(item.id)">课后小结</span>
-						</div>
-					</template>
+						</template>
+					</div>
 				</div>
 			</div>
 			<el-row>
