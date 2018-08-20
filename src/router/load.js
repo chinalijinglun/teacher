@@ -14,11 +14,16 @@ function load() {
         case 2:
           return '/basic';
         case 3:
-        case 4:
         case 5:
           return '/afterSubmit';
+        case 4:
+          if(teacher.interview) {
+            console.log(teacher)
+            return '/reservation';
+          }
+          return '/afterSubmit';
         case 10:
-          return '/reservation';
+          return '/reservation1';
         case 11:
           return '/contract';
         case 20:
