@@ -17,8 +17,8 @@ function load() {
         case 5:
           return '/afterSubmit';
         case 4:
-          if(teacher.interview) {
-            console.log(teacher)
+          console.log(teacher.interview)
+          if(teacher.interview && teacher.interview.state !== 1) {
             return '/reservation';
           }
           return '/afterSubmit';

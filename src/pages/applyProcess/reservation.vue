@@ -57,7 +57,8 @@
 <script>
 import {
 	interviewGetBare,
-	interviewPutByinterviewid
+	interviewPutByinterviewid,
+	acceptInterview
 } from '@/api/interview'
 import {
 	teacherPutByTeacherid
@@ -109,32 +110,35 @@ export default {
 			if(this.form.timeRadio !== -1) {
 				start = this.timeLs[this.form.timeRadio].start;
 				end = this.timeLs[this.form.timeRadio].end;
+				acceptInterview({
+					interview_at_end: end,
+					interview_at_start: start,
+					interview_id: this.interviewId
+				}).then(resp => {
+					console.log(resp)
+				})
+			} else {
+				interviewPutByinterviewid(this.interviewId, {
+					start,
+					end,
+					reason,
+					state: 7,
+					updated_by: this.userName,
+					updated_at: new Date()
+				}).then(resp => {
+					this.$message.success('回复成功！');
+				})
 			}
-			teacherPutByTeacherid(this.userId, {
-				state: 10,
-				updated_by: this.userName,
-				updated_at: new Date()
-			})
-			interviewPutByinterviewid(this.interviewId, {
-				start,
-				end,
-				reason,
-				state: 2,
-				updated_by: this.userName,
-				updated_at: new Date()
-			}).then(resp => {
-				this.$message.success('预约成功！');
-			})
 		},
 		getStartAndEnd(day, [start, end]) {
 			const date = this.$dateFmt(new Date(day), 'yyyy-MM-dd');
-			const startTime = this.$dateFmt(new Date(start), 'hh:mm:ss.S');
+			const startTime = this.$dateFmt(new Date(start), 'hh:mm:ss');
 			const startTimeView = this.$dateFmt(new Date(start), 'hh:mm');
-			const endTime = this.$dateFmt(new Date(end), 'hh:mm:ss.S');;
+			const endTime = this.$dateFmt(new Date(end), 'hh:mm:ss');;
 			const endTimeView = this.$dateFmt(new Date(end), 'hh:mm');
 			return {
-				start: date+'T'+startTime+'Z',
-				end: date+'T'+endTime+'Z',
+				start: new Date(date+' '+startTime),
+				end: new Date(date+' '+endTime),
 				viewStr: date+' '+startTimeView+'-'+endTimeView
 			}
 		}

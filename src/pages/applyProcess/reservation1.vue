@@ -47,7 +47,7 @@
 				<img src="" alt=""> 恭喜，你通过面试，稍后我们会发送合同。
 			</div>
 			<div class="reservation-fail">
-				很遗憾，您没有通过面试，原因：XXXXXXXXXXXXX </div>
+				很遗憾，您没有通过面试，原因： </div>
 		</div>
 	</div>
 </template>

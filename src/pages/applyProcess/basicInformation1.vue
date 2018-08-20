@@ -32,14 +32,14 @@
           <div class="street">
             <el-date-picker
               v-model="item.start"
-              type="date"
+              type="month"
               placeholder="选择日期">
             </el-date-picker>
           </div>
           <div class="street">
             <el-date-picker
               v-model="item.end"
-              type="date"
+              type="month"
               placeholder="选择日期">
             </el-date-picker>
           </div>

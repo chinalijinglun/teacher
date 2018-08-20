@@ -24,7 +24,7 @@
       return {
         form: {
           date: '',
-          timeRange: [new Date(2016, 9, 10, 8, 40), new Date(2016, 9, 10, 9, 40)]
+          timeRange: null
         }
       };
     },
@@ -46,21 +46,22 @@
     },
     methods:{
       init(form = {
-          date: '',
-          timeRange: [new Date(2016, 9, 10, 8, 40), new Date(2016, 9, 10, 9, 40)]
-        }) {
+        date: '',
+        timeRange: null
+      }) {
         this.form = form;
       }
     },
     watch: {
       form: {
         handler(v, ov) {
+          console.log(v)
           if(v.date) {
             const day = this.$dateFmt(v.date, 'yyyy-MM-dd');
-            const start = this.$dateFmt(v.timeRange[0], 'hh:mm:ss.S');
-            const end = this.$dateFmt(v.timeRange[1], 'hh:mm:ss.S');
-            this.$emit('update:startDate', day+'T'+start+'Z');
-            this.$emit('update:endDate', day+'T'+end+'Z');
+            const start = this.$dateFmt(v.timeRange[0], 'hh:mm:ss');
+            const end = this.$dateFmt(v.timeRange[1], 'hh:mm:ss');
+            this.$emit('update:startDate', new Date(day+' '+start));
+            this.$emit('update:endDate', new Date(day+' '+end));
           } else {
             this.$emit('update:startDate', '');
             this.$emit('update:endDate', '');
