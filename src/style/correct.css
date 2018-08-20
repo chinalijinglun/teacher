@@ -60,3 +60,7 @@ a {
 a:hover {
 	color: #FFBA73;
 }
+
+.el-select-dropdown__item.selected {
+	color: #ff8200;
+}

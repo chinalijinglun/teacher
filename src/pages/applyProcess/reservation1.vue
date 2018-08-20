@@ -13,11 +13,11 @@
 			</ul>
 		</div>
 		<div class="basic-main reservation">
-			<small>
+			<small v-if="interviewCourseLs.length">
 				Dear Mr. / Ms, Mr. Jack Baron, our personnel director, has asked me to acknowledge your application for the post of accountant and to ask you to come to see him on Friday afternoon, 5th July, at half past two.
 			</small>
 
-			<table class="reservation-table">
+			<table class="reservation-table" v-if="interviewCourseLs.length">
 				<thead>
 					<tr>
 						<th width="160">课节名称</th>
@@ -29,48 +29,65 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>面试</td>
-						<td>2017年12月38日下午</td>
-						<td>Ann</td>
+					<tr v-for="(item, index) in interviewCourseLs" :key="index">
+						<td>{{item.course_name}}</td>
+						<td>{{item.start | hasTime}}</td>
+						<td>{{item.interview_name}}</td>
 						<td class="reservation-operate">
-							<span>进入教师</span>
-							<span>上传课件</span>
-							<span>查看课件</span>
-							<span>回放</span>
+							<span v-if="teacher.interview.state === 9 || teacher.interview.state === 10" @click="toRoom(item.course_schedule_id)">回放</span>
+							<span v-else @click="toRoom(item.course_schedule_id)">进入教室</span>
+							<span @click="toUpload(item)">查看课件</span>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-
-			<div class="reservation-success">
+			<div class="reservation-success" v-if="teacher.interview.state === 9">
 				<img src="" alt=""> 恭喜，你通过面试，稍后我们会发送合同。
 			</div>
-			<div class="reservation-fail">
-				很遗憾，您没有通过面试，原因： </div>
+			<div class="reservation-fail" v-if="teacher.interview.state === 10">
+				很遗憾，您没有通过面试，
+      </div>
 		</div>
 	</div>
 </template>
-
 <script>
+import {
+  interviewCourse
+} from '@/api/interview'
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      data1: []
+      interviewCourseLs: []
     };
   },
+  computed: {
+    ...mapState({
+      teacher: state => state.userinfo.teacher
+    })
+  },
   created() {
-    //            this.sendAjax();
+    const teacher_id = this.$store.state.auth.id;
+    this.$store.dispatch("TEACHER_GET_BY_ID", teacher_id);
+    this.getInterviewSchedule()
   },
   methods: {
-    sendAjax() {
-      var _that = this;
-      this.baseAxios
-        .post("/auth/smsverify", {
-          country_code: "86",
-          mobile_no: "15510591359"
-        })
-        .then(function(data) {});
+    toRoom(id) {
+			window.open(`#/room?id=${id}`)
+    },
+    toUpload(item) {
+      this.$router.push(`/uploading-courseware?id=${item.course_schedule_id}&course_id=${item.course_id}`)
+    },
+    getInterviewSchedule() {
+      interviewCourse({
+        page_no: 1,
+        page_limit: 10
+      }).then(resp => {
+        this.interviewCourseLs = resp.data.objects;
+      })
+    },
+    getInterviewResult() {
+
     }
   }
 };

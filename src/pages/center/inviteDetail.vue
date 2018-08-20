@@ -23,7 +23,8 @@
 						<template v-else>
 							<span v-if="item.apply_state === 0" @click="getInvite(item.id)">接受邀请</span>
 							<span v-if="item.apply_state === 0" @click="refusedInvite(item.id)">拒绝</span>
-							<span v-if="item.apply_state>1" class="has-invite">已被其他教师接受</span>
+							<span v-if="item.apply_state === 1 && item.teacher_id !== id" class="has-invite">已被其他教师接受</span>
+							<span v-if="item.apply_state === 1 && item.teacher_id === id" class="has-invite">已接受</span>
 						</template>
 					</li>
 				</ul>
@@ -44,6 +45,7 @@
 <script>
 import {courseAppointmentPutById} from '@/api/course_appointment';
 import {teacherApplyStudents, teacherAcceptStudents} from '@/api/teacher';
+import {mapState} from 'vuex'
 export default {
   data() {
     return {
@@ -57,6 +59,11 @@ export default {
 	},
 	created() {
 		this.query()
+	},
+	computed: {
+		...mapState({
+			id: state => state.auth.id
+		})
 	},
 	methods: {
 		handleCurrentChange(page) {

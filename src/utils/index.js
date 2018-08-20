@@ -120,9 +120,9 @@ const install = (Vue) => {
     return day+' '+timeStart+'-'+timeEnd;
   })
 
-  Vue.filter('hasTime', (start, end) => {
+  Vue.filter('hasTime', (value) => {
     if(!value) return ''
-    return dateFmt(new Date(value), 'yyyy-MM-dd hh:mm:ss')
+    return dateFmt(new Date(value), 'yyyy-MM-dd hh:mm')
   })
 
   Vue.filter('noTime', (value) => {

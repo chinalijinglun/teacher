@@ -34,7 +34,7 @@ const actions = {
     }).then(teacher => {
       const filter = json2filter({teacher_id: [teacher_id]})
       return interviewGetBare(filter).then(resp => {
-        teacher.interview = resp.data.objects[0]
+        teacher.interview = resp.data.objects[0] || {}
         commit(TEACHER_SET, teacher)
         return teacher
       })

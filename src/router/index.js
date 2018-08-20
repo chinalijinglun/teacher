@@ -88,8 +88,8 @@ export default new Router({
 		},
 		{
 			title: '预约面试',
-			path: '/reservation1',
-			name: 'reservation1',
+			path: '/reservation-result',
+			name: 'reservation-result',
 			component: reservation1
 		},
 		{

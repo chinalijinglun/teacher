@@ -25,6 +25,9 @@ baseAxios.interceptors.request.use(config => {
 baseAxios.interceptors.response.use(resp => {
   return resp;
 }, error => {
+  if(!error.response) {
+    return Message.error('系统异常！');
+  }
   if(error.response && error.response.data) {
     Message.error(error.response.data.message);
   }

@@ -24,6 +24,9 @@ export const authRegisterPost = form => {
     store.commit('auth/setUserName', {value: ''});
     store.commit('auth/setAuthorization', {value: ''});
     store.commit('auth/setId', {value: ''});
+    store.commit('auth/setUserName', {value: form.username, keep: true});
+    store.commit('auth/setAuthorization', {value: resp.data.Authorization, keep: true});
+    store.commit('auth/setId', {value: resp.data.id, keep: true});
     return resp;
   })
 };

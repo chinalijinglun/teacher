@@ -10,44 +10,51 @@
 					<router-link to="login" class="user-login">Sign in</router-link>
 				</div>
 			</div>
-			<div class="form">
-				<div class="phone">
-					<div class="phone-left">
-						mobile
+			<el-form label-width="240px" ref="registForm" :rules="rules" :model="form" class="regist-form" :validate-on-rule-change="false">
+				<el-form-item label="mobile" prop="username" ref="mobile" :rules="rules.username">
+					<div class="form-input">
+						<el-input type="text" v-model="form.username" placeholder="mobile no">
+							<el-select slot="prepend" v-model="form.code" style="width: 150px;">
+								<el-option value="" label="please choose"></el-option>
+								<el-option v-for="(item, key) in $MOBILE_PRE" :value="key" :key="key" :label="item"></el-option>
+							</el-select>
+						</el-input>
 					</div>
-					<input type="text" class="inps" v-model="form.username" placeholder="mobile no">
-				</div>
-				<div class="phone">
-					<div class="phone-left">
-						Verification code
+				</el-form-item>
+				<el-form-item label="Verification code" prop="verify_code">
+					<div class="form-input">
+						<el-input type="text" v-model="form.verify_code" placeholder="Get code from your mobile">
+							<el-button style="width: 120px" slot="append" ref="countDown" :disabled="!verifyBtn.status" @click="getVerifyCode">{{verifyBtn.text}}</el-button>
+						</el-input>
 					</div>
-					<div class="inps">
-						<input type="text" class="yan-num" v-model="form.verify_code" placeholder="Get code from your mobile">
-						<div class="click-btn" ref="countDown" @click="getVerifyCode">
-							{{verifyBtn.text}}
-						</div>
+				</el-form-item>
+				<el-form-item label="Pass Word" prop="password">
+					<div class="form-input">
+						<el-input type="password" v-model="form.password" placeholder="at least 6 characters">
+						</el-input>
 					</div>
-				</div>
-				<div class="phone">
-					<div class="phone-left">
-						Pass Word
+				</el-form-item>
+				<el-form-item label="Re-enter password" prop="repass">
+					<div class="form-input">
+						<el-input type="password" v-model="form.repass" placeholder="at least 6 characters">
+						</el-input>
 					</div>
-					<input type="password" class="inps" v-model="form.password" placeholder="at least 6 characters">
-				</div>
-				<div class="phone">
-					<div class="phone-left">
-						Re-enter password
+				</el-form-item>
+				<el-form-item prop="agree">
+					<div class="form-input">
+						<el-checkbox v-model="form.agree">
+						</el-checkbox>
+						<span>我已阅读并同意
+							<span class="instructor">《UStutor用户注册协议》</span>
+						</span>
 					</div>
-					<input type="password" class="inps" v-model="repass" placeholder="at least 6 characters">
-				</div>
-				<div class="checkbox">
-					<input type="checkbox" v-model="agree">
-					<span>我已阅读并同意
-						<span class="instructor">《UStutor用户注册协议》</span>
-					</span>
-				</div>
-				<button class="regist-now" @click="regist">立即注册</button>
-			</div>
+				</el-form-item>
+				<el-form-item>
+					<div class="form-input">
+						<el-button class="regist-now" @click="regist" type="primary" style="width: 100%">立即注册</el-button>
+					</div>
+				</el-form-item>
+			</el-form>
 		</div>
 	</div>
 </template>
@@ -61,58 +68,71 @@ export default {
   data() {
     return {
       form: {
-        username: "",
-        password: "",
-        verify_code: ""
-      },
-			repass: '',
+				code: '',
+        username: '',
+        password: '',
+				repass: '',
+				agree: false,
+        verify_code: ''
+			},
+			isGetCode: false,
 			verifyBtn: {
 				status: true,
 				text: 'Get Code'
-			},
-			agree: false
+			}
     };
-  },
+	},
+	computed: {
+		rules() {
+			const codeRequire = (rule, value, cb) => {
+				if(!this.form.code) {
+					cb(new Error('the nation code is required'))
+				}
+				cb()
+			}
+			const samePassword = (rule, value, cb) => {
+				if(this.form.password !== value) {
+					cb(new Error('The passwords do not match'))
+				}
+				cb()
+			}
+			const agreeFirst = (rule, value, cb) => {
+				console.log(value)
+				if(!value) {
+					cb(new Error('You must agree to the agreement first'))
+				}
+				cb()
+			}
+			if(this.isGetCode) {
+				return {
+					username: [
+						{required: true, message: 'the phone number is required', trigger: 'blur'},
+						{validator: codeRequire, trigger: 'blur' }
+					]
+				}
+			}
+			return {
+				username: [
+					{required: true, message: 'the phone number is required', trigger: 'blur'},
+					{validator: codeRequire, trigger: 'blur' }
+				],
+				verify_code: [
+					{required: true, message: 'the verify code is required', trigger: 'blur'}
+				],
+				password: [
+					{required: true, message: 'the password is required', trigger: 'blur'}
+				],
+				repass: [
+					{required: true, message: 'enter password again', trigger: 'blur'},
+					{validator: samePassword, trigger: 'blur' }
+				],
+				agree: [
+					{validator: agreeFirst }
+				]
+			}
+		}
+	},
 	methods: {
-		valid(type) {
-			const {
-        username,
-				password,
-				usertype,
-        verify_code
-			} = this.form;
-			const repass = this.repass;
-			const error = this.$message.error.bind(this.$message);
-
-			if(!username) {
-				error('请输入手机号! ');
-				return false;
-			}
-			if(!this.$MOBILE_REG_EXP_NATIONAL.test(username)) {
-				error('手机号格式不对! ');
-				return false;
-			}
-			if(type === 'verify_code') {
-				return true;
-			}
-			if(!verify_code) {
-				error('请输入验证码！');
-				return false;
-			}
-			if(!password) {
-				error('请输入密码! ');
-				return false;
-			}
-			if(!repass) {
-				error('请再次输入密码! ');
-				return false;
-			}
-			if(repass !== password) {
-				error('两次输入密码不一致！');
-				return false;
-			}
-			return true;
-		},
 		countDown(count) {
 			if(count === 0) {
 				this.verifyBtn.status = true;
@@ -127,146 +147,85 @@ export default {
 			}
 		},
 		getVerifyCode() {
-			if(!this.verifyBtn.status) return
-			const {
-        username
-			} = this.form;
-			if(this.valid('verify_code')){
-				this.countDown(60);
-				authSmsverifyPost({
-					mobile_no: username
-				}).then(resp => {
-				});
-			}
+			this.isGetCode = true
+			this.$nextTick(_=>{
+				this.$refs.registForm.validate().then(_=>{
+					this.isGetCode = false
+					const {
+						username
+					} = this.form;
+					authSmsverifyPost({
+						mobile_no: username
+					}).then(resp => {
+						this.$message.success('The verification code has been sent. Please check')
+						this.countDown(60);
+					});
+				}).catch(_=>{
+					this.isGetCode = false;
+				})
+			})
 		},
 		regist() {
-			if(!this.agree) {
-				this.$message.error('请先同意《UStutor用户注册协议》');
-				return false;
-			}
-			if(this.valid()) {
+			this.$refs.registForm.validate().then(_ => {
 				return authRegisterPost(this.form).then(resp=> {
-					this.$message.success('注册成功，请重新登录！');
-					this.$router.push('/login');
+					this.$message.success('Registered successfully, please complete your personal infomation!');
+					this.$router.push('/basic');
 				})
-			}
+			})
 		}
 	}
 };
 </script>
 
-<style scoped>
+<style>
 .main-contain {
-  width: 830px;
-  height: 600px;
-  background: #ffffff;
-  margin: 0 auto;
-  margin-top: 81px;
+	width: 830px;
+	border-radius: 10px;
+	background: #FFFFFF;
+	margin: 80px auto;
+	overflow: hidden;
 }
-.title {
-  overflow: hidden;
-  height: 86px;
-  border: 1px solid #e8e8e8;
+.main-contain .title {
+	padding: 0 30px 0 53px;
+	border-bottom: 1px solid #E8E8E8;
+	overflow: hidden;
 }
-.account-registration {
-  padding: 33px 0 20px 0;
-  margin-left: 51px;
-  float: left;
-  border-bottom: 3px solid #ff8200;
-  font-size: 22px;
-  color: #333333;
+.title .use-phone {
+	line-height: 82px;
+	float: right;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #333333;
 }
-.user-login {
-  color: #ff8200;
+.title .use-phone .user-login {
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #FF8200;
+	line-height: 20px;
 }
-.use-phone {
-  font-size: 14px;
-  color: #333333;
-  float: right;
-  margin: 43px 34px 0 0;
-  cursor: pointer;
+.title .account-registration {
+	line-height: 82px;
+	float: left;
+	font-family: PingFangSC-Regular;
+	font-size: 22px;
+	color: #333333;
+	border-bottom: 2px #FF8200 solid;
 }
-.phone-left {
-  float: left;
-  height: 52px;
-  width: 225px;
-  text-align: right;
-  line-height: 52px;
+.regist-form {
+	width: 100%;
+	padding: 21px 0;
 }
-.register {
-  width: 185px;
-  height: 52px;
-  background: #ffffff;
-  border: 1px solid #dcdcdc;
-  border-radius: 5px;
-  float: left;
-  margin-left: 20px;
-  text-indent: 30px;
-  outline: none;
+.regist-form .el-form-item__label {
+	font-size: 16px;
 }
-.inps {
-  background: #ffffff;
-  border: 1px solid #dcdcdc;
-  border-radius: 5px;
-  width: 392px;
-  height: 52px;
-  float: left;
-  margin-left: 20px;
-  text-indent: 30px;
-  outline: none;
-}
-.phone {
-  overflow: hidden;
-  margin-top: 20px;
-}
-.yan-num {
-  float: left;
-  border: none;
-  height: 50px;
-  width: 278px;
-  text-indent: 30px;
-  outline: none;
-}
-.click-btn {
-  float: right;
-  width: 108px;
-  height: 44px;
-  background: #f5f5f5;
-  font-size: 14px;
-  color: #666666;
-  text-align: center;
-  line-height: 44px;
-  text-indent: 0;
-  margin: 3px;
-  cursor: pointer;
+.regist-form .form-input {
+	width: 392px;
 }
 .instructor {
-  font-size: 14px;
-  color: #ff8200;
-  line-height: 20px;
-}
-.checkbox {
-  font-size: 14px;
-  color: #666666;
-  margin-top: 20px;
-  text-align: center;
-}
-.regist-now {
-  background: #ff8200;
-  border-radius: 5px;
-  width: 392px;
-  height: 52px;
-  margin: 0 25%;
-  margin-top: 36px;
-  font-size: 18px;
-  color: #ffffff;
-  outline: none;
-  cursor: pointer;
-}
-.login {
-  font-size: 14px;
-  color: #333333;
-  text-align: center;
-  margin-top: 20px;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #FF8200;
+	line-height: 20px;
+	cursor: pointer;
 }
 </style>

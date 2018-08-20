@@ -16,3 +16,5 @@ export const interviewDeleteByinterviewid = (interviewid) => interviewPutByinter
 export const interviewResult = (form) => baseAxios.post('/manger/interview_result', form);
 
 export const acceptInterview = form => baseAxios.post('/teacher/accept_interview', form)
+
+export const interviewCourse = form => baseAxios.post('/teacher/interview_result', form)

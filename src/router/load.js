@@ -23,9 +23,12 @@ function load() {
           }
           return '/afterSubmit';
         case 10:
-          return '/reservation1';
+          return '/reservation-result';
         case 11:
-          return '/contract';
+          if(teacher.contract_url) {
+            return '/contract';
+          }
+          return '/reservation-result'
         case 20:
         default:
           return true;
