@@ -126,7 +126,7 @@ export default {
       }).then(resp => {
         this.close()
         this.$emit('on-submit', resp)
-        this.$message.success('添加成功！');
+        this.$message.success('Successfully added!');
       })
     },
     close() {
