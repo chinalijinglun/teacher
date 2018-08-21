@@ -3,12 +3,20 @@
   <div class="basic-header">
     <step :steps="steps"></step>
   </div>
+  <div class="basic-main">
+    <el-form>
+      <el-form-item>
+        <avatar-upload></avatar-upload>
+      </el-form-item>
+    </el-form>
+  </div>
 	<div class="basic-main">
 		<h3>基本信息</h3>
     <div class="basic-avatar">
       <div class="portraits-img">
         <img :src="$baseApiUrl+form.avatar" alt=""/>
       </div>
+      
       <el-button type="text" @click="addAvatar">upload</el-button>
     </div>
 		<div class="full-name">
@@ -98,6 +106,7 @@ import { userinfo,auth,basicCache } from '@/mixins';
 import {
   regionBareGet
 } from '@/api/region'
+import avatarUpload from '@/components/upload/avatar'
 
 export default {
   name: 'basicInformation',
@@ -181,7 +190,10 @@ export default {
         this.form.avatar = resp.data[0].download_file;
       });
     }
-	}
+  },
+  components: {
+    avatarUpload
+  }
 };
 </script>
 

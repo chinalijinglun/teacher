@@ -64,3 +64,9 @@ a:hover {
 .el-select-dropdown__item.selected {
 	color: #ff8200;
 }
+
+.hidden-input {
+	width: 0;
+	height: 0;
+	opacity: 0;
+}
