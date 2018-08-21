@@ -32,15 +32,13 @@
           <div class="street">
             <el-date-picker
               v-model="item.start"
-              type="month"
-              placeholder="选择日期">
+              type="month">
             </el-date-picker>
           </div>
           <div class="street">
             <el-date-picker
               v-model="item.end"
-              type="month"
-              placeholder="选择日期">
+              type="month">
             </el-date-picker>
           </div>
         </div>
@@ -86,7 +84,6 @@ export default {
     };
   },
   created() {
-
   },
   methods: {
     valid() {

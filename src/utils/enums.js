@@ -118,9 +118,9 @@ export const TEACHER_STATE_ZH = {
 };
 
 export const MOBILE_PRE = {
-  '+1': '美国/加拿大(+1)',
-  '+61': '澳大利亚(+61)',
-  '+86': '中国（+86）'
+  '+1': 'America/Canada(+1)',
+  '+61': 'Australian(+61)',
+  '+86': 'China（+86）'
 }
 
 export const COUNTRY_IDS = [7, 140, 25, 99];

@@ -4,99 +4,95 @@
     <step :steps="steps"></step>
   </div>
   <div class="basic-main">
-    <el-form>
-      <el-form-item>
-        <avatar-upload></avatar-upload>
+    <el-form label-position="top" :model="form" :rules="rules" ref="basicForm">
+      <el-form-item label="Portraits" prop="avatar">
+        <avatar-upload v-model="form.avatar"></avatar-upload>
       </el-form-item>
+      <el-row :gutter="40">
+        <el-col :span="6">
+          <el-form-item label="First Name" prop="first_name">
+            <el-input v-model="form.first_name"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="Middle Name" prop="middle_name">
+            <el-input v-model="form.middle_name"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="Last Name" prop="last_name">
+            <el-input v-model="form.last_name"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-form-item label="Gender" prop="gender">
+        <el-radio-group v-model="form.gender">
+          <el-radio :label="1">Female</el-radio>
+          <el-radio :label="2">Male</el-radio>
+          <el-radio :label="3">Prefer not to disclose</el-radio>
+        </el-radio-group>
+      </el-form-item>
+      <el-row :gutter="40">
+        <el-col :span="12">
+          <el-form-item label="Contact Email" prop="email">
+            <el-input v-model="form.email"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="40">
+        <el-col :span="12">
+          <el-form-item label="Contact Phone Number" prop="mobile">
+            <el-input v-model="form.mobile">
+							<el-select slot="prepend" v-model="form.nation" style="width: 150px;">
+								<el-option v-for="(item, key) in $MOBILE_PRE" :value="key" :key="key" :label="item"></el-option>
+							</el-select>
+            </el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="40">
+        <el-col :span="6">
+          <el-form-item label="Country" prop="country">
+            <el-select v-model="form.country" @change="handlerCountryChange">
+              <el-option v-for="(item, index) in countryLs" :value="item.id" :key="index" :label="item.name"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="State" prop="state">
+            <el-select v-model="form.state" @change="handlerStateChange">
+              <el-option v-for="(item, index) in stateLs" :value="item.id" :key="index" :label="item.name"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="City" prop="city">
+            <el-select v-model="form.city">
+              <el-option v-for="(item, index) in cityLs" :value="item.id" :key="index" :label="item.name"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="40">
+        <el-col :span="12">
+          <el-form-item label="Street" prop="street">
+            <el-input v-model="form.street"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="40">
+        <el-col :span="6">
+          <el-form-item label="Time Zone" prop="timezone">
+            <el-select v-model="form.timezone">
+              <el-option v-for="(item, key) in $TIME_ZONE" :value="key" :key="key" :label="item"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+      </el-row>
     </el-form>
   </div>
-	<div class="basic-main">
-		<h3>基本信息</h3>
-    <div class="basic-avatar">
-      <div class="portraits-img">
-        <img :src="$baseApiUrl+form.avatar" alt=""/>
-      </div>
-      
-      <el-button type="text" @click="addAvatar">upload</el-button>
-    </div>
-		<div class="full-name">
-			<div class="name">
-				<label for="">*First Name</label><br/>
-				<input type="text" v-model="form.first_name">
-			</div>
-			<div class="name">
-				<label for="">Middle Name</label><br/>
-				<input type="text" v-model="form.middle_name">
-			</div>
-			<div class="name">
-				<label for="">Last Name</label><br/>
-				<input type="text" v-model="form.last_name">
-			</div>
-		</div>
-		<div class="full-name male">
-			<h4>*Gender</h4>  
-      <el-radio-group v-model="form.gender">
-        <el-radio :label="1">Female</el-radio>
-        <el-radio :label="2">Male</el-radio>
-        <el-radio :label="3">Prefer not to disclose</el-radio>
-      </el-radio-group>
-		</div>
-		<div class="full-name email">
-			<h4>*Contact Email</h4>
-			<input v-model="form.email">
-		</div>
-		<div class="full-name phone">
-			<h4>*Contact Phone Number</h4>
-			<select>
-        <option v-for="(item, key) in $MOBILE_PRE" :value="key" :key="key">{{item}}</option>
-			</select>
-			<input v-model="form.mobile">
-		</div>
-		<div class="full-name">
-			<div class="street">
-				<span class="street-name">*Country</span>
-				<span class="street-input">
-					<select v-model="form.country" @change="handlerCountryChange">
-						<option v-for="(item, index) in countryLs" :value="item.id" :key="index">{{item.name}}</option>
-					</select>
-				</span>
-			</div>
-			<div class="street">
-				<span class="street-name">*State</span>
-				<span class="street-input">
-					<select v-model="form.state" @change="handlerStateChange">
-						<option v-for="(item, index) in stateLs" :value="item.id" :key="index">{{item.name}}</option>
-					</select>
-				</span>
-			</div>
-			<div class="street">
-				<span class="street-name">*City</span>
-				<span class="street-input">
-					<select v-model="form.city">
-						<option v-for="(item, index) in cityLs" :value="item.id" :key="index">{{item.name}}</option>
-					</select>
-				</span>
-			</div>
-			<div class="street name">
-				<span class="street-name">*Street</span>
-				<input type="text" v-model="form.street">
-			</div>
-			<div class="street">
-				<span class="street-name">*Time Zone</span>
-				<span class="street-input">
-					<select name="" v-model="form.timezone">
-						<option v-for="(item, key) in $TIME_ZONE" :value="key" :key="key">{{item}}</option>
-					</select>
-				</span>
-			</div>
-			<div class="street name">
-				<span class="street-name">*Zip Code</span>
-				<input type="text" v-model="form.zipone">
-			</div>
-		</div>
-	</div>
 	<div class="next-btn">
-		<button @click="$router.push('/basic1')">下一步</button>
+		<button @click="continues">Continue</button>
 	</div>
 </div>
 </template>
@@ -111,6 +107,12 @@ import avatarUpload from '@/components/upload/avatar'
 export default {
   name: 'basicInformation',
   data() {
+    const nationRequire = (rule, value, cb) => {
+      if(!this.form.nation) {
+        cb(new Error('the nation code is required'))
+      }
+      cb()
+    }
     return {
       steps: ['Basic Info', 'Demo Lesson', 'Contract Info'],
       form: {
@@ -120,6 +122,7 @@ export default {
         last_name: '',
         gender: '',
         email: '',
+        nation: '',
         mobile: '',
         country: '',
         state: '',
@@ -127,6 +130,42 @@ export default {
         street: '',
         zipone: '',
         timezone: ''
+      },
+      rules: {
+        avatar: [
+          {required: true, trigger: 'change'}
+        ],
+        first_name: [
+          {required: true, trigger: 'blur'}
+        ],
+        last_name: [
+          {required: true, trigger: 'blur'}
+        ],
+        gender: [
+          {required: true, trigger: 'blur'}
+        ],
+        email: [
+          {required: true, trigger: 'blur'}
+        ],
+        mobile: [
+          {required: true, trigger: 'blur'},
+          {validator: nationRequire, trigger: 'blur' }
+        ],
+        country: [
+          {required: true, trigger: 'change'}
+        ],
+        state: [
+          {required: true, trigger: 'change'}
+        ],
+        city: [
+          {required: true, trigger: 'change'}
+        ],
+        street: [
+          {required: true, trigger: 'blur'}
+        ],
+        timezone: [
+          {required: true, trigger: 'blur'}
+        ]
       },
       countryLs: [],
       stateLs: [],
@@ -139,6 +178,10 @@ export default {
     this.getCountry();
   },
   methods: {
+    async continues() {
+      await this.$refs.basicForm.validate()
+      this.$router.push('/basic1')
+    },
     getCountry() {
       const filter = this.$json2filter({
         id: this.$COUNTRY_IDS
@@ -155,8 +198,7 @@ export default {
         return resp.data.objects;
       })
     },
-    async handlerCountryChange(e) {
-      const countryId = e.target.value;
+    async handlerCountryChange(countryId) {
       this.stateLs = await this.getAreaByPid(countryId);
       this.cityLs = [];
       this.streetLs = [];
@@ -165,9 +207,8 @@ export default {
       this.form.street = '';
       return;
     },
-    async handlerStateChange(e) {
-      const countryId = e.target.value;
-      this.cityLs = await this.getAreaByPid(countryId);
+    async handlerStateChange(stateId) {
+      this.cityLs = await this.getAreaByPid(stateId);
       this.streetLs = [];
       this.form.city = '';
       this.form.street = '';
