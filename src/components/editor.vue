@@ -128,7 +128,7 @@ export default {
 }
 #apps {
   width: 830px;
-  height: 650px;
+  padding-bottom: 20px;
   background: #ffffff;
   border-radius: 10px;
   position: fixed;

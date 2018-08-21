@@ -45,7 +45,7 @@
 						{{item.name || '未命名'}}
 					</div>
 					<div class="lesson-state">
-						<span v-if="!item.checked_result || item.checked_result == 'BEFORE_CHECK'">待审核</span>
+						<span v-if="item.checked_result == 'BEFORE_CHECK'">待审核</span>
 						<span v-if="item.checked_result == 'CHECK_PASSED'">审核通过</span>
 						<span class="up" v-if="item.checked_result == 'CHECK_DENY'">审核驳回</span>
 						<span class="up" v-if="item.checked_result == 'PREVIEW'">可以预览</span>
@@ -54,7 +54,7 @@
             
 					</div>
 					<div class="oprate-lesson">
-						<span class="colo" @click="toRoom(item.id)">进入教室 </span>
+						<span class="colo" @click="toRoom(item.id)">进入教室</span>
 						<span class="colo" @click="goCourseware(item.id)">查看课件</span>
 					</div>
 				</div>
