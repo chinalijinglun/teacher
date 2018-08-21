@@ -1,17 +1,8 @@
 <template>
 <div class="basicinfor">
-	<div class="basic-header">
-		<div class="step">
-			<span class="step1"></span>
-			<span class="step2"></span>
-			<span class="step3"></span>
-		</div>
-		<ul>
-			<li>Basic Info</li>
-			<li>Demo Lesson</li>
-			<li>Contract Info</li>
-		</ul>
-	</div>
+  <div class="basic-header">
+    <step :steps="steps"></step>
+  </div>
 	<div class="basic-main">
 		<h3>基本信息</h3>
     <div class="basic-avatar">
@@ -112,6 +103,7 @@ export default {
   name: 'basicInformation',
   data() {
     return {
+      steps: ['Basic Info', 'Demo Lesson', 'Contract Info'],
       form: {
         avatar: '',
         first_name: '',
