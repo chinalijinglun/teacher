@@ -1,6 +1,5 @@
 import store from '../store'
 function load() {
-  return Promise.resolve(true)
   const {
     authorization,
     id

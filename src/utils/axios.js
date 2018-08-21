@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { baseApiUrl,whiltApi } from '@/config/config';
-import { Message } from 'element-ui';
+import { Message, Loading } from 'element-ui';
 import store from '@/store';
 import router from '@/router';
 
@@ -11,7 +11,11 @@ const baseAxios = axios.create({
   }
 });
 
+let requestCount = 0;
+
 baseAxios.interceptors.request.use(config => {
+  requestCount++;
+  Loading.service({ fullscreen: true })
   if(whiltApi.indexOf(config.url)!==-1 || !store.state.auth.authorization) {
     config.headers['authorization'] = '';
   } else {
@@ -23,8 +27,20 @@ baseAxios.interceptors.request.use(config => {
 });
 
 baseAxios.interceptors.response.use(resp => {
+  setTimeout(_ => {
+    requestCount--;
+    if (requestCount <= 0) {
+      Loading.service().close()
+    }
+  }, 50)
   return resp;
 }, error => {
+  setTimeout(_ => {
+    requestCount--;
+    if (requestCount <= 0) {
+      Loading.service().close()
+    }
+  }, 50)
   if(!error.response) {
     return Message.error('系统异常！');
   }
