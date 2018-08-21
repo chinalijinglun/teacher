@@ -116,7 +116,6 @@ li {
 }
 .tables h3 a {
 	display: inline-block;
-	float: right;
 	line-height: 20px;
 	text-decoration: none;
 	color: #ff8244;
