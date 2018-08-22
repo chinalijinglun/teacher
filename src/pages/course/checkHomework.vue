@@ -6,7 +6,7 @@
 			<div class="home-work-name"><img src="../../assets/dian_01.png" alt=""> {{homeworkInfo.question_name || '作业名称'}}</div>
 			<div class="desc" v-html="homeworkInfo.question_text"></div>
 			<div class="dowmload">
-				<div class="left" v-for="(item, index) in fileLs">
+				<div class="left" v-for="(item, index) in fileLs" :key="index">
 					<img src="../../assets/fujian.png" alt="">
 					<div class="detail">
 						<div class="names">{{item.name}} </div>
@@ -22,18 +22,16 @@
 					<ul>
 						<li class="student">学生</li>
 						<li class="homework-name">作业名称</li>
-						<li class="describe">描述</li>
 						<li class="times">时间</li>
 						<li class="oprate">操作</li>
 					</ul>
 				</div>
 				<div class="list">
-					<ul v-for="(item, index) in tableData" :key="item.id">
+					<ul v-for="item in tableData" :key="item.id">
 						<li class="student">{{item.student_name}}</li>
-						<li class="homework-name">{{item.question_name}}</li>
-						<li class="describe">{{item.question_text}}</li>
-						<li class="times">{{item.created_at}}</li>
-						<li class="oprate dianping">作业点评</li>
+						<li class="homework-name">{{item.title}}</li>
+						<li class="times">{{item.created_at | noTime}}</li>
+						<li class="oprate dianping" @click="toComment(item)">作业点评</li>
 					</ul>
 				</div>
 				<el-row>
@@ -94,6 +92,14 @@ export default {
 				const attachment_url = resp.data.question_attachment_url
 				attachment_url && (this.fileLs = JSON.parse(attachment_url))
       });
+    },
+    toComment(item) {
+      this.$router.push({
+        path: '/comment',
+        query: {
+          id: item.id
+        }
+      })
     }
   }
 };
