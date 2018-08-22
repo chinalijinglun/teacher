@@ -30,7 +30,7 @@ import addResult from '@/pages/course/addResult'
 import viewResult from '@/pages/course/viewResult'
 import viewEvaluate from '@/pages/course/viewEvaluate'
 import room from '@/pages/room'
-
+import preview from '@/pages/preview';
 
 Vue.use(Router)
 
@@ -43,6 +43,12 @@ export default new Router({
 			path: '/room',
 			name: 'room',
 			component: room
+		},
+		{
+			title: '预览',
+			path: '/preview',
+			name: 'preview',
+			component: preview
 		},
 		{
 			title: '个人中心',
