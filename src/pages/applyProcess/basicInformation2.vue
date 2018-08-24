@@ -167,14 +167,9 @@ export default {
 		},
 		submit() {
 			const form1 = JSON.parse(this.$getSession('/basic'));
-			const form2 = JSON.parse(this.$getSession('/basic1'));
 			const form3 = this.form;
 			const form = {
 				...form1,
-				degree: form2.degree,
-				education_history: form2.education_history,
-				education_history: form2.education_history,
-				education_history: form2.education_history,
 				cur_school: form3.cur_school,
 				cur_country: form3.cur_country,
 				cur_province: form3.cur_province,

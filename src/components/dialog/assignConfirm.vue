@@ -61,12 +61,6 @@ export default {
 };
 </script>
 <style>
-.ms-dialog .el-dialog {
-  border-radius: 10px;
-}
-.no-head .el-dialog__header {
-  height: 0;
-}
 .title {
   text-align: center;
   font-size: 14px;

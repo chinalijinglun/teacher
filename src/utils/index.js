@@ -129,6 +129,11 @@ const install = (Vue) => {
     if(!value) return ''
     return dateFmt(new Date(value), 'yyyy-MM-dd')
   })
+
+  Vue.filter('monthFmt', (value) => {
+    if(!value) return ''
+    return dateFmt(new Date(value), 'yyyy.MM')
+  })
 }
 
 export {

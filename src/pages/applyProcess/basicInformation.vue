@@ -89,11 +89,45 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row :gutter="40">
+        <el-form-item label="Education Background" prop="education_history">
+          <el-col :span="8">
+            <el-button @click="editEducation">+ Add Education Background</el-button>
+            <el-input class="hidden-input" :value="form.education_history"></el-input>
+          </el-col>
+          <el-col :span="16">
+            <p class="education-background tips">Please Start With your highest academic degree obtained</p>
+          </el-col>
+        </el-form-item>
+      </el-row>
+      <table class="education-table">
+        <tbody>
+          <tr v-for="(item, index) in educationLs" :key="index">
+            <td width="90px"><span>{{item.school}}</span></td>
+            <td width="190px">
+              <span>{{item.start | monthFmt}}-{{item.end | monthFmt}}</span>
+            </td>
+            <td width="130px">
+              <span>{{item.major}}</span>
+            </td>
+            <td width="130px">
+              <span class="link-span" v-if="item.certificate[0]" @click="openLink(item.certificate[0].url)">{{item.certificate[0].name}}</span>
+            </td>
+            <td width="90px">
+              <div class="education-oprate">
+                <i class="el-icon-edit-outline" @click="editEducation(index)"></i>
+                <i class="el-icon-delete" @click="deleteEducation(index)"></i>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </el-form>
   </div>
 	<div class="next-btn">
-		<button @click="continues">Continue</button>
+    <el-button type="primary" @click="continues">Continue</el-button>
 	</div>
+  <educations :visible.sync="educationsShow" @on-sure="getEducation" @on-close="cleanCur" :cur-row="curEducation"></educations>
 </div>
 </template>
 
@@ -103,6 +137,7 @@ import {
   regionBareGet
 } from '@/api/region'
 import avatarUpload from '@/components/upload/avatar'
+import educations from '@/components/dialog/educations'
 
 export default {
   name: 'basicInformation',
@@ -113,7 +148,14 @@ export default {
       }
       cb()
     }
+    const emptyJSONStr = (rule, value, cb) => {
+      if(this.form.education_history === '[]') {
+        cb(new Error('The Education Background is required'))
+      }
+      cb()
+    }
     return {
+      educationsShow: false,
       steps: ['Basic Info', 'Demo Lesson', 'Contract Info'],
       form: {
         avatar: '',
@@ -129,7 +171,8 @@ export default {
         city: '',
         street: '',
         zipone: '',
-        timezone: ''
+        timezone: '',
+        education_history: ''
       },
       rules: {
         avatar: [
@@ -164,23 +207,65 @@ export default {
           {required: true, trigger: 'blur'}
         ],
         timezone: [
-          {required: true, trigger: 'blur'}
+          {required: true, trigger: 'change'}
+        ],
+        education_history: [
+          {required: true, message: 'The Education Background is required', trigger: 'change'},
+          {validator: emptyJSONStr, trigger: 'change'}
         ]
       },
       countryLs: [],
       stateLs: [],
       cityLs: [],
+      curEducation: {},
+      curIndex: -1,
       streetLs: []
     };
+  },
+  computed: {
+    educationLs() {
+      return JSON.parse(this.form.education_history || '[]');
+    }
   },
   mixins: [ userinfo, auth, basicCache ],
   created() {
     this.getCountry();
   },
   methods: {
+    cleanCur() {
+      this.curIndex = -1;
+      this.curEducation = {};
+    },
+    openLink(url) {
+      window.open(this.$baseApiUrl + url)
+    },
+    editEducation(index = -1) {
+      this.curIndex = index;
+      if(index !== -1) {
+        const educations = [...this.educationLs];
+        this.curEducation = educations[index];
+      }
+      this.educationsShow = true
+    },
+    deleteEducation(index) {
+      const education_history_str = this.form.education_history || '[]'
+      const education_history = JSON.parse(education_history_str);
+      education_history.splice(index, 1);
+      this.form.education_history = JSON.stringify(education_history);
+    },
+    getEducation(education) {
+      const education_history_str = this.form.education_history || '[]'
+      const education_history = JSON.parse(education_history_str);
+      if(this.curIndex !== -1) {
+        education_history[this.curIndex] = education;
+      } else {
+        education_history.push(education);
+      }
+      this.form.education_history = JSON.stringify(education_history);
+    },
     async continues() {
       await this.$refs.basicForm.validate()
-      this.$router.push('/basic1')
+      this.$router.push('/experience')
     },
     getCountry() {
       const filter = this.$json2filter({
@@ -233,7 +318,8 @@ export default {
     }
   },
   components: {
-    avatarUpload
+    avatarUpload,
+    educations
   }
 };
 </script>
@@ -360,16 +446,6 @@ export default {
   padding-bottom: 30px;
 }
 
-.next-btn button {
-  width: 150px;
-  height: 40px;
-  font-size: 18px;
-  color: #ffffff;
-  background: #ff8200;
-  border-radius: 5px;
-  outline: none;
-  border: none;
-}
 .full-name h4 {
   margin-bottom: 10px;
   font-weight: normal;
@@ -483,5 +559,33 @@ export default {
   overflow: hidden;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
+}
+.education-background.tips {
+  line-height: 40px;
+  margin-top: 0;
+  margin-left: 12px;
+}
+.education-oprate i {
+  margin-right: 20px;
+  cursor: pointer;
+}
+.education-oprate i:last-of-type {
+  margin-right: 0;
+}
+.education-table {
+  margin-bottom: 40px;
+}
+.education-table td span {
+  padding: 5px;
+  line-height: 20px;
+  font-size: 14px;
+  color: #666666;
+}
+.education-table td span.link-span {
+  color: #66b1ff;
+  cursor: pointer;
+}
+.education-table td span.link-span:hover,.link-span:focus {
+  color: #409EFF;
 }
 </style>

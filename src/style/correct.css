@@ -27,6 +27,31 @@
 	color: #ff8200;
 }
 
+.el-button {
+	display: inline-block;
+	line-height: 1;
+	white-space: nowrap;
+	cursor: pointer;
+	background: #fff;
+	border: 1px solid #FF8200;
+	color: #FF8200;
+	-webkit-appearance: none;
+	text-align: center;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	outline: 0;
+	margin: 0;
+	-webkit-transition: .1s;
+	transition: .1s;
+	padding: 12px 20px;
+	font-size: 14px;
+	border-radius: 4px;
+}
+.el-button:focus, .el-button:hover {
+	color: #FFBA73;
+	border-color: #FFBA73;
+	background-color: #FFBA730D;
+}
 .el-button--text {
 	font-family: PingFangSC-Regular;
 	font-size: 14px;
@@ -69,4 +94,18 @@ a:hover {
 	width: 0;
 	height: 0;
 	opacity: 0;
+}
+
+.ms-dialog .el-dialog {
+  border-radius: 10px;
+}
+.no-head .el-dialog__header {
+	height: 0;
+	padding: 0;
+}
+.btn-center-container {
+	text-align: center;
+}
+ul,li {
+	list-style: none;
 }

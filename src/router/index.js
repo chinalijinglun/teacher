@@ -69,7 +69,7 @@ export default new Router({
 			component: login
 		},
 		{
-			title: '基本信息',
+			title: 'basic',
 			path: '/basic',
 			name: 'basic',
 			component: basic
@@ -81,9 +81,9 @@ export default new Router({
 			component: basic1
 		},
 		{
-			title: '基本信息2',
-			path: '/basic2',
-			name: 'basic2',
+			title: 'experience',
+			path: '/experience',
+			name: 'experience',
 			component: basic2
 		},
 		{
