@@ -59,8 +59,8 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="State" prop="state">
-            <el-select v-model="form.state" @change="handlerStateChange">
+          <el-form-item label="State" prop="province">
+            <el-select v-model="form.province" @change="handlerStateChange">
               <el-option v-for="(item, index) in stateLs" :value="item.id" :key="index" :label="item.name"></el-option>
             </el-select>
           </el-form-item>
@@ -92,7 +92,7 @@
       <el-row :gutter="40">
         <el-form-item label="Education Background" prop="education_history">
           <el-col :span="8">
-            <el-button @click="editEducation">+ Add Education Background</el-button>
+            <el-button @click="editEducation()">+ Add Education Background</el-button>
             <el-input class="hidden-input" :value="form.education_history"></el-input>
           </el-col>
           <el-col :span="16">
@@ -167,10 +167,9 @@ export default {
         nation: '',
         mobile: '',
         country: '',
-        state: '',
+        province: '',
         city: '',
         street: '',
-        zipone: '',
         timezone: '',
         education_history: ''
       },
@@ -197,7 +196,7 @@ export default {
         country: [
           {required: true, trigger: 'change'}
         ],
-        state: [
+        province: [
           {required: true, trigger: 'change'}
         ],
         city: [
@@ -287,7 +286,7 @@ export default {
       this.stateLs = await this.getAreaByPid(countryId);
       this.cityLs = [];
       this.streetLs = [];
-      this.form.state = '';
+      this.form.province = '';
       this.form.city = '';
       this.form.street = '';
       return;
