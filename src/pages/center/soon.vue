@@ -43,7 +43,7 @@
 					<p>暂无数据</p>
 				</div>
 				<template v-else>
-					<div v-for="(item, index) in homework">
+					<div v-for="(item, index) in homework" :key="index">
 						<div class="soon-approval">
 							<span>{{item.question_name}}</span>
 							<span>{{created_at | noTime}}</span>
@@ -110,7 +110,8 @@
 			},
 			viewHomework(item) {
 				// ?course_id=128&course_schedule_id=240&id=61
-				this.$router.push('/check-homework', {
+				this.$router.push({
+					path: '/check-homework',
 					query: {
 						course_id: item.course_id,
 						course_schedule_id: item.course_schedule_id,
