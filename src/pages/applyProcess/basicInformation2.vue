@@ -174,7 +174,7 @@ export default {
 				cur_country: form3.cur_country,
 				cur_province: form3.cur_province,
 				teacher_age: form3.teacher_age,
-				resume_url: form3.resume_url,
+				resume_url: form3.resume_url.url,
 				state: 3,
 				updated_at: new Date(),
 				updated_by: this.userName
