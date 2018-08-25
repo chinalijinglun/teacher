@@ -69,7 +69,6 @@ export default {
   cursor: pointer;
 }
 .bars li a {
-  display: block;
   color: #333333;
   text-decoration: none;
 }
