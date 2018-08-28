@@ -9,8 +9,8 @@
 		</div>
 		<div class="soon-come">
 			<div class="title">
-				<span>即将开课</span>
-				<span @click="$router.push('/course')" style="cursor: pointer">更多 >></span>
+				<span class="title-title">即将开课</span>
+				<span @click="$router.push('/course')" class="title-more">更多 >></span>
 			</div>
 			<div class="soon-stage">
 				<div class="stage-line stage-color" v-if="!futureCourse">
@@ -18,25 +18,27 @@
 				</div>
 				<template v-else>
 					<div class="stage-head">
-						<span>{{futureCourse.class_name}}</span>
+						<span>{{futureCourse.course_name}}</span>
 						<span>{{futureCourse.start | courseScheduleTime(futureCourse.end)}}</span>
 					</div>
-					<div class="stage-line stage-color">
-						<p>{{futureCourse.course_name}}</p>
+					<div class="stage-line stage-color course-name">
+						<p>{{futureCourse.class_name}}</p>
 					</div>
 					<div class="stage-line stage-color" v-for="(item, index) in futureCourse.courseware" :key="index">
-						<span>{{item.name}}</span>
-						<span>
-							<a :href="item.ware_url" target="block">预览课件</a>
-						</span>
+						<span class="li-point"></span>
+						<span>{{item.ware_name}}</span>
+						<div class="priview-button course-ware">
+							<i class="icon-yulan"></i>
+							<span @click="viewCourseware(item.ware_url)">预览课件</span>
+						</div>
 					</div>
 				</template>
 			</div>
 		</div>
 		<div class="soon-stage soon-come">
 			<div class="title">
-				<span>待审批的作业</span>
-				<span @click="$router.push('/course')" style="cursor: pointer">更多 >></span>
+				<span class="title-title">待审批的作业</span>
+				<span @click="$router.push('/course')" class="title-more">更多 >></span>
 			</div>
 			<div class="soon-stage">
 				<div class="stage-line stage-color" v-if="!homework.length">
@@ -46,10 +48,13 @@
 					<div v-for="(item, index) in homework" :key="index">
 						<div class="soon-approval">
 							<span>{{item.question_name}}</span>
-							<span>{{created_at | noTime}}</span>
+							<span>{{item.created_at | noTime}}</span>
 						</div>
-						<div class="soon-approval-btn stage-color">
-							<span @click="viewHomework(item)">查看作业</span>
+						<div class="btn-center-container">
+							<div class="priview-button">
+								<i class="icon-homework"></i>
+								<span @click="viewHomework(item)">查看作业</span>
+							</div>
 						</div>
 					</div>
 				</template>
@@ -109,7 +114,6 @@
 				})
 			},
 			viewHomework(item) {
-				// ?course_id=128&course_schedule_id=240&id=61
 				this.$router.push({
 					path: '/check-homework',
 					query: {
@@ -118,6 +122,9 @@
 						id: item.id
 					}
 				})
+			},
+			viewCourseware(url) {
+				window.open(url)
 			}
 		}
 	}
@@ -164,9 +171,20 @@
   padding: 30px;
 }
 .title {
-  margin-bottom: 25px;
+  margin-bottom: 21px;
+	line-height: 30px;
+}
+.title-title {
+	font-family: PingFangSC-Regular;
+	font-size: 18px;
+	color: #333333;
 }
 
+.title-more {
+	font-size: 14px;
+	color: #333333;
+	cursor: pointer;
+}
 .stage-head,
 .soon-approval {
   height: 60px;
@@ -210,6 +228,9 @@
 .soon-approval span:first-child {
   float: left;
 }
+.course-name {
+	border-bottom: 1px solid #FFF0BB;
+}
 .stage-line span:last-child,
 .soon-approval span:last-child,
 .title span:last-child {
@@ -227,5 +248,58 @@
   background: #ffffff;
   border: 1px solid #dcdcdc;
   border-radius: 5px;
+}
+.li-point {
+	background: #FF8200;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;    
+	margin-top: 25px;
+	margin-right: 12px;
+}
+.btn-center-container {
+	text-align: center;
+	padding: 25px;
+	background: #FFFBED;
+	width: 100%;
+}
+.priview-button {
+	background: #FFFFFF;
+	border: 1px solid #DCDCDC;
+	border-radius: 5px;
+	padding: 10px 14px 10px 50px;
+	display: inline-block;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #333333;
+	position: relative;
+	line-height: 20px;
+	cursor: pointer;
+}
+.priview-button.course-ware {
+	float: right;
+	margin-top: 9px;
+}
+.icon-homework {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	position: absolute;
+	background-image: url(../../assets/chakanzuoye.png);
+	background-size: auto;
+	background-repeat: no-repeat;
+	left: 17px;
+	top: 10px;
+}
+.icon-yulan {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	position: absolute;
+	background-image: url(../../assets/yulan.png);
+	background-size: auto;
+	background-repeat: no-repeat;
+	left: 17px;
+	top: 13px;
 }
 </style>
