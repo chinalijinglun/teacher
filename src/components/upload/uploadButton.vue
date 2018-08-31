@@ -135,13 +135,14 @@
         if (this.maxLength > 1) {
           return this.value.map(item => ({
             ...item, 
-            url: this.$baseApiUrl + item.url
+            url: this.$baseApiUrl + item.url,
+            name: item.name
           }))
         }
         if (this.value) {
           return [{
-            ...this.value,
-            url: this.$baseApiUrl + this.value.url
+            url: this.$baseApiUrl + this.value.url,
+            name: this.value
           }]
         }
         return []

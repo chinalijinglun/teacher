@@ -84,7 +84,9 @@ export default {
 				this.detail.created_at = resp.data.created_at;
 				this.detail.question_name = resp.data.question_name;
 				this.detail.answer_text = resp.data.answer_text;
-				this.detail.answer_attachment_url = JSON.parse(resp.data.answer_attachment_url)
+				if(resp.data.answer_attachment_url) {
+					this.detail.answer_attachment_url = JSON.parse(resp.data.answer_attachment_url)
+				}
 				if(resp.data.evaluation) {
 					const evaluation = JSON.parse(resp.data.evaluation)
 					this.detail.evaluations = evaluation.map(item => new HomeworkEvaluation(item))
