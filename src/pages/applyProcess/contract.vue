@@ -70,8 +70,8 @@ export default {
         name: ''
       },
       confirmShow: false,
-      nowDate: moment().format("MMM Do YY"),
-      effectiveDate: moment().add(7, 'days').format("MMM Do YY"),
+      nowDate: moment().format('LL'),
+      effectiveDate: moment().add(7, 'days').format('LL')
     }
   },
   methods: {

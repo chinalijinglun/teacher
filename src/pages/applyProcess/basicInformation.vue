@@ -44,7 +44,7 @@
           <el-form-item label="Contact Phone Number" prop="mobile">
             <el-input v-model="form.mobile">
 							<el-select slot="prepend" v-model="form.nation" style="width: 150px;">
-								<el-option v-for="(item, key) in $MOBILE_PRE" :value="key" :key="key" :label="item"></el-option>
+								<el-option v-for="(item, index) in $NATIONAL_CODE" :value="item.code" :key="index" :label="item.name"></el-option>
 							</el-select>
             </el-input>
           </el-form-item>

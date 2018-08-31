@@ -16,7 +16,7 @@
 						<el-input type="text" v-model="form.username" placeholder="mobile no">
 							<el-select slot="prepend" v-model="form.code" style="width: 150px;">
 								<el-option value="" label="please choose"></el-option>
-								<el-option v-for="(item, key) in $MOBILE_PRE" :value="key" :key="key" :label="item"></el-option>
+								<el-option v-for="(item, index) in $NATIONAL_CODE" :value="item.code" :key="index" :label="item.name"></el-option>
 							</el-select>
 						</el-input>
 					</div>
