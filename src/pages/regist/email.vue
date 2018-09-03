@@ -153,11 +153,11 @@ export default {
 					this.isGetCode = false
 					const {
 						username,
-						verify_code
+						code
 					} = this.form;
 					authSmsverifyPost({
 						mobile_no: username,
-						country_code: verify_code.replace('+', '')
+						country_code: code.replace('+', '')
 					}).then(resp => {
 						this.$message.success('The verification code has been sent. Please check')
 						this.countDown(60);
