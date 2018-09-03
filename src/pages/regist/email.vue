@@ -152,10 +152,12 @@ export default {
 				this.$refs.registForm.validate().then(_=>{
 					this.isGetCode = false
 					const {
-						username
+						username,
+						verify_code
 					} = this.form;
 					authSmsverifyPost({
-						mobile_no: username
+						mobile_no: username,
+						country_code: verify_code.replace('+', '')
 					}).then(resp => {
 						this.$message.success('The verification code has been sent. Please check')
 						this.countDown(60);
