@@ -6,7 +6,8 @@ import login from '@/pages/login'
 import main from '@/pages/main'
 import basic from '@/pages/applyProcess/basicInformation'
 import basic1 from '@/pages/applyProcess/basicInformation1'
-import basic2 from '@/pages/applyProcess/basicInformation2'
+// import basic2 from '@/pages/applyProcess/basicInformation2'
+import experience from '@/pages/applyProcess/experience'
 import reservation from '@/pages/applyProcess/reservation'
 import reservation1 from '@/pages/applyProcess/reservation1'
 import contract from '@/pages/applyProcess/contract'
@@ -84,7 +85,7 @@ export default new Router({
 			title: 'experience',
 			path: '/experience',
 			name: 'experience',
-			component: basic2
+			component: experience
 		},
 		{
 			title: '预约面试',

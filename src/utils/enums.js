@@ -1715,6 +1715,15 @@ export const DEGREE_VALUE = {
   7:'other'
 }
 
+export const GRADE_ENUMS = {
+  1: 'Kindergarten',
+  2: 'Elementary School',
+  3: 'Middle School',
+  4: 'High School',
+  5: 'College',
+  6: 'Adults'
+}
+
 export const GRADE = {
   'kindergarten': '幼儿园',
   'primary_school': '小学',

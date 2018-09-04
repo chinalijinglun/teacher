@@ -209,12 +209,17 @@
         form.appendChild(fileInput);
         const formData = new FormData(form);
         this.$axios.post(this.$baseApiUrl + '/upload', formData).then(resp => {
-          const value = [...this.value]
-          value.push({
-            name: resp.data[0].upload_file,
-            url: resp.data[0].download_file
-          })
-          this.$emit('input', value);
+          if(this.maxLength > 1) {
+            const value = [...this.value]
+            value.push({
+              name: resp.data[0].upload_file,
+              url: resp.data[0].download_file
+            })
+            this.$emit('input', value);
+          } else {
+            const value =  resp.data[0].download_file
+            this.$emit('input', value);
+          }
         });
       }
     },

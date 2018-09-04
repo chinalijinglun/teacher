@@ -8,7 +8,7 @@
       <el-form label-position="top" :model="form" :rules="rules" ref="basicForm">
         <el-row :gutter="40">
           <el-col :span="22">
-            <el-form-item label=" School Currently Teaching" prop="cur_school">
+            <el-form-item label="School Currently Teaching" prop="cur_school">
               <el-input 
                 :rows="4"
                 type="textarea" 
@@ -19,8 +19,15 @@
           </el-col>
         </el-row>
         <el-row :gutter="40">
+          <el-col :span="22">
+            <el-form-item label="Current Teaching Academic Subject" prop="subject">
+              <subject-table ref="subjectTable2" :type="2" :require="true"></subject-table>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="40">
           <el-col :span="12">
-            <el-form-item label="Geographical region(s) where you had taught" prop="country">
+            <el-form-item label="Geographical region(s) where you had taught" prop="cur_country">
               <el-select v-model="form.cur_country" @change="handlerCountryChange">
                 <el-option v-for="(item, index) in countryLs" :value="item.id" :key="index" :label="item.name"></el-option>
               </el-select>
@@ -29,7 +36,7 @@
         </el-row>
         <el-row :gutter="40">
           <el-col :span="12">
-            <el-form-item label=" State(s) where you have taught" prop="province">
+            <el-form-item label=" State(s) where you have taught" prop="cur_province">
               <el-select v-model="form.cur_province">
                 <el-option v-for="(item, index) in provinceLs" :value="item.id" :key="index" :label="item.name"></el-option>
               </el-select>
@@ -37,18 +44,35 @@
           </el-col>
         </el-row>
         <el-row :gutter="40">
+          <el-col :span="22">
+            <el-form-item label="Qualified Teaching Academic Subject(s)" prop="qualified_objects">
+              <subject-table ref="subjectTable1" :type="1" :require="false"></subject-table>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="40">
           <el-col :span="12">
-            <el-form-item label="Total Teaching Years" prop="street">
-              <el-input v-model="form.street"></el-input>
+            <el-form-item label="Total Teaching Years" prop="teacher_age">
+              <el-input v-model="form.teacher_age"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="40">
           <el-col :span="22">
-            <el-form-item label="Current Resume" prop="teaching_history">
+            <el-form-item label="Most Current Resume" prop="resume_url">
               <upload-button
                 v-model="form.resume_url"
                 :max-length="1"
+              />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="40">
+          <el-col :span="22">
+            <el-form-item label="Credentials" prop="seniority_url">
+              <upload-button
+                v-model="form.seniority_url"
+                :max-length="3"
               />
             </el-form-item>
           </el-col>
@@ -84,6 +108,7 @@ import {
 	teacherHistoryPost
 } from '@/api/teacher_history'
 import { userinfo,auth,basicCache } from '@/mixins';
+import subjectTable from './comps/subjectTable';
 export default {
 	mixins: [userinfo,auth,basicCache],
 	watch: {
@@ -99,27 +124,65 @@ export default {
 		}
 	},
   data() {
+    const curSubjectValid = (rule, value, cb) => {
+      const r = this.$refs.subjectTable2.valid()
+      if(!r.status) {
+        cb(new Error(r.msg))
+      }
+      cb()
+    }
+    const otherSubjectValid = (rule, value, cb) => {
+      const r = this.$refs.subjectTable1.valid()
+      if(!r.status) {
+        cb(new Error(r.msg))
+      }
+      cb()
+    }
     return {
       steps: ['Basic Info', 'Demo Lesson', 'Contract Info'],
-      rules: {},
 			form: {
 				cur_school: '',
 				cur_country: '',
-				cur_province: '',
-				cur: {
-					subject_id: '',
-					grade: ''
-				},
-				other: {
-					subject_id: '',
-					grade: ''
-				},
+        cur_province: '',
+
+        subject: '1', // 样式统一
+        qualified_objects: '1', // 样式统一
+
 				teacher_age: '',
         resume_url: '',
+        seniority_url: [],
         teaching_history: ''
-			},
+      },
+      rules: {
+        cur_school: [
+          {required: true, trigger: 'blur', message: 'current school is required!'}
+        ],
+        cur_country: [
+          {required: true, trigger: 'change', message: 'Geographical region is required!'}
+        ],
+        cur_province: [
+          {required: true, trigger: 'change', message: 'Geographical State is required!'}
+        ],
+        subject: [
+          {required: true, trigger: 'change', message: 'Current Teaching Academic Subject is required!'},
+          {validator: curSubjectValid}
+        ],
+        teacher_age: [
+          {required: true, trigger: 'blur', message: 'Total Teaching Years is required!'}
+        ],
+        resume_url: [
+          {required: true, trigger: 'change', message: 'Current Resume is required!'}
+        ],
+        seniority_url: [
+          {required: true, trigger: 'change', message: 'Credentials is required!'}
+        ],
+        qualified_objects: [
+          {validator: otherSubjectValid}
+        ]
+      },
+      other_current_subject: '',
+      other_qualified_subject: '',
 			visible: false,
-			src: '',
 			countryLs: [],
 			provinceLs: [],
 			curSubjects: [],
@@ -130,10 +193,6 @@ export default {
 		this.getCountry();
 	},
   methods: {
-		openIframe() {
-			this.src = this.$baseApiUrl + '/download/1c47b24a5f9a3c570e512964ee32fc3071a811d2d2a6f547a4e4587488ddf7f0';
-			this.visible = true;
-		},
 		getCountry() {
 			return getCountry().then(resp => {
 				this.countryLs = resp.data.objects;
@@ -149,52 +208,58 @@ export default {
 			this.getProvinceLs(id);
 		},
 		submit() {
-			const form1 = JSON.parse(this.$getSession('/basic'));
-			const form3 = this.form;
-			const form = {
-				...form1,
-				cur_school: form3.cur_school,
-				cur_country: form3.cur_country,
-				cur_province: form3.cur_province,
-				teacher_age: form3.teacher_age,
-				resume_url: form3.resume_url.url,
+      this.$refs.basicForm.validate().then(() => {
+        const curSubject = this.$refs.subjectTable2.getForm()
+        const canSubject = this.$refs.subjectTable1.getForm()
+
+        const curhistory = this.postHistory(curSubject)
+        const canhistory = this.postHistory(canSubject)
+        return Promise.all([...curhistory, ...canhistory, this.basicUpdated()]).then(resp => {
+          this.$message.success('success!');
+          this.$router.push('/afterSubmit')
+        })
+      })
+    },
+    basicUpdated() {
+			const form1 = JSON.parse(this.$getSession('/basic') || '{}');
+      const {
+        cur_school,
+				cur_country,
+        cur_province,
+				teacher_age,
+        resume_url,
+        seniority_url,
+        teaching_history
+      } = this.form;
+      const form = {
+        ...form1,
+        cur_school,
+				cur_country,
+        cur_province,
+				teacher_age,
+        resume_url: JSON.stringify(resume_url),
+        seniority_url: JSON.stringify(seniority_url),
+        teaching_history,
 				state: 3,
 				updated_at: new Date(),
 				updated_by: this.userName
-			};
-			const promise = [];
-			// 当前教育经历
-			promise.push(
-				teacherHistoryPost({
-					...form3.cur,
-					teacher_id: this.userId,
-					type: 2,
-					created_at: new Date(),
-					delete_flag: 1,
-					updated_at: new Date(),
-					updated_by: this.userName
-				})
-			);
-			// 其他教育经历
-			promise.push(
-				teacherHistoryPost({
-					...form3.other,
-					teacher_id: this.userId,
-					type: 1,
-					created_at: new Date(),
-					delete_flag: 1,
-					updated_at: new Date(),
-					updated_by: this.userName
-				})
-			);
-			// 更新教师资料
-			promise.push(teacherPutByTeacherid(this.userId,form));
-			Promise.all(promise).then(resp => {
-				this.$message.success('资料补充完成！');
-				this.$router.push('/afterSubmit')
-			})
-		}
-	}
+      }
+      return teacherPutByTeacherid(this.userId,form)
+    },
+    postHistory(history) {
+      return history.map(item => teacherHistoryPost({
+        ...item,
+        teacher_id: this.userId,
+        created_at: new Date(),
+        delete_flag: 1,
+        updated_at: new Date(),
+        updated_by: this.userName
+      }))
+    }
+  },
+  components: {
+    subjectTable
+  }
 };
 </script>
 

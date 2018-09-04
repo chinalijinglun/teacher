@@ -26,16 +26,16 @@ Vue.prototype.$loginOut = function() {
   router.push('/login');
   store.dispatch('auth/loginOut')
 }
-load().then(url => {
-  if(url !== true) {
-    router.push(url)
-  }
-  /* eslint-disable no-new */
-  new Vue({
-    el: '#app',
-    router,
-    store,
-    components: { App },
-    template: '<App/>'
-  });
-})
+// load().then(url => {
+//   if(url !== true) {
+//     router.push(url)
+//   }
+// })
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  store,
+  components: { App },
+  template: '<App/>'
+});
