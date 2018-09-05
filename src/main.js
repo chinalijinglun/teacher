@@ -31,6 +31,7 @@ Vue.prototype.$loginOut = function() {
 //     router.push(url)
 //   }
 // })
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

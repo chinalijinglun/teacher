@@ -1,50 +1,50 @@
 <template>
-  <div class="bgray" v-show="editShow">
-    <div id="apps">
-      <div class="title">
-        <span>添加作业</span>
+<el-dialog :visible.sync="editShow" class="ms-dialog no-head" :show-close="false">
+  <div id="apps">
+    <div class="title">
+      <span>添加作业</span>
+    </div>
+    <div class="biaoti">
+      <div class="word">
+        标题
       </div>
-      <div class="biaoti">
-        <div class="word">
-          标题
-        </div>
-        <input type="text" class="inp" v-model="form.title" placeholder="请输入作业的标题">
+      <input type="text" class="inp" v-model="form.title" placeholder="请输入作业的标题">
+    </div>
+    <div class="bianji">
+      <div class="word">
+        描述
       </div>
-      <div class="bianji">
-        <div class="word">
-          描述
-        </div>
-        <vue-editor v-model="form.desc" class="text"></vue-editor>
+      <vue-editor v-model="form.desc" class="text"></vue-editor>
+    </div>
+    <div class="fujian">
+      <div class="word">
+        附件
       </div>
-      <div class="fujian">
-        <div class="word">
-          附件
+      <div class="right">
+        <div class="up">
+          <img src="@/assets/shangchuan.png" alt="">上传附件
+          <input type="file" ref="uploadInput" name="file" class="uploadInput" @change="addFile">
         </div>
-        <div class="right">
-          <div class="up">
-            <img src="@/assets/shangchuan.png" alt="">上传附件
-            <input type="file" ref="uploadInput" name="file" class="uploadInput" @change="addFile">
-          </div>
-          <div class="file-list">
-            <ul class="file-list-text">
-              <li v-for="(item, index) in fileLs" :key="index">
-                <a :href="item.url" target="_blank">{{item.name}}</a>
-                <i class="el-icon-close" @click="removeFile(index)"></i>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="btn">
-        <div class="submit" @click="submit">
-          提交
-        </div>
-        <div class="back" @click="close">
-          返回
+        <div class="file-list">
+          <ul class="file-list-text">
+            <li v-for="(item, index) in fileLs" :key="index">
+              <a :href="item.url" target="_blank">{{item.name}}</a>
+              <i class="el-icon-close" @click="removeFile(index)"></i>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
+    <div class="btn">
+      <div class="submit" @click="submit">
+        提交
+      </div>
+      <div class="back" @click="close">
+        返回
+      </div>
+    </div>
   </div>
+</el-dialog>
 </template>  
   
 <script>
@@ -125,18 +125,6 @@ export default {
   right: 0;
   bottom: 0;
   z-index: 999;
-}
-#apps {
-  width: 830px;
-  padding-bottom: 20px;
-  background: #ffffff;
-  border-radius: 10px;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  margin-left: -415px;
-  margin-top: -300px;
-  z-index: 1000;
 }
 .title {
   height: 86px;

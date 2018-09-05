@@ -32,6 +32,7 @@ import viewResult from '@/pages/course/viewResult'
 import viewEvaluate from '@/pages/course/viewEvaluate'
 import room from '@/pages/room'
 import preview from '@/pages/preview';
+import completeInfo from '@/pages/applyProcess/completeInfo'
 
 Vue.use(Router)
 
@@ -50,6 +51,12 @@ export default new Router({
 			path: '/preview',
 			name: 'preview',
 			component: preview
+		},
+		{
+			title: '补充资料',
+			path: '/completeInfo',
+			name: 'completeInfo',
+			component: completeInfo
 		},
 		{
 			title: '个人中心',

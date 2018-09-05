@@ -91,7 +91,7 @@
       </el-form>
     </div>
 		<div class="next-btn">
-			<button @click="submit">确定</button>
+			<button @click="submit">Submit</button>
 		</div>
 	</div>
 </template>

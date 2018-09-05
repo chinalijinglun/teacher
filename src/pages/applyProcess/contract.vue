@@ -85,7 +85,7 @@ export default {
         updated_at: new Date()
       }).then(resp => {
         this.$message.success("签约成功");
-        this.$router.push("/center");
+        this.$router.push("/completeInfo");
       });
     }
   },

@@ -12,9 +12,9 @@
         <span class="calendar-item-date-span">{{item.date.date}}</span>
         <span>{{item.date.day | weekDay_EN}}</span>
       </div>
-      <div class="agenda-container" v-for="(item, index) in item.data[0]" :key="index" @click="toCourseDetail(item.id)">
-        <span class="agenda-item">{{item.title}}</span>
-        <span class="time agenda-item">{{item.time}}</span>
+      <div class="agenda-container" v-for="(item2, index) in item.data[0]" :key="index" @click="toCourseDetail(item2.id)">
+        <span class="agenda-item" :class="{'end': isEnd(item2.end)}">{{item2.title}}</span>
+        <span class="time agenda-item" :class="{'end': isEnd(item2.end)}">{{item2.time}}</span>
       </div>
     </div>
   </Calendar>
@@ -37,10 +37,13 @@ export default {
   },
   methods: {
     toCourseDetail(id) {
-      this.$router.push(`/dated-course?id=${id}`)
+			window.open(`#/room?id=${id}`)
     },
     isToday(day) {
       return this.$dateFmt(new Date(day), 'yyyy-MM-dd') === this.$dateFmt(new Date(), 'yyyy-MM-dd');
+    },
+    isEnd(end) {
+      return new Date() > new Date(end)
     },
     getSchedule({startDay, endDay}) {
       this.query(new Date(startDay.full), new Date(endDay.full))
@@ -55,9 +58,11 @@ export default {
         const schedules = resp.data.objects;
         const ArrayData = schedules.map(item => ({
           title: item.class_name,
-          id: item.course_id,
+          id: item.course_schedule_id,
           time: this.$dateFmt(new Date(item.start), 'hh:mm') + '-' + this.$dateFmt(new Date(item.end), 'hh:mm'),
-          date: this.$dateFmt(new Date(item.start), 'yyyy-MM-dd')
+          date: this.$dateFmt(new Date(item.start), 'yyyy-MM-dd'),
+          start: item.start,
+          end: item.end
         }))
         let ObjectData = {}
         ArrayData.forEach(item => {
@@ -114,7 +119,7 @@ export default {
 }
 .agenda-container .agenda-item {
   padding: 5px;
-  background: #F5A623;
+  background: #7ED321;
   color: #333;
   display: block;
   cursor: pointer;
@@ -123,5 +128,8 @@ export default {
 }
 .agenda-container .agenda-item.time {
   font-size: 10px;
+}
+.agenda-container .agenda-item.end {
+  background: #F5A623;
 }
 </style>

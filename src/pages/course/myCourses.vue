@@ -13,15 +13,13 @@
 			</el-form-item>
 			<el-form-item label="课程状态">
 				<el-select v-model="form.course_status" placeholder="所有状态">
-					<el-option label="待付款" value="shanghai"></el-option>
-					<el-option label="已付款" value="beijing"></el-option>
-					<el-option label="已取消" value="beijing"></el-option>
-					<el-option label="申请退款" value="beijing"></el-option>
-					<el-option label="已退款" value="beijing"></el-option>
+					<el-option label="所有状态" value=""></el-option>
+					<el-option label="已完成" value="1"></el-option>
+					<el-option label="进行中" value="2"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item>
-				<el-button type="primary">查询</el-button>
+				<el-button type="primary" @click="query">查询</el-button>
 			</el-form-item>
 		</el-form>
 		<div class="tables">
@@ -42,7 +40,7 @@
 					<li class="course-name">{{item.course_name}}</li>
 					<li class="process">{{item.finish}}/{{item.classes_number}}</li>
 					<li class="student">{{item.student_name || '-'}}</li>
-					<li class="state under-way">进行中</li>
+					<li class="state under-way">{{item | stateFilter}}</li>
 					<li class="oprate check" @click="goDetail(item.id)">查看详情</li>
 				</ul>
 			</div>
@@ -78,6 +76,17 @@ export default {
 	},
 	created() {
 		this.query()
+	},
+	filters: {
+		stateFilter(item) {
+			if(item.finish >= item.classes_number) {
+				return '已结束'
+			}
+			if(new Date(item.start)>new Date() && item.finish === 0) {
+				return '未开始'
+			}
+			return '进行中'
+		}
 	},
 	methods: {
 		handleCurrentChange(page) {
