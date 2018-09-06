@@ -53,7 +53,6 @@
 <script>
 import { teacherPutByTeacherid } from "@/api/teacher";
 import { mapState } from "vuex";
-import moment from 'moment';
 import assignConfirm from '@/components/dialog/assignConfirm'
 export default {
   computed: {
@@ -70,8 +69,8 @@ export default {
         name: ''
       },
       confirmShow: false,
-      nowDate: moment().format('LL'),
-      effectiveDate: moment().add(7, 'days').format('LL')
+      nowDate: this.$dateFmt(new Date(), 'LL'),
+      effectiveDate: this.$dateFmt(moment().add(7, 'days'), 'LL')
     }
   },
   methods: {

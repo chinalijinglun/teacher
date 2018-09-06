@@ -3,6 +3,7 @@ import store from '../store';
 import {
   TIME_ZONE
 } from './enums'
+window.moment = moment
 
 const DATE_FMT_DEFAULT = 'YYYY-MM-DD HH:mm:ss';
 const DATE_NO_TIME_FMT = 'YYYY-MM-DD';
@@ -16,12 +17,13 @@ function dateFmt(date, fmt = DATE_FMT_DEFAULT){
     innerDate = new Date(innerDate);
   }
 
-  const timezone = TIME_ZONE[store.userinfo.teacher.timezone];
+  const timezone = TIME_ZONE[store.state.userinfo.teacher.timezone];
   if(timezone) {
-    return moment(innerDate).tz(timezone).format(fmt);
+    console.log(timezone)
+    return window.moment(innerDate).parseZone(timezone).format(fmt);
   }
 
-  return moment(innerDate).format(fmt);
+  return window.moment(innerDate).format(fmt);
 }
 
 function dateFactory() {

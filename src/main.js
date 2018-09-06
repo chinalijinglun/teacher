@@ -13,7 +13,6 @@ import store from './store';
 import load from './router/load';
 import './style/correct.css';
 import locale from 'element-ui/lib/locale/lang/en'
-
 Vue.component('Calendar', Calendar)
 
 Vue.use(ElementUI, { locale })
