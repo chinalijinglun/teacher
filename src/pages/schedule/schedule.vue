@@ -40,7 +40,7 @@ export default {
 			window.open(`#/room?id=${id}`)
     },
     isToday(day) {
-      return this.$dateFmt(new Date(day), 'yyyy-MM-dd') === this.$dateFmt(new Date(), 'yyyy-MM-dd');
+      return this.$dateFmt(new Date(day), 'YYYY-MM-DD') === this.$dateFmt(new Date(), 'YYYY-MM-DD');
     },
     isEnd(end) {
       return new Date() > new Date(end)
@@ -59,8 +59,8 @@ export default {
         const ArrayData = schedules.map(item => ({
           title: item.class_name,
           id: item.course_schedule_id,
-          time: this.$dateFmt(new Date(item.start), 'hh:mm') + '-' + this.$dateFmt(new Date(item.end), 'hh:mm'),
-          date: this.$dateFmt(new Date(item.start), 'yyyy-MM-dd'),
+          time: this.$dateFmt(new Date(item.start), 'HH:mm') + '-' + this.$dateFmt(new Date(item.end), 'HH:mm'),
+          date: this.$dateFmt(new Date(item.start), 'YYYY-MM-DD'),
           start: item.start,
           end: item.end
         }))

@@ -47,9 +47,9 @@ function getCourseScheduleTime(start, end) {
   if(!start||!end) {
     return ''
   }
-  const day = dateFmt(new Date(start), 'yyyy.MM.dd');
-  const timeStart = dateFmt(new Date(start), 'hh:mm');
-  const timeEnd = dateFmt(new Date(end), 'hh:mm');
+  const day = dateFmt(new Date(start), 'YYYY.MM.DD');
+  const timeStart = dateFmt(new Date(start), 'HH:mm');
+  const timeEnd = dateFmt(new Date(end), 'HH:mm');
   return day+' '+timeStart+'-'+timeEnd;
 }
 
@@ -57,8 +57,8 @@ function getCourseTime(start, end) {
   if(!start||!end) {
     return ''
   }
-  const daystart = dateFmt(new Date(start), 'yyyy.MM.dd');
-  const dayend = dateFmt(new Date(end), 'MM.dd');
+  const daystart = dateFmt(new Date(start), 'YYYY.MM.DD');
+  const dayend = dateFmt(new Date(end), 'MM.DD');
   return daystart+'-'+dayend;
 }
 const install = (Vue) => {
@@ -105,8 +105,8 @@ const install = (Vue) => {
     if(!start||!end) {
       return ''
     }
-    const daystart = dateFmt(new Date(start), 'yyyy.MM.dd');
-    const dayend = dateFmt(new Date(end), 'MM.dd');
+    const daystart = dateFmt(new Date(start), 'YYYY.MM.DD');
+    const dayend = dateFmt(new Date(end), 'MM.DD');
     return daystart+'-'+dayend;
   })
   
@@ -114,25 +114,25 @@ const install = (Vue) => {
     if(!start||!end) {
       return ''
     }
-    const day = dateFmt(new Date(start), 'yyyy.MM.dd');
-    const timeStart = dateFmt(new Date(start), 'hh:mm');
-    const timeEnd = dateFmt(new Date(end), 'hh:mm');
+    const day = dateFmt(new Date(start), 'YYYY.MM.DD');
+    const timeStart = dateFmt(new Date(start), 'HH:mm');
+    const timeEnd = dateFmt(new Date(end), 'HH:mm');
     return day+' '+timeStart+'-'+timeEnd;
   })
 
   Vue.filter('hasTime', (value) => {
     if(!value) return ''
-    return dateFmt(new Date(value), 'yyyy-MM-dd hh:mm')
+    return dateFmt(new Date(value), 'YYYY.MM.DD HH:mm')
   })
 
   Vue.filter('noTime', (value) => {
     if(!value) return ''
-    return dateFmt(new Date(value), 'yyyy-MM-dd')
+    return dateFmt(new Date(value), 'YYYY.MM.DD')
   })
 
   Vue.filter('monthFmt', (value) => {
     if(!value) return ''
-    return dateFmt(new Date(value), 'yyyy.MM')
+    return dateFmt(new Date(value), 'YYYY.MM')
   })
 }
 

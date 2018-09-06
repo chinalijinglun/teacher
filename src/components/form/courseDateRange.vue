@@ -57,9 +57,9 @@
         handler(v, ov) {
           console.log(v)
           if(v.date) {
-            const day = this.$dateFmt(v.date, 'yyyy-MM-dd');
-            const start = this.$dateFmt(v.timeRange[0], 'hh:mm:ss');
-            const end = this.$dateFmt(v.timeRange[1], 'hh:mm:ss');
+            const day = this.$dateFmt(v.date, 'YYYY-MM-DD');
+            const start = this.$dateFmt(v.timeRange[0], 'HH:mm:ss');
+            const end = this.$dateFmt(v.timeRange[1], 'HH:mm:ss');
             this.$emit('update:startDate', new Date(day+' '+start));
             this.$emit('update:endDate', new Date(day+' '+end));
           } else {
