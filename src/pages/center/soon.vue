@@ -110,7 +110,7 @@
 					page_no: 1,
 					page_limit: 1000
 				})).then(resp => {
-					this.appointNum = resp.data.objects.filter(item => !item.apply_state).length;
+					this.appointNum = resp.data.objects.filter(item => !item.apply_state && new Date(item.start) > new Date()).length;
 				})
 			},
 			viewHomework(item) {
