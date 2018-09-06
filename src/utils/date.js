@@ -1,4 +1,5 @@
 import moment from 'moment';
+import 'moment-timezone';
 import store from '../store';
 import {
   TIME_ZONE
@@ -17,10 +18,9 @@ function dateFmt(date, fmt = DATE_FMT_DEFAULT){
     innerDate = new Date(innerDate);
   }
 
-  const timezone = TIME_ZONE[store.state.userinfo.teacher.timezone];
+  const timezone = store.state.userinfo.teacher.timezone;
   if(timezone) {
-    console.log(timezone)
-    return window.moment(innerDate).parseZone(timezone).format(fmt);
+    return window.moment(innerDate).tz(timezone).format(fmt);
   }
 
   return window.moment(innerDate).format(fmt);

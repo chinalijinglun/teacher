@@ -78,7 +78,7 @@ export default {
 		},
 		getInvite(id) {
 			teacherAcceptStudents({'course_appointment_id':id}).then(resp => {
-				this.$message.success('邀请成功!');
+				this.$message.success('接受邀请成功!');
 				this.query();
 			})
 		}, 
