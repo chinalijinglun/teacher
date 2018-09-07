@@ -48,7 +48,7 @@
 						{{$COURSE_SCHEDULE_STATE_ENUM[item.class_type]}}
 					</div>
 					<div class="oprate-lesson">
-						<span class="colo" v-if="item.class_type === 'TROUBLE_CLASS'"></span>
+						<span class="colo" v-if="item.class_type === 'TROUBLE_CLASS'" @click="reviewReason(item.id)">查看原因</span>
 						<template v-else>
 							<span class="colo" @click="toRoom(item.id)">回放 </span>
 							<span class="colo" @click="goHomework(item.id)">作业</span>
@@ -61,7 +61,13 @@
 				<el-pagination @current-change="handleCurrentChange" :current-page.sync="form.page_no" :page-size="form.page_limit" layout="prev, pager, next, jumper" :total="total">
 				</el-pagination>
 			</el-row>
-		</div>
+    </div>
+		<action-event-review 
+		:visible.sync="reasonReviewShow" 
+		:primaryDataId="curId" 
+		:afterState="3" 
+		primaryTableName="course_schedule" 
+		:actionEventType="1" />
 	</div>
 </template>
 
@@ -72,6 +78,8 @@ import homework from "./homework";
 export default {
   data() {
     return {
+      reasonReviewShow: false,
+      curId: '',
       form: {
         course_id: this.$route.query.id.toString(),
         page_limit: 10,
@@ -116,7 +124,13 @@ export default {
         path: "/evaluate",
         query: { course_id: this.$route.query.id, id: id }
       });
-    }
+    },
+    reviewReason(id) {
+      this.curId = id;
+      this.$nextTick(_=>{
+        this.reasonReviewShow = true;
+      })
+    },
   }
 };
 </script>
