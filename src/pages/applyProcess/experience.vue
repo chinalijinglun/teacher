@@ -88,6 +88,13 @@
             </el-form-item>
           </el-col>
         </el-row>
+        <el-form-item prop="agree">
+          <div class="form-input">
+            <el-checkbox v-model="agree">
+              <span>I agree that all the info i have given is accurate</span>
+            </el-checkbox>
+          </div>
+        </el-form-item>
       </el-form>
     </div>
 		<div class="next-btn">
@@ -140,6 +147,7 @@ export default {
     }
     return {
       steps: ['Basic Info', 'Demo Lesson', 'Contract Info'],
+      agree: false,
 			form: {
 				cur_school: '',
 				cur_country: '',
@@ -208,6 +216,7 @@ export default {
 			this.getProvinceLs(id);
 		},
 		submit() {
+      if(!this.agree) return this.$message.error('You have to agree first that all the info you have given is accurate!')
       this.$refs.basicForm.validate().then(() => {
         const curSubject = this.$refs.subjectTable2.getForm()
         const canSubject = this.$refs.subjectTable1.getForm()

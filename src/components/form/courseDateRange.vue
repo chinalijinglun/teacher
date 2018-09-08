@@ -10,6 +10,7 @@
       size="large"
       v-model="form.timeRange"
       format="HH:mm"
+      :default-value="[new Date(2018,1,1,0,0),new Date(2018,1,1,23,59,59)]"
       range-separator="-"
       start-placeholder="开始时间"
       end-placeholder="结束时间"
