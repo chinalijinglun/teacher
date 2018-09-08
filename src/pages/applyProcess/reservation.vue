@@ -21,7 +21,7 @@
 					请选择一个合适的面试时间：
 				</h4>
 				<h4>
-					Your Time Zone：America/Adak
+					Your Time Zone：{{timezone}}
 				</h4>
 				<div class="reservation-span">
 					<el-radio-group v-model="form.timeRadio">
@@ -68,7 +68,8 @@ export default {
 	computed: {
 		...mapState({
 			userId: state => state.auth.id,
-			userName: state => state.userinfo.teacher.username
+			userName: state => state.userinfo.teacher.username,
+			timezone: state => state.userinfo.teacher.timezone
 		})
 	},
   data() {
@@ -110,16 +111,16 @@ export default {
 			if(this.form.timeRadio !== -1) {
 				start = this.timeLs[this.form.timeRadio].start;
 				end = this.timeLs[this.form.timeRadio].end;
-				teacherPutByTeacherid(this.userId, {
-					state: 10,
-					updated_by: this.userName,
-					updated_at: new Date()
-				})
 				acceptInterview({
 					interview_at_end: end,
 					interview_at_start: start,
 					interview_id: this.interviewId
 				}).then(resp => {
+					teacherPutByTeacherid(this.userId, {
+						state: 10,
+						updated_by: this.userName,
+						updated_at: new Date()
+					})
 					this.$router.push('/reservation-result')
 				})
 			} else {

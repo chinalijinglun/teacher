@@ -134,7 +134,8 @@
 <script>
 import { userinfo,auth,basicCache } from '@/mixins';
 import {
-  regionBareGet
+  regionBareGet,
+  getCountry
 } from '@/api/region'
 import avatarUpload from '@/components/upload/avatar'
 import educations from '@/components/dialog/educations'
@@ -267,11 +268,8 @@ export default {
       this.$router.push('/experience')
     },
     getCountry() {
-      const filter = this.$json2filter({
-        id: this.$COUNTRY_IDS
-      })
-      return regionBareGet(filter).then(resp => {
-        this.countryLs = resp.data.objects;
+      return getCountry.then(data => {
+        this.countryLs = data;
       })
     },
     getAreaByPid(pid) {

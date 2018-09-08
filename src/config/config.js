@@ -6,3 +6,6 @@ export const whiltApi = [
   '/auth/smsverify',
   '/auth/emailverify'
 ]
+export const whiltPath = [
+  '/room'
+]

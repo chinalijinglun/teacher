@@ -8,7 +8,7 @@
 			<div class="tits">
 				<ul>
 					<li class="li1">序号</li>
-					<li class="li2">上课时间(当前时区)</li>
+					<li class="li2">上课时间(当前时区: {{timezone}})</li>
 					<li class="li3">学生</li>
 					<li class="li4">操作</li>
 				</ul>
@@ -62,7 +62,8 @@ export default {
 	},
 	computed: {
 		...mapState({
-			id: state => state.auth.id
+			id: state => state.auth.id,
+			timezone: state => state.userinfo.teacher.timezone
 		})
 	},
 	methods: {

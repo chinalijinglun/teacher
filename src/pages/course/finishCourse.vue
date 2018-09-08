@@ -6,7 +6,7 @@
 					{{course.course_name}}
 				</div>
 				<div class="right">
-					<span class="study-time">上课时间：{{course.course_times}}</span>
+					<span class="study-time">上课时间（当前时区: {{timezone}}）：{{course.course_times}}</span>
 					<span>进度：{{course.course_progress}}</span>
 				</div>
 			</div>
@@ -38,7 +38,7 @@
 			</div>
 			<div class="table-list" v-for="item in tableData" :key="item.id">
 				<div class="list-tit">
-					<span>上课时间：{{item.start | courseScheduleTime(item.end)}}</span>
+					<span>上课时间（当前时区: {{timezone}}）：{{item.start | courseScheduleTime(item.end)}}</span>
 				</div>
 				<div class="list-detail">
 					<div class="lesson-name">
@@ -91,7 +91,8 @@ export default {
   },
   computed: {
     ...mapState({
-      course: state => state.course.course
+      course: state => state.course.course,
+      timezone: state => state.userinfo.teacher.timezone
     })
   },
   created() {

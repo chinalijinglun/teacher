@@ -103,7 +103,7 @@ const install = (Vue) => {
 
   Vue.filter('courseTime', (start, end) => {
     if(!start||!end) {
-      return ''
+      return '--'
     }
     const daystart = dateFmt(new Date(start), 'YYYY.MM.DD');
     const dayend = dateFmt(new Date(end), 'MM.DD');

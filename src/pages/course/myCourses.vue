@@ -34,7 +34,7 @@
 			</div>
 			<div class="list-table" v-for="(item, index) in tableData" :key="index">
 				<div class="list-states">
-					<span>上课时间：{{ item.start | courseTime(item.end)}}</span>
+					<span>上课时间（当前时区: {{timezone}}）：{{ item.start | courseTime(item.end)}}</span>
 				</div>
 				<ul>
 					<li class="course-name">{{item.course_name}}</li>
@@ -59,7 +59,13 @@
 
 <script>
 import {teacherMyCourse} from  '@/api/teacher'
+import {mapState} from 'vuex'
 export default {
+	computed: {
+		...mapState({
+			timezone: state => state.userinfo.teacher.timezone
+		})
+	},
   data() {
     return {
       form: {

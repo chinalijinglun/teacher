@@ -194,8 +194,8 @@ export default {
 	},
   methods: {
 		getCountry() {
-			return getCountry().then(resp => {
-				this.countryLs = resp.data.objects;
+			return getCountry().then(data => {
+				this.countryLs = data;
 			})
 		},
 		getProvinceLs(id) {
