@@ -6,16 +6,12 @@
     <el-table
     :data="fialLogLs">
       <el-table-column
-        prop="created_at"
-        label="审核时间">
-      </el-table-column>
-      <el-table-column
-        prop="updated_by"
-        label="审核人">
+        type="index"
+        width="50">
       </el-table-column>
       <el-table-column
         prop="action_event_desc"
-        label="审核记录">
+        label="问题记录">
       </el-table-column>
     </el-table>
   </el-dialog>
