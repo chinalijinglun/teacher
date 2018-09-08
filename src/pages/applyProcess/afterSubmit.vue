@@ -16,7 +16,7 @@
 		<div class="tip-info">
       <p v-if="teacher.state === 3">感谢你的申请！你的资料正在审核中，请等待审核结果。 </p>
       <p v-if="teacher.state === 4">恭喜，你的资料审核通过，请等待预约面试。</p>
-      <p v-if="teacher.state === 5">很遗憾，你的资料审核不通过，请修改后再提交，原因：XXXXXXXXXXXXX。</p>
+      <p v-if="teacher.state === 5">很遗憾，你的资料审核不通过，请修改后再提交，原因：{{reason}}。</p>
     </div>
     <div class="basic-info">
       <p class="basic-info-title">Basic Info</p>
@@ -30,7 +30,7 @@
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Name</li>
-        <li class="info-li2">{{teacher.name}}</li>
+        <li class="info-li2">{{teacher | teacherName}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Contact Email</li>
@@ -42,7 +42,7 @@
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Country</li>
-        <li class="info-li2">{{teacher.country}}</li>
+        <li class="info-li2">{{country}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>Street</li>
@@ -50,7 +50,7 @@
       </ul>
       <ul>
         <li class="info-li1"><em>*</em> Time Zone</li>
-        <li class="info-li2">{{$TIME_ZONE[teacher.timezone]}}</li>
+        <li class="info-li2">{{teacher.timezone}}</li>
       </ul>
       <!-- <ul>
         <li class="info-li1"><em>*</em> Education Background</li>
@@ -61,49 +61,49 @@
         <li class="info-li2">{{teacher.education_history}}</li>
       </ul> -->
     </div> 
-    <!-- <div class="basic-info experience-info">
+    <div class="basic-info experience-info">
       <p class="basic-info-title">Teaching Experience</p>
       <ul>
         <li class="info-li1"><em>*</em>School Currently Teaching</li>
         <li class="info-li2">{{teacher.cur_school}}</li>
       </ul>
-      <ul>
+      <!-- <ul>
         <li class="info-li1"><em>*</em>Current Teaching Academic Subject</li>
         <li class="info-li2">{{teacher.education_history}}</li>
-      </ul>
+      </ul> -->
       <ul>
         <li class="info-li1"><em>*</em>Geographical region(s) where you had taught</li>
-        <li class="info-li2">{{teacher.education_history}}</li>
+        <li class="info-li2">{{cur_country}}</li>
       </ul>
       <ul>
         <li class="info-li1"><em>*</em>State(s) where you have taught</li>
-        <li class="info-li2">{{teacher.province}}</li>
+        <li class="info-li2">{{cur_province}}</li>
       </ul>
-      <ul>
+      <!-- <ul>
         <li class="info-li1">Qualified Teaching Academic Subject(s)</li>
         <li class="info-li2">{{teacher.education_history}}</li>
-      </ul>
+      </ul> -->
       <ul>
         <li class="info-li1"><em>*</em>Total Teaching Years</li>
         <li class="info-li2">{{teacher.teacher_age}}</li>
       </ul>
-      <ul>
+      <!-- <ul>
         <li class="info-li1"><em>*</em>Most Current Resume</li>
         <li class="info-li2">
           <span>{{teacher.resume_url}}</span>
         </li>
-      </ul>
-      <ul>
+      </ul> -->
+      <!-- <ul>
         <li class="info-li1">Credentials</li>
         <li class="info-li2">
           <span>{{teacher.seniority_url}}</span>
         </li>
-      </ul>
+      </ul> -->
       <ul>
         <li class="info-li1">Please describe any professional highlights</li>
-        <li class="info-li2">{{teacher.experience_sharing}}</li>
+        <li class="info-li2">{{teacher.teaching_history || '--'}}</li>
       </ul>
-    </div>  -->
+    </div> 
 	</div>
 	<div class="next-btn">
 		<button @click="$router.push('/basic')">Modify</button>
@@ -112,13 +112,23 @@
 </template>
 
 <script>
+import {
+	actionEventBareGet
+} from '@/api/action_event';
+import {
+  getCountry,
+  regionBareGetById
+} from '@/api/region'
 import { mapState } from "vuex";
 export default {
   name: 'afterSubmit',
   data() {
     return {
-      
-      };
+      reason: '',
+      country: '',
+      cur_country: '',
+      cur_province: ''
+    };
   },
   computed: {
     ...mapState({
@@ -127,9 +137,38 @@ export default {
   },
   created() {
     const teacher_id = this.$store.state.auth.id;
-    this.$store.dispatch("TEACHER_GET_BY_ID", teacher_id);
+    this.$store.dispatch("TEACHER_GET_BY_ID", teacher_id).then(resp => {
+      if(resp.state === 5) {
+        this.getReason(teacher_id)
+      }
+      this.getCountry(resp.country).then(country => this.country = country)
+      this.getCountry(resp.cur_country).then(country => this.cur_country = country)
+      this.getRegionName(resp.cur_province).then(cur_province => this.cur_province = cur_province)
+    })
   },
   methods: {
+    getReason(id) {
+			const filter = this.$json2filter({
+				action_event_type: [this.$ACTION_EVENT_TYPE.TEACHER_CHECK],
+				primary_table_name: ['teacher'],
+				after_state: [5],
+				primary_data_id: [id]
+			})
+			actionEventBareGet(filter).then(resp=>{
+				this.reason = resp.data.objects[0] ? resp.data.objects[0].action_event_desc : 'unknown';
+			})
+    },
+    getCountry(id) {
+      return getCountry().then(data => {
+        const countrys = data.filter(item => item.id === +id);
+        return countrys[0] ? countrys[0].name : 'unknown'
+      })
+    },
+    getRegionName(id) {
+      return regionBareGetById(id).then(resp => {
+        return resp.data.name
+      })
+    }
   } 
 };
 </script>

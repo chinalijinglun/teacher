@@ -19,7 +19,7 @@ export const regionBareGetById = (id) => baseAxios.get(`/api/v1/_bare/region/${i
 
 export const getRegionByPid = (id) => regionBareGet(json2filter({pid: [id]}));
 
-export const getCountry = axios.get('/static/country.json').then(resp => resp.data.sort((a, b) => {
+export const getCountry = () => axios.get('/static/country.json').then(resp => resp.data.sort((a, b) => {
   if(COUNTRY_IDS.indexOf(a.id) !== -1) {
     return -1
   } else if(COUNTRY_IDS.indexOf(b.id) !== -1) {

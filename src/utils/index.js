@@ -134,6 +134,8 @@ const install = (Vue) => {
     if(!value) return ''
     return dateFmt(new Date(value), 'YYYY.MM')
   })
+
+  Vue.filter('teacherName', (teacher) => `${teacher.first_name || ''} ${teacher.middle_name || ''} ${teacher.last_name || ''}`)
 }
 
 export {
