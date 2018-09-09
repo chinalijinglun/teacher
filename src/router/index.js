@@ -5,8 +5,6 @@ import regist from '@/pages/regist/email'
 import login from '@/pages/login'
 import main from '@/pages/main'
 import basic from '@/pages/applyProcess/basicInformation'
-import basic1 from '@/pages/applyProcess/basicInformation1'
-// import basic2 from '@/pages/applyProcess/basicInformation2'
 import experience from '@/pages/applyProcess/experience'
 import reservation from '@/pages/applyProcess/reservation'
 import reservation1 from '@/pages/applyProcess/reservation1'
@@ -33,6 +31,8 @@ import viewEvaluate from '@/pages/course/viewEvaluate'
 import room from '@/pages/room'
 import preview from '@/pages/preview';
 import completeInfo from '@/pages/applyProcess/completeInfo'
+import basicEdit from '@/pages/center/basicInformation'
+import experienceEdit from '@/pages/center/experience'
 
 Vue.use(Router)
 
@@ -45,6 +45,24 @@ export default new Router({
 			path: '/room',
 			name: 'room',
 			component: room
+		},
+		{
+			title: '教室',
+			path: '/room',
+			name: 'room',
+			component: room
+		},
+		{
+			title: '编辑',
+			path: '/basicEdit',
+			name: 'basicEdit',
+			component: basicEdit
+		},
+		{
+			title: '编辑',
+			path: '/experienceEdit',
+			name: 'experienceEdit',
+			component: experienceEdit
 		},
 		{
 			title: '预览',
@@ -81,12 +99,6 @@ export default new Router({
 			path: '/basic',
 			name: 'basic',
 			component: basic
-		},
-		{
-			title: '基本信息1',
-			path: '/basic1',
-			name: 'basic1',
-			component: basic1
 		},
 		{
 			title: 'experience',

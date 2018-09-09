@@ -1,7 +1,7 @@
 <template>
 	<div class="aside">
 		<div class="teacher-header">
-			<div class="teacher-header-img">
+			<div class="teacher-header-img" @click="editinfo">
 				<template>
 					<img :src="this.$baseApiUrl+teacher.avatar" alt="">
 				</template>
@@ -44,6 +44,11 @@ export default {
     ...mapState({
       teacher: state => state.userinfo.teacher
     })
+  },
+  methods: {
+    editinfo() {
+      this.$router.push('/basicEdit')
+    }
   }
 };
 </script>
@@ -89,6 +94,7 @@ export default {
   height: 96px;
   margin-top: 35px;
   padding: 0 42px;
+  cursor: pointer;
 }
 .teacher-header-img img {
   width: 100%;

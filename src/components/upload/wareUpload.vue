@@ -1,7 +1,10 @@
 <template>
+<div>
   <div class="uploading" @click="openFile">
     <img src="@/assets/shangchuan.png" alt=""> 本地上传
   </div>
+  <p class="tips">支持格式:doc/ppt/png/jpg,文件小于20M</p>
+</div>
 </template>
 <script>
   import CourseWare from '@/model/CourseWare'
@@ -47,5 +50,11 @@
 .uploading img {
   float: left;
   margin: 8px 15px;
+}
+.tips {    
+  color: #999;
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 5px;
 }
 </style>

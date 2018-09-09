@@ -1,9 +1,6 @@
+import store from '../store';
 import moment from 'moment';
 import 'moment-timezone';
-import store from '../store';
-import {
-  TIME_ZONE
-} from './enums'
 window.moment = moment
 
 const DATE_FMT_DEFAULT = 'YYYY-MM-DD HH:mm:ss';

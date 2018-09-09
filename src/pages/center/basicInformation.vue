@@ -132,11 +132,14 @@
 </template>
 
 <script>
-import { userinfo,auth,basicCache } from '@/mixins';
+import { userinfo,auth } from '@/mixins';
 import {
   regionBareGet,
   getCountry
 } from '@/api/region'
+import {
+  teacherGetByTeacherid
+} from '@/api/teacher'
 import avatarUpload from '@/components/upload/avatar'
 import educations from '@/components/dialog/educations'
 
@@ -227,11 +230,64 @@ export default {
       return JSON.parse(this.form.education_history || '[]');
     }
   },
-  mixins: [ userinfo, auth, basicCache ],
+  mixins: [userinfo, auth],
   created() {
-    this.getCountry();
+    const editForm = this.$getSession('basicInfoEdit')
+    if(editForm) {
+      this.form = JSON.parse(editForm);
+        this.getCountry();
+    } else {
+      this.getTeacherInfo().then(resp => {
+        this.getCountry()
+      }) 
+    }
+  },
+  watch: {
+    form: {
+      handler(v) {
+        this.$setSession('basicInfoEdit', JSON.stringify(v))
+      },
+      deep: true
+    }
   },
   methods: {
+    getTeacherInfo() {
+      return teacherGetByTeacherid(this.userId).then(resp => {
+        let {
+          avatar,
+          first_name,
+          middle_name,
+          last_name,
+          gender,
+          email,
+          nation,
+          mobile,
+          country,
+          province,
+          city,
+          street,
+          timezone,
+          education_history
+        } = resp.data;
+        this.form = {
+          avatar,
+          first_name,
+          middle_name,
+          last_name,
+          gender: +gender,
+          email,
+          nation,
+          mobile,
+          country,
+          province,
+          city,
+          street,
+          timezone,
+          education_history
+        }
+        return this.form
+      });
+    },
     cleanCur() {
       this.curIndex = -1;
       this.curEducation = {};
@@ -265,7 +321,7 @@ export default {
     },
     async continues() {
       await this.$refs.basicForm.validate()
-      this.$router.push('/experience')
+      this.$router.push('/experienceEdit')
     },
     getCountry() {
       return getCountry().then(data => {

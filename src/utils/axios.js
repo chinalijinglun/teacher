@@ -42,10 +42,10 @@ baseAxios.interceptors.response.use(resp => {
     }
   }, 50)
   if(!error.response) {
-    return Message.error('系统异常！');
+    return Message.error('unknown error!');
   }
   if(error.response && error.response.data) {
-    Message.error(error.response.data.error);
+    Message.error(error.response.data.error || error.response.data.message || 'unknown error!');
   }
   if(error.response.status === 401) {
     router.push('/login');

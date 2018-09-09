@@ -61,6 +61,15 @@
     },
     props: ['type', 'require'],
     methods: {
+      init(data) {
+        return data.forEach(item => {
+          if(item.subject_id) {
+            this.subjectTable.push(new TeacherSubject(item))
+          } else {
+            this.other_subject = item.subject_name;
+          }
+        })
+      },
       add() {
         this.subjectTable.push(new TeacherSubject({type: this.type}))
       },

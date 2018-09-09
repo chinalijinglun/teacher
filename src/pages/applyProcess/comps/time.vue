@@ -18,6 +18,7 @@
 				<div class="time-range-contain" v-for="(item, index) in scope.row.timeRanges" :key="index">
 					<el-time-picker
 						is-range
+						format="HH:mm"
 						size="mini"
 						v-model="item.timeRange"
 						placeholder="选择时间范围">
@@ -51,7 +52,7 @@ export default {
 	methods: {
 		handlerAdd(timeRanges) {
 			timeRanges.push({
-				timeRange: [this.dateInit(), this.dateInit()]
+				timeRange: [new Date(2018,1,1,0,0),new Date(2018,1,1,23,59,59)]
 			})
 		},
 		handlerRemove(timeRanges, index) {
@@ -61,12 +62,14 @@ export default {
 			return dataStr?new Date(dataStr) : new Date();
 		},
 		valid() {
+			let valid = false;
 			for(let item of this.tableData) {
-				if(!item.timeRanges.length) {
-					return false;
+				if(item.timeRanges.length) {
+					valid = true;
+					break;
 				}
 			}
-			return true;
+			return valid;
 		},
 		getForm() {
 			const addLs = [];

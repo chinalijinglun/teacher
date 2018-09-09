@@ -70,7 +70,7 @@ export default {
       },
       confirmShow: false,
       nowDate: this.$dateFmt(new Date(), 'LL'),
-      effectiveDate: this.$dateFmt(moment().add(7, 'days'), 'LL')
+      effectiveDate: this.$dateFmt(window.moment().add(7, 'days'), 'LL')
     }
   },
   methods: {

@@ -38,3 +38,4 @@ export const previewDoc = (course_schedule_id) => baseAxios.post('/teacher/get_p
 
 export const checkHomeworkLs = () => baseAxios.post('/teacher/check_homework', {page_limit: 10, page_no: 1})
 
+export const teacherSubject = form => baseAxios.post('/teacher/subject', {page_no: 1, page_limit: 1000, ...form})
