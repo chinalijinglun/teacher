@@ -1,16 +1,16 @@
 <template>
 	<div class="soon">
 		<div class="appoint-class" v-if="appointNum">
-			<p class="title">试听课邀请</p>
+			<p class="title">Invitation for auditioned class </p>
 			<p class="content">
-				您有<span class="class-num">{{appointNum}}</span>节试听课上课邀请
-				<el-button type="text" @click="goDetail">查看详情</el-button>
+				You have <span class="class-num">{{appointNum}}</span> auditioned classes 
+				<el-button type="text" @click="goDetail">View details </el-button>
 			</p>
 		</div>
 		<div class="soon-come">
 			<div class="title">
-				<span class="title-title">即将开课</span>
-				<span @click="$router.push('/course')" class="title-more">更多 >></span>
+				<span class="title-title">The course starts soon.</span>
+				<span @click="$router.push('/course')" class="title-more">More >></span>
 			</div>
 			<div class="soon-stage">
 				<div class="stage-line stage-color" v-if="!futureCourse">
@@ -37,8 +37,8 @@
 		</div>
 		<div class="soon-stage soon-come">
 			<div class="title">
-				<span class="title-title">待审批的作业</span>
-				<span @click="$router.push('/course')" class="title-more">更多 >></span>
+				<span class="title-title">Homework to be checked</span>
+				<span @click="$router.push('/course')" class="title-more">More >></span>
 			</div>
 			<div class="soon-stage">
 				<div class="stage-line stage-color" v-if="!homework.length">
@@ -53,7 +53,7 @@
 						<div class="btn-center-container">
 							<div class="priview-button">
 								<i class="icon-homework"></i>
-								<span @click="viewHomework(item)">查看作业</span>
+								<span @click="viewHomework(item)">Check the homework</span>
 							</div>
 						</div>
 					</div>

@@ -111,6 +111,9 @@
               <span>{{item.major}}</span>
             </td>
             <td width="130px">
+              <span>{{item.degree}}</span>
+            </td>
+            <td width="130px">
               <span class="link-span" v-if="item.certificate[0]" @click="openLink(item.certificate[0].url)">{{item.certificate[0].name}}</span>
             </td>
             <td width="90px">

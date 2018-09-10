@@ -2,6 +2,14 @@
 <el-dialog :visible.sync="dialogVisible" @open="handlerOpen" @close="handlerClose" class="ms-dialog no-head" :show-close="false">
   <div class="dialog-body">
     <el-form label-position="top" :model="form" :rules="rules" ref="educationForm">
+      <el-form-item label="Degree" prop="degree">
+        <el-select v-model="form.degree">
+          <el-option value="BA" label="BA"></el-option>
+          <el-option value="MA" label="MA"></el-option>
+          <el-option value="Ph.D" label="Ph.D"></el-option>
+          <el-option value="Post Ph.D" label="Post Ph.D"></el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="Period" prop="start">
         <el-row>
           <el-col :span="6">
@@ -69,6 +77,9 @@ export default {
       dialogVisible: false,
       form: new EducationHistory({}),
       rules: {
+        degree: [
+          { required: true, message: 'Degree is required !', trigger: 'change' }
+        ],
         start: [
           { required: true, message: 'Period is required !', trigger: 'change' }
         ],

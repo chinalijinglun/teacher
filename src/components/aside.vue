@@ -6,9 +6,9 @@
 					<img :src="this.$baseApiUrl+teacher.avatar" alt="">
 				</template>
 			</div>
-			<div class="teacher-header-name">{{teacher.username || 'username'}}</div>
+			<div class="teacher-header-name">{{teacher | teacherName}}</div>
       <div class="teacher-header-btn" @click="$router.push('/center')">
-        个人中心
+        My center
       </div>
 		</div>
 		<div class="select-bar">
@@ -16,7 +16,7 @@
 				<li class="active">
 					<router-link :to="{path: '/schedule'}">
 						<img class="imgs" src="@/assets/kechengbiao_h.png" alt="">
-						<span>课程表</span>
+						<span>Schedule</span>
 					</router-link>
 				</li>
 				<li class="active">

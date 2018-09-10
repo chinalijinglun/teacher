@@ -2,8 +2,8 @@
 	<div class="invite-detail">
 		<div class="tables">
 			<h3>
-				试听课邀请
-				<router-link :to="{path: '/center'}">返回</router-link>
+				Invitation for auditioned class 
+				<router-link :to="{path: '/center'}">Back</router-link>
 			</h3>
 			<div class="tits">
 				<ul>

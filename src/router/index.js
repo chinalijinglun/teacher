@@ -77,7 +77,7 @@ export default new Router({
 			component: completeInfo
 		},
 		{
-			title: '个人中心',
+			title: 'My center',
 			path: '',
 			redirect: { name: 'center' }
 		},
@@ -138,7 +138,7 @@ export default new Router({
 			component: main,
 		},
 		{
-			title: '个人中心',
+			title: 'My center',
 			path: '/center',
 			component: main,
 			children: [
@@ -154,7 +154,7 @@ export default new Router({
 				}
 			]
 		}, {
-			title: '课程表',
+			title: 'Schedule',
 			path: '/schedule',
 			name: 'schedule',
 			component: main,
@@ -198,7 +198,7 @@ export default new Router({
 				}
 			]
 		}, {
-			title: '查看作业',
+			title: 'Check the homework',
 			path: '/check-homework',
 			name: 'check-homework',
 			component: main,
