@@ -103,10 +103,13 @@ export default {
 }
 .teacher-header-name {
   margin: 10px 0;
-  font-size: 24px;
+  font-size: 18px;
   color: #333333;
   font-weight: bold;
+  white-space: nowrap;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .teacher-header-btn {
   width: 127px;

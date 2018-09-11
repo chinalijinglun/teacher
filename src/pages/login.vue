@@ -11,7 +11,7 @@
 				</span>
 			</div>
 			<div class="inps">
-				<input type="text" v-model="form.username" class="" placeholder="Email">
+				<input type="text" v-model="form.username" class="" placeholder="Mobile">
 				<input type="password" v-model="form.password" placeholder="Password">
 			</div>
 			<div class="remember-num">
