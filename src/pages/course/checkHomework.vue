@@ -23,7 +23,7 @@
 						<li class="student">学生</li>
 						<li class="homework-name">作业名称</li>
 						<li class="times">时间</li>
-						<li class="oprate">操作</li>
+						<li class="oprate">Operate</li>
 					</ul>
 				</div>
 				<div class="list">

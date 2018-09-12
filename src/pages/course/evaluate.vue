@@ -14,7 +14,7 @@
                 <li class="student">学生</li>
                 <li class="performance">Performance in class</li>
                 <li class="list-time">时间</li>
-                <li class="oprate">操作</li>
+                <li class="oprate">Operate</li>
             </ul>
             <div class="list">
                 <ul v-for="(item, index) in tableData" :key="index">

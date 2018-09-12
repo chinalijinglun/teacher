@@ -24,7 +24,7 @@
 						<th width="220">面试时间</th>
 						<th width="120">面试人</th>
 						<th>
-							操作
+							Operate
 						</th>
 					</tr>
 				</thead>

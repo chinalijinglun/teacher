@@ -7,7 +7,7 @@
             <span>|</span>
             <span>加入我们</span>
             <span>|</span>     
-            <span>常见问题</span>
+            <span>Common Mistakes/Problems</span>
             <div class="right">
                 京ICP备15062105号-1     京公网安备 11010802020457号
             </div>

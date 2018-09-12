@@ -22,13 +22,13 @@
 				<li class="active">
 					<router-link :to="{path: '/course'}">
 						<img class="imgs" src="@/assets/kecheng_h.png" alt="">
-						<span>我的课程</span>
+						<span>My courses</span>
 					</router-link>
 				</li>
 				<li class="active">
 					<router-link :to="{path: '/common'}">
             <img class="imgs" src="@/assets/wenti01.png" alt="">
-            <span>常见问题</span>
+            <span>Common Mistakes/Problems</span>
 					</router-link>
 				</li>
 			</ul>

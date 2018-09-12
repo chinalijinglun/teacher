@@ -1781,7 +1781,7 @@ export const APPOINTMENT_STATE_ENUM = {
   'WRITE_APPOINTMENT': '待预约',
   'WRITE_ACCEPT': '待接受',
   'WRITE_CLASS': '待上课',
-  'FINISH': '已完成'
+  'FINISH': 'Completed'
 }
 export const COURSE_APPOINTMENT_STATE_ENUM = {
   'APPLY': '未接受',

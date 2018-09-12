@@ -165,7 +165,7 @@ export default new Router({
 				}
 			]
 		}, {
-			title: '我的课程',
+			title: 'My courses',
 			path: '/course',
 			name: 'course',
 			component: main,
@@ -176,7 +176,7 @@ export default new Router({
 				}
 			]
 		}, {
-			title: '已上课程',
+			title: 'Completed course',
 			path: '/finish-course',
 			name: 'finish-course',
 			component: main,
@@ -231,7 +231,7 @@ export default new Router({
 				}
 			]
 		}, {
-			title: '已约课程',
+			title: 'Booked course',
 			path: '/dated-course',
 			name: 'dated-course',
 			component: main,
@@ -253,7 +253,7 @@ export default new Router({
 				}
 			]
 		}, {
-			title: '课程总结',
+			title: 'Class summery',
 			path: '/summary',
 			name: 'summary',
 			component: main,

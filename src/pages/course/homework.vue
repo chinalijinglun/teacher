@@ -18,7 +18,7 @@
 					<ul>
 						<li class="homework-name">作业名称</li>
 						<li class="time">时间</li>
-						<li class="oprate">操作</li>
+						<li class="oprate">Operate</li>
 					</ul>
 				</div>
 				<div class="line" v-for="item in tableData" :key="item.id">
@@ -39,7 +39,7 @@
 				</el-pagination>
 			</el-row>
 		</div>
-		<edit :show="showEdit" :course-schedule-id="form.course_schedule_id"></edit>
+		<edit :show="showEdit" :course-schedule-id="form.course_schedule_id" @on-submit="query"></edit>
 	</div>
 </template>
 

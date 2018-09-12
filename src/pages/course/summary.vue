@@ -6,7 +6,7 @@
 					{{course.course_name}}
 				</div>
 				<div class="right">
-					<span class="study-time">上课时间：{{course.course_times}}</span>
+					<span class="study-time">Time for class：{{course.course_times}}</span>
 					<span>进度：{{course.course_progress}}</span>
 				</div>
 			</div>
@@ -18,13 +18,13 @@
 			<div class="tab-bars">
 				<ul>
 					<li>
-						<router-link :to="{path: '/finish-course', query: {'id': this.$route.query.id}}">已上课程</router-link>
+						<router-link :to="{path: '/finish-course', query: {'id': this.$route.query.id}}">Completed course</router-link>
 					</li>
 					<li>
-						<router-link :to="{path: '/dated-course', query: {'id': this.$route.query.id}}">已约课程</router-link>
+						<router-link :to="{path: '/dated-course', query: {'id': this.$route.query.id}}">Booked course</router-link>
 					</li>
 					<li>
-						<router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">课程总结</router-link>
+						<router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">Class summery</router-link>
 					</li>
 					<li>
 						<router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">成绩单</router-link>
@@ -32,12 +32,12 @@
 				</ul>
 			</div>
 			<div class="add-report" @click="addSumm">
-				<img src="@/assets/shangchuan.png" alt=""> 添加课程总结
+				<img src="@/assets/shangchuan.png" alt=""> 添加Class summery
 			</div>
 			<div class="table-tit">
 				<div class="course-name">学生</div>
 				<div class="state">时间</div>
-				<div class="oparet">操作</div>
+				<div class="oparet">Operate</div>
 			</div>
 			<div class="box" v-for="item in tableData" :key="item.id">
 				<div class="student">

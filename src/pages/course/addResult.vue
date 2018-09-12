@@ -2,7 +2,7 @@
 	<div class="add-evaluate">
 		<div class="student-name">
 			<span class="course-name">{{course.course_name}}</span>
-			<span class="class-time">上课时间：{{course.course_times}}</span>
+			<span class="class-time">Time for class：{{course.course_times}}</span>
 		</div>
 		<div class="time">
 			<span class="demonstration">总结周期：</span>

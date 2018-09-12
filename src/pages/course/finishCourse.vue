@@ -6,7 +6,7 @@
 					{{course.course_name}}
 				</div>
 				<div class="right">
-					<span class="study-time">上课时间（当前时区: {{timezone}}）：{{course.course_times}}</span>
+					<span class="study-time">Time for class（当前时区: {{timezone}}）：{{course.course_times}}</span>
 					<span>进度：{{course.course_progress}}</span>
 				</div>
 			</div>
@@ -18,13 +18,13 @@
 			<div class="tab-bars">
 				<ul>
 					<li>
-						<router-link :to="{path: '/finish-course', query: {'id': this.$route.query.id}}">已上课程</router-link>
+						<router-link :to="{path: '/finish-course', query: {'id': this.$route.query.id}}">Completed course</router-link>
 					</li>
 					<li>
-						<router-link :to="{path: '/dated-course', query: {'id': this.$route.query.id}}">已约课程</router-link>
+						<router-link :to="{path: '/dated-course', query: {'id': this.$route.query.id}}">Booked course</router-link>
 					</li>
 					<li>
-						<router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">课程总结</router-link>
+						<router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">Class summery</router-link>
 					</li>
 					<li>
 						<router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">成绩单</router-link>
@@ -34,11 +34,11 @@
 			<div class="table-tit">
 				<div class="course-name">课程名称</div>
 				<div class="state">状态</div>
-				<div class="oparet">操作</div>
+				<div class="oparet">Operate</div>
 			</div>
 			<div class="table-list" v-for="item in tableData" :key="item.id">
 				<div class="list-tit">
-					<span>上课时间（当前时区: {{timezone}}）：{{item.start | courseScheduleTime(item.end)}}</span>
+					<span>Time for class（当前时区: {{timezone}}）：{{item.start | courseScheduleTime(item.end)}}</span>
 				</div>
 				<div class="list-detail">
 					<div class="lesson-name">

@@ -4,37 +4,37 @@
 			<el-form-item label="课程名称">
 				<el-input v-model="form.course_name"></el-input>
 			</el-form-item>
-			<el-form-item label="上课时间">
+			<el-form-item label="Time for class">
 				<el-date-picker v-model="form.course_time" type="date">
 				</el-date-picker>
 			</el-form-item>
-			<el-form-item label="学生名称">
+			<el-form-item label="Student name">
 				<el-input v-model="form.student_name"></el-input>
 			</el-form-item>
-			<el-form-item label="课程状态">
-				<el-select v-model="form.course_status" placeholder="所有状态">
-					<el-option label="所有状态" value=""></el-option>
-					<el-option label="已完成" value="1"></el-option>
-					<el-option label="进行中" value="2"></el-option>
+			<el-form-item label="Status of class">
+				<el-select v-model="form.course_status" placeholder="All status">
+					<el-option label="All status" value=""></el-option>
+					<el-option label="Completed" value="1"></el-option>
+					<el-option label="In progress" value="2"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item>
-				<el-button type="primary" @click="query">查询</el-button>
+				<el-button type="primary" @click="query">Check</el-button>
 			</el-form-item>
 		</el-form>
 		<div class="tables">
 			<div class="tits">
 				<ul>
-					<li class="course-name">课程包名称</li>
-					<li class="process">课程进度</li>
+					<li class="course-name">Name of course pack</li>
+					<li class="process">Syllabus</li>
 					<li class="student">学生</li>
 					<li class="state">状态</li>
-					<li class="oprate">操作</li>
+					<li class="oprate">Operate</li>
 				</ul>
 			</div>
 			<div class="list-table" v-for="(item, index) in tableData" :key="index">
 				<div class="list-states">
-					<span>上课时间（当前时区: {{timezone}}）：{{ item.start | courseTime(item.end)}}</span>
+					<span>Time for class（当前时区: {{timezone}}）：{{ item.start | courseTime(item.end)}}</span>
 				</div>
 				<ul>
 					<li class="course-name">{{item.course_name}}</li>
@@ -91,7 +91,7 @@ export default {
 			if(new Date(item.start)>new Date() && item.finish === 0) {
 				return '未开始'
 			}
-			return '进行中'
+			return 'In progress'
 		}
 	},
 	methods: {

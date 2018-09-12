@@ -1,5 +1,5 @@
 <template>
-<el-dialog :visible.sync="editShow" class="ms-dialog no-head" :show-close="false">
+<el-dialog :visible.sync="editShow" class="ms-dialog no-head homework-container" :show-close="false">
   <div id="apps">
     <div class="title">
       <span>添加作业</span>
@@ -116,6 +116,11 @@ export default {
   }
 };
 </script>  
+<style>
+.homework-container .el-dialog {
+  width: 945px;
+}
+</style>
 <style scoped>
 .bgray {
   position: fixed;
