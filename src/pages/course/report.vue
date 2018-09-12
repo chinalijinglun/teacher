@@ -7,7 +7,7 @@
 				</div>
 				<div class="right">
 					<span class="study-time">Time for class：{{course.course_times}}</span>
-					<span>进度：{{course.course_progress}}</span>
+					<span>rate of progress：{{course.course_progress}}</span>
 				</div>
 			</div>
 			<div class="bottom-line">
@@ -27,17 +27,17 @@
 						<router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">Class summery</router-link>
 					</li>
 					<li>
-						<router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">成绩单</router-link>
+						<router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">Transcripts</router-link>
 					</li>
 				</ul>
 			</div>
 			<div class="add-report" @click="showEdit = !showEdit;">
-				<img src="@/assets/shangchuan.png" alt=""> 添加成绩单
+				<img src="@/assets/shangchuan.png" alt=""> Add transcripts
 			</div>
 			<div class="table-tit">
 				<div class="course-name">学生</div>
-				<div class="state">成绩单名称</div>
-				<div class="timer">时间</div>
+				<div class="state">Transcripts名称</div>
+				<div class="timer">Time</div>
 				<div class="oparet">Operate</div>
 			</div>
 			<div class="list" v-for="item in tableData" :key="item.id">
@@ -45,8 +45,8 @@
 				<div class="state">{{item.report_card_name}}</div>
 				<div class="timer">{{course.course_times}}</div>
 				<div class="oparet">
-          <a :href="$baseApiUrl + item.report_card_url.url" target="block">查看</a>
-					<span @click="deleteReport(item.id)">删除</span>
+          <a :href="$baseApiUrl + item.report_card_url.url" target="block">See</a>
+					<span @click="deleteReport(item.id)">Delete</span>
 				</div>
 			</div>
 			<el-row>
@@ -105,7 +105,7 @@ export default {
       );
     },
     deleteReport(id) {
-      this.$confirm('确认删除？').then(_=>{
+      this.$confirm('Confirm the deletion？').then(_=>{
         studyResultDeleteById(id).then(resp => {
           this.query()
         })

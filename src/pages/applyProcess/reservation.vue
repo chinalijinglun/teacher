@@ -13,12 +13,18 @@
 			</ul>
 		</div>
 		<div class="basic-main reservation">
-			<small>Dear Mr. / Ms,<br/> Mr. Jack Baron, our personnel director, has asked me to acknowledge your application for the post of accountant and to ask you to come to see him on Friday afternoon, 5th July, at half past two.<br/> I will appreciate your letting me know whether you will be able to come.<br/> Yours faithfully<br/>
+			<small>
+				Dear {{teacher | teacherName}},<br/> 
+				Greetings from UStutor,we have recieved your resume, and hope you to have an interview.<br/> 
+				Could you tell me if you could attend the interview on time? If not, tell me the suitable time for you.<br/> 
+				I'm looking forward to your reply asap.<br/> 
+				Best regards.<br/>
+				UStutor<br/>
 			</small>
 
 			<div class="full-name">
 				<h4>
-					请选择一个合适的面试时间：
+					Please select a suitable time for an interview: 
 				</h4>
 				<h4>
 					Your Time Zone：{{timezone}}
@@ -26,25 +32,25 @@
 				<div class="reservation-span">
 					<el-radio-group v-model="form.timeRadio">
 						<el-radio v-for="(item, index) in timeLs" :key="index" :label="index">{{item.viewStr}}</el-radio>
-						<el-radio :label="-1">其他时间</el-radio>
+						<el-radio :label="-1">other</el-radio>
 					</el-radio-group>
 				</div>
 				<el-row class="reservation-time">
-					<el-col :span="3">我方便的时间：</el-col>
+					<el-col :span="3">My suitable time: </el-col>
 					<el-col :span="18">
 						<course-date-range
 							ref="courseDateRange"
 							:start-date.sync="subform.start"
 							:end-date.sync="subform.end"
 							range-separator="-"
-							start-placeholder="开始时间"
-							end-placeholder="结束时间">
+							start-placeholder="Start time"
+							end-placeholder="End time">
 						</course-date-range>
 					</el-col>
 				</el-row>
 				<br />
 				<span class="reservation-reason">
-					原因：
+					Reason：
 					<textarea v-model="subform.reason"></textarea>
 				</span>
 			</div>
@@ -69,7 +75,8 @@ export default {
 		...mapState({
 			userId: state => state.auth.id,
 			userName: state => state.userinfo.teacher.username,
-			timezone: state => state.userinfo.teacher.timezone
+			timezone: state => state.userinfo.teacher.timezone,
+			teacher: state => state.userinfo.teacher
 		})
 	},
   data() {

@@ -7,13 +7,13 @@
 					<span class="user" v-if="userName">
 						<span>Hi，{{userName}}</span>
 						<span>|</span>
-						<span @click="logout"> 退出</span>
+						<span @click="logout">Logout</span>
 					</span>
 					<span class="user" v-else>
-						<span @click="logout">点击登录</span>
+						<span @click="logout">Login</span>
 					</span>
 					<span class="mouseenter">
-						<span class="span">关注美师在线</span>
+						<span class="span">join us</span>
 						<img src="@/assets/erweima.png" alt="" class="erweima">
 					</span>
 				</div>

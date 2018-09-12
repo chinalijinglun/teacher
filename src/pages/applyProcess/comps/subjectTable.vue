@@ -78,7 +78,7 @@
       },
       remove() {
         if(!this.selectRow.length) {
-          this.$message.error('请选择要删除的记录！')
+          this.$message.error('Please select the record to delete!')
         } else {
           const newTable = [...this.subjectTable]
           this.selectRow.forEach(i => newTable[i] = undefined)

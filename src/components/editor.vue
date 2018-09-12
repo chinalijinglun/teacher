@@ -2,27 +2,27 @@
 <el-dialog :visible.sync="editShow" class="ms-dialog no-head homework-container" :show-close="false">
   <div id="apps">
     <div class="title">
-      <span>添加作业</span>
+      <span>Add homework</span>
     </div>
     <div class="biaoti">
       <div class="word">
-        标题
+        Title
       </div>
       <input type="text" class="inp" v-model="form.title" placeholder="请输入作业的标题">
     </div>
     <div class="bianji">
       <div class="word">
-        描述
+        description
       </div>
       <vue-editor v-model="form.desc" class="text"></vue-editor>
     </div>
     <div class="fujian">
       <div class="word">
-        附件
+        Attachments
       </div>
       <div class="right">
         <div class="up">
-          <img src="@/assets/shangchuan.png" alt="">上传附件
+          <img src="@/assets/shangchuan.png" alt="">Upload the attachments
           <input type="file" ref="uploadInput" name="file" class="uploadInput" @change="addFile">
         </div>
         <div class="file-list">
@@ -37,10 +37,10 @@
     </div>
     <div class="btn">
       <div class="submit" @click="submit">
-        提交
+        Submit
       </div>
       <div class="back" @click="close">
-        返回
+        Return
       </div>
     </div>
   </div>

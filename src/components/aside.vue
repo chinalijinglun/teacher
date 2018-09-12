@@ -28,7 +28,7 @@
 				<li class="active">
 					<router-link :to="{path: '/common'}">
             <img class="imgs" src="@/assets/wenti01.png" alt="">
-            <span>Common Mistakes/Problems</span>
+            <span>FAQ</span>
 					</router-link>
 				</li>
 			</ul>

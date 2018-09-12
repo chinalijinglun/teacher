@@ -35,7 +35,7 @@
       </div>
     </el-row>
     <el-row class="btn-container">
-      <el-button type="primary" @click="goback">返回</el-button>
+      <el-button type="primary" @click="goback">Return</el-button>
     </el-row>
   </div>
 </template>

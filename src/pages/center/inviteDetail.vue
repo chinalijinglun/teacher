@@ -7,9 +7,9 @@
 			</h3>
 			<div class="tits">
 				<ul>
-					<li class="li1">序号</li>
-					<li class="li2">Time for class(当前时区: {{timezone}})</li>
-					<li class="li3">学生</li>
+					<li class="li1">#</li>
+					<li class="li2">Time for class(Current time zone: {{timezone}})</li>
+					<li class="li3">Student</li>
 					<li class="li4">Operate</li>
 				</ul>
 			</div>
@@ -19,12 +19,12 @@
 					<li class="li2">{{item.start | courseScheduleTime(item.end)}}</li>
 					<li class="li3">{{item.student_name}}</li>
 					<li class="li4">
-						<span v-if="new Date(item.start) <= new Date()" class="has-invite">已过期</span>
+						<span v-if="new Date(item.start) <= new Date()" class="has-invite">Expired</span>
 						<template v-else>
-							<span v-if="item.apply_state === 0" @click="getInvite(item.id)">接受邀请</span>
-							<span v-if="item.apply_state === 0" @click="refusedInvite(item.id)">拒绝</span>
-							<span v-if="item.apply_state === 1 && item.teacher_id !== +id" class="has-invite">已被其他教师接受</span>
-							<span v-if="item.apply_state === 1 && item.teacher_id === +id" class="has-invite">已接受</span>
+							<span v-if="item.apply_state === 0" @click="getInvite(item.id)">Accept</span>
+							<span v-if="item.apply_state === 0" @click="refusedInvite(item.id)">Reject</span>
+							<span v-if="item.apply_state === 1 && item.teacher_id !== +id" class="has-invite">Has been taught by other teachers</span>
+							<span v-if="item.apply_state === 1 && item.teacher_id === +id" class="has-invite">Received</span>
 						</template>
 					</li>
 				</ul>

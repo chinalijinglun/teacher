@@ -2,11 +2,11 @@
   <div class="bgray" v-show="editShow">
     <div id="apps">
       <div class="title">
-        <span>添加成绩单</span>
+        <span>Add transcripts</span>
       </div>
       <div class="biaoti">
         <div class="word">
-          学生
+          Student
         </div>
         <el-select v-model="form.student_id">
           <el-option v-for="item in studentLs" :key="item.id" :value="item.id" :label="item.student_name"></el-option>
@@ -14,17 +14,17 @@
       </div>
       <div class="bianji">
         <div class="word">
-          标题
+          Title
         </div>
-        <input type="text" class="inp" v-model="form.report_card_name" placeholder="请输入作业的标题">
+        <input type="text" class="inp" v-model="form.report_card_name" placeholder="title">
       </div>
       <div class="fujian">
         <div class="word">
-          附件
+          Attachments
         </div>
         <div class="right">
           <div class="up">
-            <img src="@/assets/shangchuan.png" alt="">上传附件
+            <img src="@/assets/shangchuan.png" alt="">Upload the attachments
             <input type="file" ref="uploadInput" name="file" class="uploadInput" @change="addFile">
           </div>
           <div class="file-list" v-if="form.report_card_url">
@@ -39,10 +39,10 @@
       </div>
       <div class="btn">
         <div class="submit" @click="submit">
-          提交
+          Submit
         </div>
         <div class="back" @click="close">
-          返回
+          Return
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <template>
 	<div class="my-course">
 		<el-form :inline="true" :model="form" class="demo-form-inline">
-			<el-form-item label="课程名称">
+			<el-form-item label="Course name">
 				<el-input v-model="form.course_name"></el-input>
 			</el-form-item>
 			<el-form-item label="Time for class">
@@ -27,21 +27,21 @@
 				<ul>
 					<li class="course-name">Name of course pack</li>
 					<li class="process">Syllabus</li>
-					<li class="student">学生</li>
-					<li class="state">状态</li>
+					<li class="student">Student</li>
+					<li class="state">Status</li>
 					<li class="oprate">Operate</li>
 				</ul>
 			</div>
 			<div class="list-table" v-for="(item, index) in tableData" :key="index">
 				<div class="list-states">
-					<span>Time for class（当前时区: {{timezone}}）：{{ item.start | courseTime(item.end)}}</span>
+					<span>Time for class（Current time zone: {{timezone}}）：{{ item.start | courseTime(item.end)}}</span>
 				</div>
 				<ul>
 					<li class="course-name">{{item.course_name}}</li>
 					<li class="process">{{item.finish}}/{{item.classes_number}}</li>
 					<li class="student">{{item.student_name || '-'}}</li>
 					<li class="state under-way">{{item | stateFilter}}</li>
-					<li class="oprate check" @click="goDetail(item.id)">查看详情</li>
+					<li class="oprate check" @click="goDetail(item.id)">detail</li>
 				</ul>
 			</div>
 			<el-row>
@@ -86,10 +86,10 @@ export default {
 	filters: {
 		stateFilter(item) {
 			if(item.finish >= item.classes_number) {
-				return '已结束'
+				return 'Finished'
 			}
 			if(new Date(item.start)>new Date() && item.finish === 0) {
-				return '未开始'
+				return 'NotStarted'
 			}
 			return 'In progress'
 		}

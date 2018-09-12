@@ -4,7 +4,7 @@
     <step :steps="steps"></step>
   </div>
   <div class="form-container">
-    <p class="red-tips">完善档案，将有助我们为您高效匹配学生！</p>
+    <p class="red-tips">Complete the archives will help us match your child efficiently </p>
     <el-form label-position="top" :model="form" :rules="rules" ref="basicForm">
       <el-row :gutter="40">
         <el-col :span="12">

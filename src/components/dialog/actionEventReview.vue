@@ -11,7 +11,7 @@
       </el-table-column>
       <el-table-column
         prop="action_event_desc"
-        label="问题记录">
+        label="reson">
       </el-table-column>
     </el-table>
   </el-dialog>

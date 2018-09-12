@@ -26,7 +26,7 @@
           <span>* THE PAYOUT WILL BE ISSUE ONLY THE CLASS (50 MINS TEACHING + 10 MINS WRITTEN CONSTRUCTIVE FEEDBACK TO THE STUDENT) MARKED AS “COMPLETED” ON THE UPDATE.</span>
         </div>
         <div class="contract-sure">
-          <button @click="onSure">确定</button>
+          <button @click="onSure">Confirm</button>
         </div>
       </div>
     </div>

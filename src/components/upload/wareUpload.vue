@@ -1,9 +1,9 @@
 <template>
 <div>
   <div class="uploading" @click="openFile">
-    <img src="@/assets/shangchuan.png" alt=""> 本地上传
+    <img src="@/assets/shangchuan.png" alt=""> Upload
   </div>
-  <p class="tips">支持格式:doc/ppt/png/jpg,文件小于20M</p>
+  <p class="tips">Support format: doc/ppt/png/jpg, file less than 20M</p>
 </div>
 </template>
 <script>

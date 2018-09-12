@@ -20,9 +20,9 @@
 			<table class="reservation-table" v-if="interviewCourseLs.length">
 				<thead>
 					<tr>
-						<th width="160">课节名称</th>
-						<th width="220">面试时间</th>
-						<th width="120">面试人</th>
+						<th width="160">Lesson name</th>
+						<th width="220">Time for interview</th>
+						<th width="120">Interviwer</th>
 						<th>
 							Operate
 						</th>
@@ -34,18 +34,18 @@
 						<td>{{item.start | hasTime}}</td>
 						<td>{{item.interview_name}}</td>
 						<td class="reservation-operate">
-							<span v-if="teacher.interview.state === 9 || teacher.interview.state === 10" @click="toRoom(item.course_schedule_id)">回放</span>
-							<span v-else @click="toRoom(item.course_schedule_id)">进入教室</span>
-							<span @click="toUpload(item)">查看课件</span>
+							<span v-if="teacher.interview.state === 9 || teacher.interview.state === 10" @click="toRoom(item.course_schedule_id)">Play back</span>
+							<span v-else @click="toRoom(item.course_schedule_id)">Enter the classroom</span>
+							<span @click="toUpload(item)">view</span>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			<div class="reservation-success" v-if="teacher.interview.state === 9">
-				<img src="" alt=""> 恭喜，你通过面试，稍后我们会发送合同。
+				<img src="" alt=""> Congratulations! You have passed the interview and we will send you the contract later.
 			</div>
 			<div class="reservation-fail" v-if="teacher.interview.state === 10">
-				很遗憾，您没有通过面试，
+				I'm sorry you didn't pass the interview.
       </div>
 		</div>
 	</div>

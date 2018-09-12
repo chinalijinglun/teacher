@@ -87,9 +87,9 @@ export default new Router({
 			name: 'regist',
 			component: regist
 		},
-		//登录
+		//Login
 		{
-			title: '登录',
+			title: 'Login',
 			path: '/login',
 			name: 'login',
 			component: login
@@ -187,7 +187,7 @@ export default new Router({
 				}
 			]
 		}, {
-			title: '作业',
+			title: 'Homework',
 			path: '/homework',
 			name: 'homework',
 			component: main,
@@ -209,7 +209,7 @@ export default new Router({
 				}
 			]
 		}, {
-			title: '作业点评',
+			title: 'Comment',
 			path: '/comment',
 			name: 'comment',
 			component: main,
@@ -220,7 +220,7 @@ export default new Router({
 				}
 			]
 		}, {
-			title: '作业点评',
+			title: 'Evaluate',
 			path: '/evaluate',
 			name: 'evaluate',
 			component: main,
@@ -264,7 +264,7 @@ export default new Router({
 				}
 			]
 		}, {
-			title: '成绩单',
+			title: 'Transcripts',
 			path: '/report',
 			name: 'report',
 			component: main,
@@ -275,7 +275,7 @@ export default new Router({
 				}
 			]
 		}, {
-			title: '成绩单',
+			title: 'Transcripts',
 			path: '/common',
 			name: 'common',
 			component: main,

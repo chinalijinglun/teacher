@@ -44,14 +44,13 @@
 					<div class="form-input">
 						<el-checkbox v-model="form.agree">
 						</el-checkbox>
-						<span>我已阅读并同意
-							<span class="instructor">《UStutor用户注册协议》</span>
+						<span>I have read and agreed the UStutor user registration agreement.
 						</span>
 					</div>
 				</el-form-item>
 				<el-form-item>
 					<div class="form-input">
-						<el-button class="regist-now" @click="regist" type="primary" style="width: 100%">立即注册</el-button>
+						<el-button class="regist-now" @click="regist" type="primary" style="width: 100%">Register Now</el-button>
 					</div>
 				</el-form-item>
 			</el-form>

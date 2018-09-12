@@ -6,8 +6,8 @@
 					{{course.course_name}}
 				</div>
 				<div class="right">
-					<span class="study-time">Time for class（当前时区: {{timezone}}）：{{course.course_times}}</span>
-					<span>进度：{{course.course_progress}}</span>
+					<span class="study-time">Time for class（Current time zone: {{timezone}}）：{{course.course_times}}</span>
+					<span>rate of progress：{{course.course_progress}}</span>
 				</div>
 			</div>
 			<div class="bottom-line">
@@ -27,7 +27,7 @@
 						<router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">Class summery</router-link>
 					</li>
 					<li>
-						<router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">成绩单</router-link>
+						<router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">Transcripts</router-link>
 					</li>
 				</ul>
 			</div>
@@ -38,7 +38,7 @@
 			</div>
 			<div class="table-list" v-for="item in tableData" :key="item.id">
 				<div class="list-tit">
-					<span>Time for class（当前时区: {{timezone}}）：{{item.start | courseScheduleTime(item.end)}}</span>
+					<span>Time for class（Current time zone: {{timezone}}）：{{item.start | courseScheduleTime(item.end)}}</span>
 				</div>
 				<div class="list-detail">
 					<div class="lesson-name">
@@ -48,11 +48,11 @@
 						{{$COURSE_SCHEDULE_STATE_ENUM[item.class_type]}}
 					</div>
 					<div class="oprate-lesson">
-						<span class="colo" v-if="item.class_type === 'TROUBLE_CLASS'" @click="reviewReason(item.id)">查看原因</span>
+						<span class="colo" v-if="item.class_type === 'TROUBLE_CLASS'" @click="reviewReason(item.id)">reason</span>
 						<template v-else>
-							<span class="colo" @click="toRoom(item.id)">回放 </span>
-							<span class="colo" @click="goHomework(item.id)">作业</span>
-							<span class="colo" @click="goEval(item.id)">课后小结</span>
+							<span class="colo" @click="toRoom(item.id)">Play back </span>
+							<span class="colo" @click="goHomework(item.id)">Homework</span>
+							<span class="colo" @click="goEval(item.id)">Class summery</span>
 						</template>
 					</div>
 				</div>

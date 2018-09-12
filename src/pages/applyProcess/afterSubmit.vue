@@ -14,9 +14,9 @@
 	</div>
 	<div class="basic-main">
 		<div class="tip-info">
-      <p v-if="teacher.state === 3">感谢你的申请！你的资料正在审核中，请等待审核结果。 </p>
-      <p v-if="teacher.state === 4">恭喜，你的资料审核通过，请等待预约面试。</p>
-      <p v-if="teacher.state === 5">很遗憾，你的资料审核不通过，请修改后再提交，原因：{{reason}}。</p>
+      <p v-if="teacher.state === 3">Thank you for your application!Your data is under checking. Please wait for the result. </p>
+      <p v-if="teacher.state === 4">Congratulations, your information is approved. Please wait for the appointment interview. </p>
+      <p v-if="teacher.state === 5">Unfortunately, your materials have not been approved. Please revise them before submitting.Reason: {{reason}}。</p>
     </div>
     <div class="basic-info">
       <p class="basic-info-title">Basic Info</p>

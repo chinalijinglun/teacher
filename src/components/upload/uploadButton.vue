@@ -2,7 +2,7 @@
   <div class="button_upload">
     <el-button @click="choseFile" :disabled="!disabledComputed" :loading="loading">{{btnTextComputer}}</el-button>
     <el-input type="text" :value="inputValue" class="hidden-input"></el-input>
-    <p class="help-block">支持格式:doc/ppt/png/jpg,文件小于20M</p>
+    <p class="help-block">Support format: doc/ppt/png/jpg, file less than 20M</p>
     <component :is="listType | typeFilter" :file-array="imgArray" @delete-item="deleteItem"></component>
   </div>
 </template>

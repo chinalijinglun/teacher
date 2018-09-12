@@ -17,7 +17,7 @@
 			<div class="remember-num">
         <el-checkbox v-model="keep">Keep me signed in.</el-checkbox>
 			</div>
-			<button class="btn" @click="login">登录</button>
+			<button class="btn" @click="login">Login</button>
 			<div class="regist-now button-point" @click="$router.push('/reset')">
 				Forgot your password?
 			</div>

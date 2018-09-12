@@ -7,7 +7,7 @@
 				</div>
 				<div class="right">
 					<span class="study-time">Time for class：{{course.course_times}}</span>
-					<span>进度：{{course.course_progress}}</span>
+					<span>rate of progress：{{course.course_progress}}</span>
 				</div>
 			</div>
 			<div class="bottom-line">
@@ -27,35 +27,35 @@
 						<router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">Class summery</router-link>
 					</li>
 					<li>
-						<router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">成绩单</router-link>
+						<router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">Transcripts</router-link>
 					</li>
 				</ul>
 			</div>
 			<div class="table-tit">
-				<div class="course-name">课程名称</div>
-				<div class="state">状态</div>
+				<div class="course-name">Course name</div>
+				<div class="state">Status</div>
 				<div class="oparet">Operate</div>
 			</div>
 			<div class="table-list" v-for="(item, index) in tableData" :key="index">
 				<div class="list-tit">
-					<span>Time for class（当前时区: {{timezone}}）：{{$getCourseScheduleTime(item.start, item.end)}}</span>
+					<span>Time for class（Current time zone: {{timezone}}）：{{$getCourseScheduleTime(item.start, item.end)}}</span>
 				</div>
 				<div class="list-detail">
 					<div class="lesson-name">
 						{{item.name || '未命名'}}
 					</div>
 					<div class="lesson-state">
-						<span v-if="item.checked_result == 'BEFORE_CHECK'">待审核</span>
-						<span v-if="item.checked_result == 'CHECK_PASSED'">审核通过</span>
-						<span class="up" v-if="item.checked_result == 'CHECK_DENY'">审核驳回</span>
-						<span class="up" v-if="item.checked_result == 'PREVIEW'">可以预览</span>
-						<span class="up" v-if="item.checked_result == 'NO_PREVIEW'">不可以预览</span>
-						<span v-if="!item.courseware_num">未上传</span>
+						<span v-if="item.checked_result == 'BEFORE_CHECK'">To be verify</span>
+						<span v-if="item.checked_result == 'CHECK_PASSED'">Approve</span>
+						<span class="up" v-if="item.checked_result == 'CHECK_DENY'">Rejected</span>
+						<span class="up" v-if="item.checked_result == 'PREVIEW'">Can preview</span>
+						<span class="up" v-if="item.checked_result == 'NO_PREVIEW'">No preview</span>
+						<span v-if="!item.courseware_num">To be uploaded</span>
             
 					</div>
 					<div class="oprate-lesson">
-						<span class="colo" @click="toRoom(item.id)">进入教室</span>
-						<span class="colo" @click="goCourseware(item.id)">查看课件</span>
+						<span class="colo" @click="toRoom(item.id)">Enter the classroom</span>
+						<span class="colo" @click="goCourseware(item.id)">view</span>
 					</div>
 				</div>
 			</div>

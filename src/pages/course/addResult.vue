@@ -5,12 +5,12 @@
 			<span class="class-time">Time for class：{{course.course_times}}</span>
 		</div>
 		<div class="time">
-			<span class="demonstration">总结周期：</span>
-			<el-date-picker type="daterange" v-model="timeRange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+			<span class="demonstration">Period summery：</span>
+			<el-date-picker type="daterange" v-model="timeRange" range-separator="-" start-placeholder="Start time" end-placeholder="End time">
 			</el-date-picker>
 		</div>
 		<div class="time" style="margin-bottom:40px;">
-			<span class="demonstration">学生：</span>
+			<span class="demonstration">Student：</span>
       <el-select v-model="form.student_id">
         <el-option v-for="item in studentLs" :key="item.id" :value="item.id" :label="item.student_name"></el-option>
       </el-select>
@@ -47,10 +47,10 @@
 		<vue-editor v-model="summary.future_plan"></vue-editor>
 		<div class="btn">
 			<div class="submit" @click="submit">
-				提交
+				Submit
 			</div>
 			<div class="back" @click="goback">
-				取消
+				Cancel
 			</div>
 		</div>
 	</div>

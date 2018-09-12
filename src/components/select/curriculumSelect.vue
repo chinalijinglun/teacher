@@ -1,15 +1,12 @@
 <template>
   <div class="curriculum-select">
-    <el-select v-model="form.curriculum_id" placeholder="一级分类" @change="handleCurriculumChange">
-      <el-option label="全部" value=""></el-option>
+    <el-select v-model="form.curriculum_id" @change="handleCurriculumChange">
       <el-option v-for="(item,index) in curriculumLs" :key="index" :label="item.full_name" :value="item.id"></el-option>
     </el-select>
-    <el-select v-model="form.subject_category_id" placeholder="二级分类" @change="handleCategoryChange">
-      <el-option label="全部" value=""></el-option>
+    <el-select v-model="form.subject_category_id" @change="handleCategoryChange">
       <el-option v-for="(item,index) in subjectCategoryLs" :key="index" :label="item.subject_category" :value="item.id"></el-option>
     </el-select>
-    <el-select v-model="form.subject_id" placeholder="三级分类" @change="handleSubjectChange">
-      <el-option label="全部" value=""></el-option>
+    <el-select v-model="form.subject_id" @change="handleSubjectChange">
       <el-option v-for="(item,index) in subjectLs" :key="index" :label="item.subject_name" :value="item.id"></el-option>
     </el-select>
   </div>

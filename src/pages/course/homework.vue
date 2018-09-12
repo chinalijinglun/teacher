@@ -4,20 +4,20 @@
 			<div class="describe">
 				<div class="top">
 					<span class="left">{{course.course_name}}</span>
-					<span class="right" @click="goBack"><img src="../../assets/fanhui.png" alt=""> 返回</span>
+					<span class="right" @click="goBack"><img src="../../assets/fanhui.png" alt=""> Return</span>
 				</div>
 				<div class="mid">
 					{{course.course_times}}
 				</div>
 			</div>
 			<div class="add-homework" @click="addWork">
-				<img src="../../assets/shangchuan.png" alt="">添加作业
+				<img src="../../assets/shangchuan.png" alt="">Add homework
 			</div>
 			<div class="table">
 				<div class="tab-tit">
 					<ul>
-						<li class="homework-name">作业名称</li>
-						<li class="time">时间</li>
+						<li class="homework-name">homework title</li>
+						<li class="time">Time</li>
 						<li class="oprate">Operate</li>
 					</ul>
 				</div>
@@ -29,8 +29,8 @@
 						{{item.created_at | noTime}}
 					</div>
 					<div class="oprate">
-						<span @click="goDetail(item.id)">查看</span>
-						<span @click="toDelete(item.id)">删除</span>
+						<span @click="goDetail(item.id)">See</span>
+						<span @click="toDelete(item.id)">Delete</span>
 					</div>
 				</div>
 			</div>
@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     toDelete(id) {
-      this.$confirm('确认删除？').then(_=>{
+      this.$confirm('Confirm the deletion？').then(_=>{
         homeworkDeleteByhomeworkid(id).then(resp => this.query())
       })
     },

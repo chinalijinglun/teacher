@@ -7,21 +7,20 @@
 		style="width: 900px">
 		<el-table-column
 			width="100px"
-			label="周">
+			label="weeks">
 			<template slot-scope="scope">   
 				{{$TEACHER_WEEK_ENUM[scope.row.week]}}
 			</template>
 		</el-table-column>
 		<el-table-column
-			label="时间段">
+			label="Available Time">
 			<template slot-scope="scope">    
 				<div class="time-range-contain" v-for="(item, index) in scope.row.timeRanges" :key="index">
 					<el-time-picker
 						is-range
 						format="HH:mm"
 						size="mini"
-						v-model="item.timeRange"
-						placeholder="选择时间范围">
+						v-model="item.timeRange">
 					</el-time-picker>
 					<el-button size="mini" v-if="index === scope.row.timeRanges.length-1" @click="handlerAdd(scope.row.timeRanges)">+</el-button>
 					<el-button size="mini" @click="handlerRemove(scope.row.timeRanges, index)">-</el-button>

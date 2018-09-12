@@ -1,15 +1,15 @@
 <template>
 	<div class="uploading-courseware">
 		<div class="course-name">
-			课包名称：{{course.course_name}}
+			Course name：{{course.course_name}}
 		</div>
 		<div class="class-name">
-			<span>课节名称：</span>
-			<input type="text" class="inp" v-model="form.course_schedule_name" placeholder="请输入作业的标题">
+			<span>Lesson name：</span>
+			<input type="text" class="inp" v-model="form.course_schedule_name" placeholder="Lesson name">
 		</div>
 		<div class="upload">
 			<span>
-				上传附件：
+				Upload Attachment：
 			</span>
 			<ware-upload 
 				v-model="coursewareLs"
@@ -23,13 +23,13 @@
 				</div>
 				<div class="right">
 					<div class="rig-tit"> <a :href="item.file_url" target="block">{{item.ware_name}}</a> </div>
-					<div class="del" @click="deleteWare(index)">删除</div>
+					<div class="del" @click="deleteWare(index)">Delete</div>
 					<el-radio-group v-model="item.is_view" class="radio-group">
 						<el-row>
-							<el-radio label="YES">允许学生预习</el-radio>
+							<el-radio label="YES">Allow student privew</el-radio>
 						</el-row>
 						<el-row>
-							<el-radio label="NO">不允许</el-radio>
+							<el-radio label="NO">Not allowed</el-radio>
 						</el-row>
 					</el-radio-group>
 				</div>
@@ -37,10 +37,10 @@
 		</div>
 		<div class="btn-box">
 			<div class="submit" @click="updateWare">
-				提交
+				Submit
 			</div>
 			<div class="close" @click="toBack">
-				关闭
+				Close
 			</div>
 		</div>
 	</div>

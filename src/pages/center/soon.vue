@@ -14,7 +14,7 @@
 			</div>
 			<div class="soon-stage">
 				<div class="stage-line stage-color" v-if="!futureCourse">
-					<p>暂无数据</p>
+					<p>No data</p>
 				</div>
 				<template v-else>
 					<div class="stage-head">
@@ -29,7 +29,7 @@
 						<span>{{item.ware_name}}</span>
 						<div class="priview-button course-ware">
 							<i class="icon-yulan"></i>
-							<span @click="viewCourseware(item.ware_url)">预览课件</span>
+							<span @click="viewCourseware(item.ware_url)">Preview the courseware</span>
 						</div>
 					</div>
 				</template>
@@ -42,7 +42,7 @@
 			</div>
 			<div class="soon-stage">
 				<div class="stage-line stage-color" v-if="!homework.length">
-					<p>暂无数据</p>
+					<p>No data</p>
 				</div>
 				<template v-else>
 					<div v-for="(item, index) in homework" :key="index">

@@ -7,23 +7,23 @@
             {{course.course_times}}
         </div>
         <div class="my-student">
-            我的学生
+            My student
         </div>
         <div class="table">
             <ul class="list-tit">
-                <li class="student">学生</li>
+                <li class="student">Student</li>
                 <li class="performance">Performance in class</li>
-                <li class="list-time">时间</li>
+                <li class="list-time">Time</li>
                 <li class="oprate">Operate</li>
             </ul>
             <div class="list">
                 <ul v-for="(item, index) in tableData" :key="index">
                     <li class="student">{{item.student_name}}</li>
-                    <li class="performance">{{item.overall || '等待点评'}}</li>
+                    <li class="performance">{{item.overall || 'wait comment'}}</li>
                     <li class="list-time">{{item.created_at || '——'}}</li>
                     <li class="oprate">
-                        <span v-if="!item.overall" @click="dianPing(item.id)">点评</span>
-                        <span v-else @click="$router.push(`/view-evaluate?id=${item.id}`)">查看</span>
+                        <span v-if="!item.overall" @click="dianPing(item.id)">comment</span>
+                        <span v-else @click="$router.push(`/view-evaluate?id=${item.id}`)">See</span>
                     </li>
                 </ul>
             </div>

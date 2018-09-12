@@ -76,10 +76,10 @@
 		<vue-editor v-model="evaluate.suggest"></vue-editor>
 		<div class="btn">
 			<div class="submit" @click="submit">
-				提交
+				Submit
 			</div>
 			<div class="back" @click="goback">
-				取消
+				Cancel
 			</div>
 		</div>
 	</div>

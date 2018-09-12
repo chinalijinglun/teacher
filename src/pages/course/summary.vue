@@ -7,7 +7,7 @@
 				</div>
 				<div class="right">
 					<span class="study-time">Time for class：{{course.course_times}}</span>
-					<span>进度：{{course.course_progress}}</span>
+					<span>rate of progress：{{course.course_progress}}</span>
 				</div>
 			</div>
 			<div class="bottom-line">
@@ -27,16 +27,16 @@
 						<router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">Class summery</router-link>
 					</li>
 					<li>
-						<router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">成绩单</router-link>
+						<router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">Transcripts</router-link>
 					</li>
 				</ul>
 			</div>
 			<div class="add-report" @click="addSumm">
-				<img src="@/assets/shangchuan.png" alt=""> 添加Class summery
+				<img src="@/assets/shangchuan.png" alt=""> Add class summery
 			</div>
 			<div class="table-tit">
-				<div class="course-name">学生</div>
-				<div class="state">时间</div>
+				<div class="course-name">Student</div>
+				<div class="state">Time</div>
 				<div class="oparet">Operate</div>
 			</div>
 			<div class="box" v-for="item in tableData" :key="item.id">
@@ -49,7 +49,7 @@
 							{{item.start | courseTime(item.end)}}
 						</div>
 						<div class="check">
-							<span @click="$router.push(`/view-result?id=${item.id}`)">查看</span>
+							<span @click="$router.push(`/view-result?id=${item.id}`)">See</span>
 						</div>
 					</div>
 				</div>

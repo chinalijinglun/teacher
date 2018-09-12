@@ -11,18 +11,18 @@
 					<div class="detail">
 						<div class="names">{{item.name}} </div>
 						<div class="down-btn">
-							<a :href="$baseApiUrl+item.url" :download="item.name">下载附件</a>
+							<a :href="$baseApiUrl+item.url" :download="item.name">Download the attachments</a>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="tables">
-				<div class="tab-tit">学生完成的作业</div>
+				<div class="tab-tit">Completed homework</div>
 				<div class="table-tit">
 					<ul>
-						<li class="student">学生</li>
-						<li class="homework-name">作业名称</li>
-						<li class="times">时间</li>
+						<li class="student">Student</li>
+						<li class="homework-name">Name the homework</li>
+						<li class="times">Time</li>
 						<li class="oprate">Operate</li>
 					</ul>
 				</div>
@@ -31,7 +31,7 @@
 						<li class="student">{{item.student_name}}</li>
 						<li class="homework-name">{{item.title}}</li>
 						<li class="times">{{item.created_at | noTime}}</li>
-						<li class="oprate dianping" @click="toComment(item)">作业点评</li>
+						<li class="oprate dianping" @click="toComment(item)">Comment of homework</li>
 					</ul>
 				</div>
 				<el-row>

@@ -12,13 +12,13 @@
 				<img src="../../assets/fujian.png" alt="">
 				<div class="detail">
 					<div class="names">{{item.upload_file}}</div>
-					<div class="down-btn"><a :href="item.download_file" target="block">下载附件</a></div>
+					<div class="down-btn"><a :href="item.download_file" target="block">Download the attachments</a></div>
 				</div>
 			</div>
 		</div>
 		<div class="dianping-history">
 			<div class="dp-tit">
-				点评记录
+				Comment record 
 			</div>
 			<div v-for="(item, index) in detail.evaluations" :key="index">
 				<div class="dp-time">
@@ -28,15 +28,15 @@
 			</div>
 		</div>
 		<div class="dp-tit dp-h">
-			作业点评
+			Comment of homework
 		</div>
 		<vue-editor v-model="content"></vue-editor>
 		<div class="btn">
 			<div class="submit" @click="submit">
-				提交
+				Submit
 			</div>
 			<div class="back" @click="goBack">
-				返回
+				Return
 			</div>
 		</div>
 	</div>

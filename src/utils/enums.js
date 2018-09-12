@@ -32,14 +32,14 @@ export const COURSE_SCHEDULE_STATE = {
   0: '未开课',
   1: '未上',
   2: '已经上课',
-  3: '取消',
-  4: '问题课'
+  3: 'Cancel',
+  4: 'Problematic classs'
 }
 
 export const PAYMENT_STATE = {
   1: '未付款',
   2: '已付款',
-  3: '取消',
+  3: 'Cancel',
   4: '申请退款',
   5: '退款审核通过',
   6: '退款审核驳回',
@@ -53,8 +53,8 @@ export const COURSE_TYPE_MAP = {
 }
 // RECRUIT:新用户，
 // BASIC_INFO:填写基本信息，
-// WAIT_FOR_CHECK:待审核，
-// CHECK_PASS:审核通过(待预约)、
+// WAIT_FOR_CHECK:To be verify，
+// CHECK_PASS:Approve(待预约)、
 // CHECK_ERROR:审核未通过，
 // WAIT_FOR_INTERVIEW:已预约(待面试)，
 // WAITE_FOR_CONTRACT:待签约，
@@ -103,8 +103,8 @@ export const TEACHER_STATE_ENUM = {
 export const TEACHER_STATE_ZH = {
   1: '新用户',
   2: '填写基本信息',
-  3: '待审核',
-  4: '审核通过(待预约)',
+  3: 'To be verify',
+  4: 'Approve(待预约)',
   5: '审核未通过',
   10: '已预约(待面试)',
   11: '待签约',
@@ -1726,7 +1726,7 @@ export const INTERVIEW = {
   '1': '待预约',
   '2': '未面试',
   '3': '已面试',
-  '4': '取消',
+  '4': 'Cancel',
   '5': '未完成',
   '6': '待答复',
   '7': '待确认',
@@ -1746,7 +1746,7 @@ export const ACTION_EVENT_TYPE = {
 
 export const COURSEWARE_STATE = {
   1: '未审核',
-  2: '审核通过',
+  2: 'Approve',
   3: '审核驳回'
 }
 export const TEACHER_STATE = {
@@ -1765,13 +1765,13 @@ export const HAVE_SENIORITY = {
 export const TEACHER_WEEK = ['1','2','3','4','5','6','7']
 
 export const TEACHER_WEEK_ENUM = {
-  1: '周一',
-  2: '周二',
-  3: '周三',
-  4: '周四',
-  5: '周五',
-  6: '周六',
-  7: '周日'
+  1: 'Mon',
+  2: 'Tues',
+  3: 'Wed',
+  4: 'Thurs',
+  5: 'Fri',
+  6: 'Sat',
+  7: 'Sun'
 }
 export const GO_ABROAD = {
   YES: '是',
@@ -1790,10 +1790,10 @@ export const COURSE_APPOINTMENT_STATE_ENUM = {
 }
 
 export const COURSE_SCHEDULE_STATE_ENUM = {
-  'COMMON_CLASS': '正常课',
-  'CANCEL': '取消',
-  'TROUBLE_CLASS': '问题课程',
-  'MAKE_UP_CLASS': '补偿课'
+  'COMMON_CLASS': 'Normal class',
+  'CANCEL': 'Cancel',
+  'TROUBLE_CLASS': 'Problematic classs',
+  'MAKE_UP_CLASS': 'Compensatory class'
 }
 export const COURSE_SCHEDULE_STATE_NUMBER = {
   'COMMON_CLASS': 1,
@@ -1802,8 +1802,8 @@ export const COURSE_SCHEDULE_STATE_NUMBER = {
   'MAKE_UP_CLASS': 4
 }
 export const COURSE_SCHEDULE_CHEKED_ENUM = {
-  'BEFORE_CHECK': '待审核',
-  'CHECK_PASSED':'审核通过',
+  'BEFORE_CHECK': 'To be verify',
+  'CHECK_PASSED':'Approve',
   'CHECK_DENY':'审核驳回',
   'PREVIEW':'可以预览',
   'NO_PREVIEW':'不可以预览'
