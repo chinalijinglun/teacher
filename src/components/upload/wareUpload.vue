@@ -3,7 +3,7 @@
   <div class="uploading" @click="openFile">
     <img src="@/assets/shangchuan.png" alt=""> Upload
   </div>
-  <p class="tips">Support format: doc/ppt/png/jpg, file less than 20M</p>
+  <p class="tips">Support format: pdf/ppt/png/jpg, file less than 20M</p>
 </div>
 </template>
 <script>

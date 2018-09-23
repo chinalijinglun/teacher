@@ -35,8 +35,8 @@
 				<img src="@/assets/shangchuan.png" alt=""> Add transcripts
 			</div>
 			<div class="table-tit">
-				<div class="course-name">学生</div>
-				<div class="state">Transcripts名称</div>
+				<div class="course-name">Student</div>
+				<div class="state">Transcripts name</div>
 				<div class="timer">Time</div>
 				<div class="oparet">Operate</div>
 			</div>
@@ -232,13 +232,14 @@ li {
 .add-report {
   background: #ff8200;
   border-radius: 5px;
-  width: 140px;
   height: 40px;
+  display: inline-block;
   line-height: 40px;
   font-size: 16px;
   color: #ffffff;
   cursor: pointer;
   margin-top: 19px;
+  padding: 0 10px;
 }
 .add-report img {
   float: left;

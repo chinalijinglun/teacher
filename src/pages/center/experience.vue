@@ -290,7 +290,7 @@ export default {
         const canhistory = this.postHistory(canSubject)
         return Promise.all([...deleteHistoryPromises, ...curhistory, ...canhistory, this.basicUpdated()]).then(resp => {
           this.$message.success('success!');
-          this.$router.push('/center');
+          this.$router.go(-2);
           this.$deleteSession('basicInfoEdit')
           this.$deleteSession('deleteHistory')
           this.$deleteSession('experienceEdit')

@@ -106,7 +106,7 @@
     </div> 
 	</div>
 	<div class="next-btn">
-		<button @click="$router.push('/basic')">Modify</button>
+		<button @click="$router.push('/basicEdit')">Modify</button>
 	</div>
 </div>
 </template>

@@ -8,7 +8,7 @@
       <div class="word">
         Title
       </div>
-      <input type="text" class="inp" v-model="form.title" placeholder="请输入作业的标题">
+      <input type="text" class="inp" v-model="form.title" placeholder="title">
     </div>
     <div class="bianji">
       <div class="word">

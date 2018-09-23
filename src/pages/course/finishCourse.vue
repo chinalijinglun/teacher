@@ -32,8 +32,8 @@
 				</ul>
 			</div>
 			<div class="table-tit">
-				<div class="course-name">课程名称</div>
-				<div class="state">状态</div>
+				<div class="course-name">Course name</div>
+				<div class="state">Status</div>
 				<div class="oparet">Operate</div>
 			</div>
 			<div class="table-list" v-for="item in tableData" :key="item.id">

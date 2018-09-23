@@ -157,7 +157,8 @@ li {
   margin-top: 11px;
 }
 .add-homework {
-  width: 140px;
+  display: inline-block;
+  padding: 0 10px;
   height: 40px;
   background: #ff8200;
   border-radius: 5px;
