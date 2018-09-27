@@ -14,7 +14,7 @@
 		</div>
 		<div class="basic-main reservation">
 			<small v-if="interviewCourseLs.length">
-				Dear Mr. / Ms, Mr. Jack Baron, our personnel director, has asked me to acknowledge your application for the post of accountant and to ask you to come to see him on Friday afternoon, 5th July, at half past two.
+				Interview Info
 			</small>
 
 			<table class="reservation-table" v-if="interviewCourseLs.length">
@@ -182,6 +182,8 @@ export default {
 
 .reservation small {
   line-height: 35px;
+  font-size: 18px;
+  font-weight: bolder; 
 }
 .reservation-table {
   width: 100%;

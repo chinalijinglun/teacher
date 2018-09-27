@@ -40,14 +40,14 @@
 						</el-input>
 					</div>
 				</el-form-item>
-				<el-form-item prop="agree">
+				<!-- <el-form-item prop="agree">
 					<div class="form-input">
 						<el-checkbox v-model="form.agree">
 						</el-checkbox>
 						<span>I have read and agreed the UStutor user registration agreement.
 						</span>
 					</div>
-				</el-form-item>
+				</el-form-item> -->
 				<el-form-item>
 					<div class="form-input">
 						<el-button class="regist-now" @click="regist" type="primary" style="width: 100%">Register Now</el-button>
@@ -71,7 +71,7 @@ export default {
         username: '',
         password: '',
 				repass: '',
-				agree: false,
+				agree: true,
         verify_code: ''
 			},
 			isGetCode: false,
