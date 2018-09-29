@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import regist from '@/pages/regist/email'
+import reset from '@/pages/regist/reset'
 import login from '@/pages/login'
 import main from '@/pages/main'
 import basic from '@/pages/applyProcess/basicInformation'
@@ -86,6 +87,12 @@ export default new Router({
 			path: '/regist',
 			name: 'regist',
 			component: regist
+		},
+		{
+			title: '重置密码',
+			path: '/reset',
+			name: 'reset',
+			component: reset
 		},
 		//Login
 		{

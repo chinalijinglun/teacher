@@ -32,7 +32,6 @@ export const authRegisterPost = form => {
 };
 
 export const authResetpasswordPost = form => {
-  form.usertype = store.state.auth.userType;
   return baseAxios.post('/auth/resetpassword',form).then(resp => {
     store.commit('auth/setUserName', {value: ''});
     store.commit('auth/setAuthorization', {value: ''});
