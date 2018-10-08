@@ -140,9 +140,10 @@
           }))
         }
         if (this.value) {
+          let imgName = this.value.split('/').pop()
           return [{
-            url: this.$baseApiUrl + this.value.url,
-            name: this.value
+            url: this.$baseApiUrl + (this.value.url || this.value),
+            name: imgName
           }]
         }
         return []
