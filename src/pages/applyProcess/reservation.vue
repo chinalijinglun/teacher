@@ -36,7 +36,7 @@
 					</el-radio-group>
 				</div>
 				<el-row class="reservation-time">
-					<el-col :span="3">My suitable time: </el-col>
+					<el-col :span="3">Suitable time:</el-col>
 					<el-col :span="18">
 						<course-date-range
 							ref="courseDateRange"
@@ -127,8 +127,9 @@ export default {
 						state: 10,
 						updated_by: this.userName,
 						updated_at: new Date()
+					}).then(resp => {
+						this.$router.push('/reservation-result')
 					})
-					this.$router.push('/reservation-result')
 				})
 			} else {
 				interviewPutByinterviewid(this.interviewId, {

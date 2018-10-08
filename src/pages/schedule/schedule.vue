@@ -3,7 +3,7 @@
     class="schedule"
     :startDate="startDate" 
     :dateData="dateData.Object" 
-    :firstDay="1"
+    :firstDay="0"
     :onMonthChange="getSchedule"
     mode="week"
   >
@@ -61,6 +61,7 @@ export default {
           id: item.course_schedule_id,
           time: this.$dateFmt(new Date(item.start), 'HH:mm') + '-' + this.$dateFmt(new Date(item.end), 'HH:mm'),
           date: this.$dateFmt(new Date(item.start), 'YYYY-MM-DD'),
+          startTimestamp: new Date(item.start).getTime(),
           start: item.start,
           end: item.end
         }))
@@ -72,6 +73,21 @@ export default {
             ObjectData[item.date] = [{ ...item }]
           }
         })
+
+        
+
+        for(let k in ObjectData) {
+          ObjectData[k] = ObjectData[k].sort(function(t1, t2) {
+            if(t1.startTimestamp>t2.startTimestamp) {
+              return 1
+            } else if(t1.startTimestamp<t2.startTimestamp) {
+              return -1
+            } else {
+              return 0
+            }
+          })
+        }
+
         this.dateData = {
           Array: ArrayData,
           Object: ObjectData

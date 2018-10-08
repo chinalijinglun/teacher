@@ -50,9 +50,9 @@
 					<div class="oprate-lesson">
 						<span class="colo" v-if="item.class_type === 'TROUBLE_CLASS'" @click="reviewReason(item.id)">reason</span>
 						<template v-else>
-							<span class="colo" @click="toRoom(item.id)">Play back </span>
+							<span class="colo" @click="toRoom(item.id)">Replay</span>
 							<span class="colo" @click="goHomework(item.id)">Homework</span>
-							<span class="colo" @click="goEval(item.id)">Class summery</span>
+							<span class="colo" @click="goEval(item.id)">summery</span>
 						</template>
 					</div>
 				</div>
