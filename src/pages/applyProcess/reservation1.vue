@@ -68,8 +68,9 @@ export default {
   },
   created() {
     const teacher_id = this.$store.state.auth.id;
-    this.$store.dispatch("TEACHER_GET_BY_ID", teacher_id);
-    this.getInterviewSchedule()
+    this.$store.dispatch("TEACHER_GET_BY_ID", teacher_id).then(res => {
+      this.getInterviewSchedule()
+    })
   },
   methods: {
     toRoom(id) {

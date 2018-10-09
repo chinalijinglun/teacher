@@ -26,7 +26,7 @@
 					<div class="del" @click="deleteWare(index)">Delete</div>
 					<el-radio-group v-model="item.is_view" class="radio-group">
 						<el-row>
-							<el-radio label="YES">Allow student privew</el-radio>
+							<el-radio label="YES">Allow student preview</el-radio>
 						</el-row>
 						<el-row>
 							<el-radio label="NO">Not allowed</el-radio>

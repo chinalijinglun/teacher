@@ -5,7 +5,7 @@
 				<div class="right_01">
 					<img src="@/assets/dianhua_s.png" class="tel" alt="">
 					<span class="user" v-if="userName">
-						<span>Hi，{{userName}}</span>
+            <span @click="$router.push('/center')">Hi，{{userName}}</span>
 						<span>|</span>
 						<span @click="logout">Logout</span>
 					</span>

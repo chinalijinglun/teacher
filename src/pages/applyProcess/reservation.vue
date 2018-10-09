@@ -35,8 +35,9 @@
 						<el-radio :label="-1">other</el-radio>
 					</el-radio-group>
 				</div>
+				<p class="tips">Interview time cannot be less than 30 minutes, no more than 300 minutes.</p>
 				<el-row class="reservation-time">
-					<el-col :span="3">My suitable time: </el-col>
+					<el-col :span="3">Suitable time:</el-col>
 					<el-col :span="18">
 						<course-date-range
 							ref="courseDateRange"
@@ -127,8 +128,9 @@ export default {
 						state: 10,
 						updated_by: this.userName,
 						updated_at: new Date()
+					}).then(resp => {
+						this.$router.push('/reservation-result')
 					})
-					this.$router.push('/reservation-result')
 				})
 			} else {
 				interviewPutByinterviewid(this.interviewId, {
@@ -159,6 +161,11 @@ export default {
 };
 </script>
 <style scoped>
+.tips {
+	font-size: 12px;
+	color: #999;
+	line-height: 30px;
+}
 .basicinfor {
   width: 1000px;
   min-height: 800px;
