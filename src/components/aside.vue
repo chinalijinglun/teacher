@@ -26,7 +26,13 @@
 					</router-link>
 				</li>
 				<li class="active">
-					<router-link :to="{path: '/common'}">
+					<router-link :to="{path: '/common/contract'}">
+						<img class="imgs" src="@/assets/kecheng_h.png" alt="">
+						<span>My Contract</span>
+					</router-link>
+				</li>
+				<li class="active">
+					<router-link :to="{path: '/common/faq'}">
             <img class="imgs" src="@/assets/wenti01.png" alt="">
             <span>FAQ</span>
 					</router-link>

@@ -1,6 +1,6 @@
 <template>
 	<div class="regist">
-		<div class="main-contain">
+		<div class="main-contain regist-container">
 			<div class="title">
 				<div class="account-registration">
 					Sign up
@@ -12,10 +12,10 @@
 			</div>
 			<el-form label-width="240px" ref="registForm" :rules="rules" :model="form" class="regist-form" :validate-on-rule-change="false">
 				<el-form-item label="mobile" prop="username" ref="mobile" :rules="rules.username">
-					<div class="form-input">
+					<div class="form-input whilt-append">
 						<el-input type="text" v-model="form.username" placeholder="mobile no">
 							<el-select slot="prepend" v-model="form.code" style="width: 150px;">
-								<el-option value="" label="please choose"></el-option>
+								<el-option value="" label="Country code"></el-option>
 								<el-option v-for="(item, index) in $NATIONAL_CODE" :value="item.code" :key="index" :label="item.name"></el-option>
 							</el-select>
 						</el-input>
@@ -179,6 +179,9 @@ export default {
 </script>
 
 <style>
+.whilt-append .el-input-group__prepend {
+	background: #fff;
+}
 .main-contain {
 	width: 830px;
 	border-radius: 10px;
@@ -186,7 +189,7 @@ export default {
 	margin: 80px auto;
 	overflow: hidden;
 }
-.main-contain .title {
+.regist-container .title {
 	padding: 0 30px 0 53px;
 	border-bottom: 1px solid #E8E8E8;
 	overflow: hidden;

@@ -25,6 +25,7 @@ import uploadingCourseware from '@/pages/course/uploadingCourseware'
 import summary from '@/pages/course/summary'
 import report from '@/pages/course/report'
 import common from '@/pages/common/question'
+import commonContract from '@/pages/common/contract'
 import addEvaluate from '@/pages/course/addEvaluate'
 import addResult from '@/pages/course/addResult'
 import viewResult from '@/pages/course/viewResult'
@@ -288,8 +289,13 @@ export default new Router({
 			component: main,
 			children: [
 				{
-					path: '',
+					path: '/common/faq',
 					component: common
+				},
+				{
+					path: '/common/contract',
+					name: 'commonContract',
+					component: commonContract
 				}
 			]
 		}, {

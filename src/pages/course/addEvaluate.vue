@@ -1,10 +1,7 @@
 <template>
 	<div class="add-evaluate">
 		<div class="student-name">
-			ALEX ren
-		</div>
-		<div class="lesson">
-			Lesson 1 Exploring Space and Astronomy
+			Feedback
 		</div>
 		<div class="border"></div>
 		<div class="text-tit">
