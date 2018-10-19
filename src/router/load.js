@@ -16,6 +16,7 @@ function load() {
     authorization,
     id
   } = store.state.auth
+  console.log(authorization, id)
   if(authorization && id) {
     return store.dispatch('TEACHER_GET_BY_ID', id).then( teacher => {
       const {
@@ -48,6 +49,9 @@ function load() {
           return '/reservation-result'
         case 20:
         default:
+          if(!teacher.skype_account) {
+            return '/completeInfo'
+          }
           return true;
       }
     }).catch( error => {

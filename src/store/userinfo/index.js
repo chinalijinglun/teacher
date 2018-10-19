@@ -24,10 +24,6 @@ const mutations = {
 
 const actions = {
   TEACHER_GET_BY_ID({ state, commit }, teacher_id) {
-    if (state.last_id === teacher_id) {
-      return Promise.resolve(state.teacher)
-    }
-    
     return teacherGetBareById(teacher_id).then(res => {
       const teacher = res.data;
       return teacher;
