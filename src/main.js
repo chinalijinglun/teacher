@@ -25,6 +25,29 @@ Vue.prototype.$loginOut = function() {
   router.push('/login');
   store.dispatch('auth/loginOut')
 }
+const whiltPage = [
+  '/login',
+  '/regist',
+  '/reset'
+]
+const needSign = [
+  '/center',
+  '/common/contract'
+]
+
+router.beforeEach((to, from, next) => {
+  if (whiltPage.indexOf(to.path) !== -1) {
+    return next()
+  } else if (needSign.indexOf(to.path) !== -1) {
+    if(store.state.userinfo.teacher.state >= 20) {
+      return next()
+    } else {
+      return next(false)
+    }
+  }
+  return next()
+})
+
 load().then(url => {
   if(url !== true) {
     router.push(url)

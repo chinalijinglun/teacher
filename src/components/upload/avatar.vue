@@ -3,7 +3,7 @@
     <div class="upload-avatar-img" @click="choseFile">
       <img :src="viewImg" alt=""/>
     </div>
-    <p class="tips">Please select picture</p>
+    <p class="tips">Please select picture,support format: png/jpg/gif, file less than 5M</p>
     <el-input class="hidden-input" :value="value"></el-input>
   </div>
 </template>

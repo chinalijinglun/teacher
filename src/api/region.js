@@ -11,7 +11,10 @@ export const regionGetById = (id) => baseAxios.get(`/api/v1/region/${id}`);
 
 export const regionPutById = (id, form) => baseAxios.put(`/api/v1/region/${id}`, form);
 
-export const regionBareGet = (params, others) => baseAxios.get('/api/v1/_bare/region', { params: { q: JSON.stringify(params), page: 1, results_per_page: 1000, ...others } });
+export const regionBareGet = (params, others) => {
+  params.order_by = [{"field": 'name', "direction": 'asc'}]
+  return baseAxios.get('/api/v1/_bare/region', { params: { q: JSON.stringify(params), page: 1, results_per_page: 1000, ...others } })
+};
 
 export const regionBareGetById = (id) => baseAxios.get(`/api/v1/_bare/region/${id}`);
 

@@ -5,7 +5,7 @@
 				<div class="right_01">
 					<img src="@/assets/dianhua_s.png" class="tel" alt="">
 					<span class="user" v-if="userName">
-            <span @click="$router.push('/center')">Hi，{{userName}}</span>
+            <span @click="$router.push('/center')">Hi，{{teacher | teacherName}}</span>
 						<span>|</span>
 						<span @click="logout">Logout</span>
 					</span>
@@ -75,7 +75,8 @@ export default {
 	name: "headers",
 	computed: {
 		...mapState({
-			userName: state=>state.auth.userName
+			userName: state=>state.auth.userName,
+      teacher: state => state.userinfo.teacher
 		})
 	},
   data() {
