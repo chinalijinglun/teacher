@@ -9,7 +9,7 @@
 		</div>
 		<div class="soon-come">
 			<div class="title">
-				<span class="title-title">The course starts soon.</span>
+				<span class="title-title">Upcoming class</span>
 				<span @click="$router.push('/course')" class="title-more">More >></span>
 			</div>
 			<div class="soon-stage">
@@ -37,7 +37,7 @@
 		</div>
 		<div class="soon-stage soon-come">
 			<div class="title">
-				<span class="title-title">Homework to be checked</span>
+				<span class="title-title">Checking Homework</span>
 				<span @click="$router.push('/course')" class="title-more">More >></span>
 			</div>
 			<div class="soon-stage">

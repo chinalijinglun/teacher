@@ -91,7 +91,7 @@
         <el-form-item prop="agree">
           <div class="form-input">
             <el-checkbox v-model="agree">
-              <span>I agree that all the info i have given is accurate</span>
+              <span>I agree that all the info I have given is accurate</span>
             </el-checkbox>
           </div>
         </el-form-item>

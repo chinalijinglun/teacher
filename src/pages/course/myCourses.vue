@@ -25,11 +25,11 @@
 		<div class="tables">
 			<div class="tits">
 				<ul>
-					<li class="course-name">Name of course pack</li>
-					<li class="process">Syllabus</li>
+					<li class="course-name">Course Pack</li>
+					<li class="process">Class taught/ Total classes</li>
 					<li class="student">Student</li>
 					<li class="state">Status</li>
-					<li class="oprate">Operate</li>
+					<li class="oprate">Operation</li>
 				</ul>
 			</div>
 			<div class="list-table" v-for="(item, index) in tableData" :key="index">
