@@ -60,8 +60,8 @@
             const day = this.$dateFmt(v.date, 'YYYY-MM-DD');
             const start = this.$dateFmt(v.timeRange[0], 'HH:mm:ss');
             const end = this.$dateFmt(v.timeRange[1], 'HH:mm:ss');
-            this.$emit('update:startDate', new Date(day+' '+start));
-            this.$emit('update:endDate', new Date(day+' '+end));
+            this.$emit('update:startDate', this.$getISOString(new Date(day+' '+start)));
+            this.$emit('update:endDate', this.$getISOString(new Date(day+' '+end)));
           } else {
             this.$emit('update:startDate', '');
             this.$emit('update:endDate', '');

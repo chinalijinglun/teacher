@@ -30,7 +30,7 @@
 		<div class="dp-tit dp-h">
 			Comment of homework
 		</div>
-		<vue-editor v-model="content"></vue-editor>
+		<vue-editor useCustomImageHandler @imageAdded="handleImageAdded" v-model="content" ></vue-editor>
 		<div class="btn">
 			<div class="submit" @click="submit">
 				Submit
@@ -42,7 +42,7 @@
 	</div>
 </template>
 <script>
-import { VueEditor } from "vue2-editor";
+import VueEditor from '@/components/form/vueEditor';
 import { homeworkGetByhomeworkid, homeworkPutByhomeworkid } from '@/api/homework';
 import { studyScheduleBareGetById } from '@/api/study_schedule'
 import { studentBareGetById } from '@/api/student';

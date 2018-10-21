@@ -23,6 +23,19 @@ function dateFmt(date, fmt = DATE_FMT_DEFAULT){
   return window.moment(innerDate).format(fmt);
 }
 
+/**
+ * 
+ * @param {Date} date 
+ */
+function getISOString (date = new Date()) {
+  const timezone = store.state.userinfo.teacher.timezone;
+  if (!timezone) {
+    return date.toISOString()
+  }
+  const tzTime = moment.tz(moment(date).format('YYYY-MM-DD HH:mm:ss'), timezone)
+  return tzTime.toISOString()
+}
+
 function dateFactory() {
   const date = new Date(...arguments);
 
@@ -75,6 +88,7 @@ function dateFactory() {
 export {
   dateFmt,
   dateFactory,
+  getISOString,
   DATE_FMT_DEFAULT,
   DATE_NO_TIME_FMT
 };

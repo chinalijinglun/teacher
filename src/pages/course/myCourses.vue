@@ -100,7 +100,25 @@ export default {
 			this.query();
 		},
 		query() {
-			return teacherMyCourse(this.$deleteEmptyProps(this.form)).then(resp => {
+			let {
+				course_name,
+				course_status,
+				course_time,
+				page_limit,
+				page_no,
+				student_name
+			} = this.form;
+			if (course_time && course_time instanceof Date) {
+				course_time = this.$getISOString(course_time)
+			}
+			return teacherMyCourse(this.$deleteEmptyProps({
+				course_name,
+				course_status,
+				course_time,
+				page_limit,
+				page_no,
+				student_name
+			})).then(resp => {
 				this.tableData = resp.data.objects;
 				this.total = resp.data.num_results;
 			})

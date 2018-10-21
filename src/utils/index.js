@@ -2,7 +2,8 @@ import {
   DATE_FMT_DEFAULT,
   DATE_NO_TIME_FMT,
   dateFmt,
-  dateFactory
+  dateFactory,
+  getISOString
 } from './date';
 import {
   axios,
@@ -85,6 +86,7 @@ const install = (Vue) => {
   Vue.prototype.$setSession = setSession;
   Vue.prototype.$getSession = getSession;
   Vue.prototype.$deleteSession = deleteSession;
+  Vue.prototype.$getISOString = getISOString;
 
   // enum start
   // 有效状态
