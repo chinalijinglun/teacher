@@ -17,7 +17,8 @@ function dateFmt(date, fmt = DATE_FMT_DEFAULT){
 
   const timezone = store.state.userinfo.teacher.timezone;
   if(timezone) {
-    return window.moment(innerDate).tz(timezone).format(fmt);
+    const timezoneStr = timezone.split(' ')[0]
+    return window.moment(innerDate).tz(timezoneStr).format(fmt);
   }
 
   return window.moment(innerDate).format(fmt);
