@@ -14,7 +14,7 @@
                 <li class="student">Student</li>
                 <li class="performance">Performance in class</li>
                 <li class="list-time">Time</li>
-                <li class="oprate">Operate</li>
+                <li class="oprate">Operation</li>
             </ul>
             <div class="list">
                 <ul v-for="(item, index) in tableData" :key="index">
@@ -23,7 +23,7 @@
                     <li class="list-time">{{item.created_at || '——'}}</li>
                     <li class="oprate">
                         <span v-if="!item.overall" @click="dianPing(item.id)">comment</span>
-                        <span v-else @click="$router.push(`/view-evaluate?id=${item.id}`)">See</span>
+                        <span v-else @click="$router.push(`/view-evaluate?id=${item.id}`)">Review</span>
                     </li>
                 </ul>
             </div>

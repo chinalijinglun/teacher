@@ -24,7 +24,7 @@
 						<th width="220">Time for interview</th>
 						<th width="120">Interviwer</th>
 						<th>
-							Operate
+							Operation
 						</th>
 					</tr>
 				</thead>

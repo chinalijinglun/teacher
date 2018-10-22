@@ -25,11 +25,11 @@
 		<div class="tables">
 			<div class="tits">
 				<ul>
-					<li class="course-name">Name of course pack</li>
-					<li class="process">Syllabus</li>
+					<li class="course-name">Course Pack</li>
+					<li class="process">Class taught/ Total classes</li>
 					<li class="student">Student</li>
 					<li class="state">Status</li>
-					<li class="oprate">Operate</li>
+					<li class="oprate">Operation</li>
 				</ul>
 			</div>
 			<div class="list-table" v-for="(item, index) in tableData" :key="index">
@@ -100,7 +100,25 @@ export default {
 			this.query();
 		},
 		query() {
-			return teacherMyCourse(this.$deleteEmptyProps(this.form)).then(resp => {
+			let {
+				course_name,
+				course_status,
+				course_time,
+				page_limit,
+				page_no,
+				student_name
+			} = this.form;
+			if (course_time && course_time instanceof Date) {
+				course_time = this.$getISOString(course_time)
+			}
+			return teacherMyCourse(this.$deleteEmptyProps({
+				course_name,
+				course_status,
+				course_time,
+				page_limit,
+				page_no,
+				student_name
+			})).then(resp => {
 				this.tableData = resp.data.objects;
 				this.total = resp.data.num_results;
 			})
@@ -151,11 +169,11 @@ li {
   color: #333333;
 }
 .course-name {
-  width: 256px;
+  width: 200px;
   text-align: left;
 }
 .process {
-  width: 118px;
+  width: 180px;
 }
 .student,
 .state {    

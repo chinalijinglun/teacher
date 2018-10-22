@@ -56,7 +56,7 @@
 	</div>
 </template>
 <script>
-import { VueEditor } from "vue2-editor";
+import VueEditor from '@/components/form/vueEditor';
 import { mapState } from 'vuex';
 import CourseSummary, {
   GRADE_ENUMS
@@ -99,8 +99,8 @@ export default {
   methods: {
     submit() {
       this.form.evaluation = JSON.stringify(this.summary)
-      this.form.start = this.timeRange[0];
-      this.form.end = this.timeRange[1];
+      this.form.start = this.$getISOString(this.timeRange[0]);
+      this.form.end = this.$getISOString(this.timeRange[1]);
       courseSummaryAdd(this.form).then(resp => {
         this.$message.success('添加成功！');
         this.goback();

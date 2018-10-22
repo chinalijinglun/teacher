@@ -18,13 +18,13 @@
 			<div class="tab-bars">
 				<ul>
 					<li>
-						<router-link :to="{path: '/finish-course', query: {'id': this.$route.query.id}}">Completed course</router-link>
+						<router-link :to="{path: '/finish-course', query: {'id': this.$route.query.id}}">Classes finished</router-link>
 					</li>
 					<li>
-						<router-link :to="{path: '/dated-course', query: {'id': this.$route.query.id}}">Booked course</router-link>
+						<router-link :to="{path: '/dated-course', query: {'id': this.$route.query.id}}">Casses booked</router-link>
 					</li>
 					<li>
-						<router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">Class summery</router-link>
+						<router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">Assessment</router-link>
 					</li>
 					<li>
 						<router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">Transcripts</router-link>
@@ -37,7 +37,7 @@
 			<div class="table-tit">
 				<div class="course-name">Student</div>
 				<div class="state">Time</div>
-				<div class="oparet">Operate</div>
+				<div class="oparet">Operation</div>
 			</div>
 			<div class="box" v-for="item in tableData" :key="item.id">
 				<div class="student">
@@ -49,7 +49,7 @@
 							{{item.start | courseTime(item.end)}}
 						</div>
 						<div class="check">
-							<span @click="$router.push(`/view-result?id=${item.id}`)">See</span>
+							<span @click="$router.push(`/view-result?id=${item.id}`)">Review</span>
 						</div>
 					</div>
 				</div>

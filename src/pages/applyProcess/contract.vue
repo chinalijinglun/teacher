@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     sign() {
-      this.confirmShow = true;
+      this.submit()
     },
     submit() {
       teacherPutByTeacherid(this.id, {

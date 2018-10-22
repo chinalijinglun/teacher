@@ -18,13 +18,13 @@
 			<div class="tab-bars">
 				<ul>
 					<li>
-						<router-link :to="{path: '/finish-course', query: {'id': this.$route.query.id}}">Completed course</router-link>
+						<router-link :to="{path: '/finish-course', query: {'id': this.$route.query.id}}">Classes finished</router-link>
 					</li>
 					<li>
-						<router-link :to="{path: '/dated-course', query: {'id': this.$route.query.id}}">Booked course</router-link>
+						<router-link :to="{path: '/dated-course', query: {'id': this.$route.query.id}}">Classes booked</router-link>
 					</li>
 					<li>
-						<router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">Class summery</router-link>
+						<router-link :to="{path: '/summary', query: {'id': this.$route.query.id}}">Assessment</router-link>
 					</li>
 					<li>
 						<router-link :to="{path: '/report', query: {'id': this.$route.query.id}}">Transcripts</router-link>
@@ -38,14 +38,14 @@
 				<div class="course-name">Student</div>
 				<div class="state">Transcripts name</div>
 				<div class="timer">Time</div>
-				<div class="oparet">Operate</div>
+				<div class="oparet">Operation</div>
 			</div>
 			<div class="list" v-for="item in tableData" :key="item.id">
 				<div class="course-name">{{item.student_name}}</div>
 				<div class="state">{{item.report_card_name}}</div>
 				<div class="timer">{{course.course_times}}</div>
 				<div class="oparet">
-          <a :href="$baseApiUrl + item.report_card_url.url" target="block">See</a>
+          <a :href="$baseApiUrl + item.report_card_url.url" target="block">Review</a>
 					<span @click="deleteReport(item.id)">Delete</span>
 				</div>
 			</div>

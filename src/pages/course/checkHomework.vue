@@ -21,9 +21,9 @@
 				<div class="table-tit">
 					<ul>
 						<li class="student">Student</li>
-						<li class="homework-name">Name the homework</li>
+						<li class="homework-name">Title</li>
 						<li class="times">Time</li>
-						<li class="oprate">Operate</li>
+						<li class="oprate">Operation</li>
 					</ul>
 				</div>
 				<div class="list">

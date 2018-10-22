@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import { VueEditor } from "vue2-editor";
+import VueEditor from '@/components/form/vueEditor';
 import TeacherEvaluate, {
   OVERALL_ENUM,
   INTERACTION_ENUM,

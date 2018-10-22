@@ -16,9 +16,9 @@
 			<div class="table">
 				<div class="tab-tit">
 					<ul>
-						<li class="homework-name">homework title</li>
+						<li class="homework-name">Title</li>
 						<li class="time">Time</li>
-						<li class="oprate">Operate</li>
+						<li class="oprate">Operation</li>
 					</ul>
 				</div>
 				<div class="line" v-for="item in tableData" :key="item.id">
@@ -29,7 +29,7 @@
 						{{item.created_at | noTime}}
 					</div>
 					<div class="oprate">
-						<span @click="goDetail(item.id)">See</span>
+						<span @click="goDetail(item.id)">Review</span>
 						<span @click="toDelete(item.id)">Delete</span>
 					</div>
 				</div>

@@ -8,9 +8,9 @@
 			<div class="tits">
 				<ul>
 					<li class="li1">#</li>
-					<li class="li2">Time for class(Current time zone: {{timezone}})</li>
+					<li class="li2">Classes period(Current time zone: {{timezone}})</li>
 					<li class="li3">Student</li>
-					<li class="li4">Operate</li>
+					<li class="li4">Operation</li>
 				</ul>
 			</div>
 			<div class="list-table" v-for="(item, index) in tableData" :key="index">

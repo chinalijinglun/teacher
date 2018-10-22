@@ -48,7 +48,7 @@
 </template>  
   
 <script>
-import { VueEditor } from "vue2-editor";
+import VueEditor from '@/components/form/vueEditor';
 import {
   createHomework
 } from '@/api/teacher'

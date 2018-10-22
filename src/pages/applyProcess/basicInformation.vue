@@ -128,7 +128,7 @@
     </el-form>
   </div>
 	<div class="next-btn">
-    <el-button type="primary" @click="continues">Continue</el-button>
+    <el-button type="primary" @click="continues">Next</el-button>
 	</div>
   <educations :visible.sync="educationsShow" @on-sure="getEducation" @on-close="cleanCur" :cur-row="curEducation"></educations>
 </div>
