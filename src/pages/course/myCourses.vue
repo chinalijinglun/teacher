@@ -169,11 +169,11 @@ li {
   color: #333333;
 }
 .course-name {
-  width: 256px;
+  width: 200px;
   text-align: left;
 }
 .process {
-  width: 118px;
+  width: 180px;
 }
 .student,
 .state {    
