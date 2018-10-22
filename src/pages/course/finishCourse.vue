@@ -2,13 +2,13 @@
 	<div class="finish-course">
 		<div class="top-title">
 			<div class="first-line">
-				<div class="left">
+				<div>
 					{{course.course_name}}
 				</div>
-				<div class="right">
+				<div>
 					<span class="study-time">Time for class（Current time zone: {{timezone}}）：{{course.course_times}}</span>
-					<span>rate of progress：{{course.course_progress}}</span>
 				</div>
+        <p>rate of progress：{{course.course_progress}}</p>
 			</div>
 			<div class="bottom-line">
 				{{course.student_name}}

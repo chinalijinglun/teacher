@@ -3,6 +3,9 @@
 		<div class="main-body">
 			<div class="title">{{course.course_name}}</div>
 			<div class="time">{{course.course_times}}</div>
+      <div class="bottom-line">
+        {{course.student_name}}
+      </div>
 			<div class="home-work-name"><img src="../../assets/dian_01.png" alt=""> {{homeworkInfo.question_name || '作业名称'}}</div>
 			<div class="desc" v-html="homeworkInfo.question_text"></div>
 			<div class="dowmload">
@@ -245,5 +248,10 @@ li {
 }
 .left a:active{
   color: #ff8200;
+}
+.bottom-line {
+  margin-top: 11px;
+  font-size: 14px;
+  color: #333333;
 }
 </style>

@@ -6,6 +6,9 @@
 					<span class="left">{{course.course_name}}</span>
 					<span class="right" @click="goBack"><img src="../../assets/fanhui.png" alt=""> Return</span>
 				</div>
+        <div class="bottom-line">
+          {{course.student_name}}
+        </div>
 				<div class="mid">
 					{{course.course_times}}
 				</div>
@@ -233,5 +236,10 @@ li {
 }
 .line div:last-child {
   border: none;
+}
+.bottom-line {
+  margin-top: 11px;
+  font-size: 14px;
+  color: #333333;
 }
 </style>

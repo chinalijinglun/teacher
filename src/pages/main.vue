@@ -25,5 +25,6 @@ export default {
   margin: 0 auto;
   overflow: hidden;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 </style>
