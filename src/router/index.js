@@ -261,7 +261,7 @@ export default new Router({
 				}
 			]
 		}, {
-			title: 'Class summery',
+			title: 'Class summary',
 			path: '/summary',
 			name: 'summary',
 			component: main,

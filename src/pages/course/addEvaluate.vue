@@ -20,7 +20,7 @@
 		</div>
 		<vue-editor v-model="evaluate.completion_status.text"></vue-editor>
 		<div class="stat">
-			Performance in class:
+			Performance:
 		</div>
 		<div class="overall">
 			<span class="word">Overall:</span>

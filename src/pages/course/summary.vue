@@ -7,7 +7,7 @@
 				</div>
 				<div class="right">
 					<span class="study-time">Time for class：{{course.course_times}}</span>
-					<span>rate of progress：{{course.course_progress}}</span>
+					<span>progress：{{course.course_progress}}</span>
 				</div>
 			</div>
 			<div class="bottom-line">
@@ -32,7 +32,7 @@
 				</ul>
 			</div>
 			<div class="add-report" @click="addSumm">
-				<img src="@/assets/shangchuan.png" alt=""> Add class summery
+				<img src="@/assets/shangchuan.png" alt=""> Add a new report
 			</div>
 			<div class="table-tit">
 				<div class="course-name">Student</div>

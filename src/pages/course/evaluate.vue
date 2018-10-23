@@ -12,17 +12,17 @@
         <div class="table">
             <ul class="list-tit">
                 <li class="student">Student</li>
-                <li class="performance">Performance in class</li>
+                <li class="performance">Performance</li>
                 <li class="list-time">Time</li>
                 <li class="oprate">Operation</li>
             </ul>
             <div class="list">
                 <ul v-for="(item, index) in tableData" :key="index">
                     <li class="student">{{item.student_name}}</li>
-                    <li class="performance">{{item.overall || 'wait comment'}}</li>
-                    <li class="list-time">{{item.created_at || '——'}}</li>
+                    <li class="performance">{{item.overall || 'Waiting Feedback'}}</li>
+                    <li class="list-time">{{item.created_at | hasTime}}</li>
                     <li class="oprate">
-                        <span v-if="!item.overall" @click="dianPing(item.id)">comment</span>
+                        <span v-if="!item.overall" @click="dianPing(item.id)">Feedback</span>
                         <span v-else @click="$router.push(`/view-evaluate?id=${item.id}`)">Review</span>
                     </li>
                 </ul>

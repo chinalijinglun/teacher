@@ -8,7 +8,7 @@
 				<div>
 					<span class="study-time">Time for class（Current time zone: {{timezone}}）：{{course.course_times}}</span>
 				</div>
-        <p>rate of progress：{{course.course_progress}}</p>
+        <p>progress：{{course.course_progress}}</p>
 			</div>
 			<div class="bottom-line">
 				{{course.student_name}}
@@ -52,7 +52,7 @@
 						<template v-else>
 							<span class="colo" @click="toRoom(item.id)">Playback</span>
 							<span class="colo" @click="goHomework(item.id)">Homework</span>
-							<span class="colo" @click="goEval(item.id)">summery</span>
+							<span class="colo" @click="goEval(item.id)">summary</span>
 						</template>
 					</div>
 				</div>

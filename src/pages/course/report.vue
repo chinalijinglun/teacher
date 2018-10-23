@@ -7,7 +7,7 @@
 				</div>
 				<div class="right">
 					<span class="study-time">Time for class：{{course.course_times}}</span>
-					<span>rate of progress：{{course.course_progress}}</span>
+					<span>progress：{{course.course_progress}}</span>
 				</div>
 			</div>
 			<div class="bottom-line">

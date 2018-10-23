@@ -115,10 +115,8 @@
 			},
 			viewHomework(item) {
 				this.$router.push({
-					path: '/check-homework',
+					path: '/comment',
 					query: {
-						course_id: item.course_id,
-						course_schedule_id: item.course_schedule_id,
 						id: item.id
 					}
 				})

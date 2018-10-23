@@ -5,7 +5,7 @@
 			<span class="class-time">Time for class：{{course.course_times}}</span>
 		</div>
 		<div class="time">
-			<span class="demonstration">Period summery：</span>
+			<span class="demonstration">Period：</span>
 			<el-date-picker type="daterange" v-model="timeRange" range-separator="-" start-placeholder="Start time" end-placeholder="End time">
 			</el-date-picker>
 		</div>
