@@ -1786,7 +1786,7 @@ export const COURSE_APPOINTMENT_STATE_ENUM = {
 }
 
 export const COURSE_SCHEDULE_STATE_ENUM = {
-  'COMMON_CLASS': 'Normal class',
+  'COMMON_CLASS': 'As Scheduled',
   'CANCEL': 'Cancel',
   'TROUBLE_CLASS': 'Problematic classs',
   'MAKE_UP_CLASS': 'Compensatory class'

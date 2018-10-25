@@ -25,11 +25,11 @@ class Performace {
 }
 
 const OVERALL_ENUM = {
-  'Greade A': 'Greade A',
-  'Greade B': 'Greade B',
-  'Greade C': 'Greade C',
-  'Greade D': 'Greade D',
-  'Greade E': 'Greade E'
+  'Grade A': 'Grade A',
+  'Grade B': 'Grade B',
+  'Grade C': 'Grade C',
+  'Grade D': 'Grade D',
+  'Grade E': 'Grade E'
 }
 const ATTITUDE_ENUM = {
   'Excellent': 'Excellent',

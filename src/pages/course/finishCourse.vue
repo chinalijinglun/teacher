@@ -52,7 +52,7 @@
 						<template v-else>
 							<span class="colo" @click="toRoom(item.id)">Playback</span>
 							<span class="colo" @click="goHomework(item.id)">Homework</span>
-							<span class="colo" @click="goEval(item.id)">summary</span>
+							<span class="colo" @click="goEval(item.id)">Feedback</span>
 						</template>
 					</div>
 				</div>
