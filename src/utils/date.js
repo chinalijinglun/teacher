@@ -33,7 +33,8 @@ function getISOString (date = new Date()) {
   if (!timezone) {
     return date.toISOString()
   }
-  const tzTime = moment.tz(moment(date).format('YYYY-MM-DD HH:mm:ss'), timezone)
+  const timezoneStr = timezone.split(' ')[0]
+  const tzTime = moment.tz(moment(date).format('YYYY-MM-DD HH:mm:ss'), timezoneStr)
   return tzTime.toISOString()
 }
 
