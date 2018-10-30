@@ -57,6 +57,7 @@ export default {
   height: 600px;
   background: url("../assets/bj01.jpg") no-repeat;
   position: relative;
+  background-size: cover;
 }
 .login-box {
   width: 370px;

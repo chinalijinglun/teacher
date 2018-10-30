@@ -14,7 +14,7 @@
 					<div class="detail">
 						<div class="names">{{item.name}} </div>
 						<div class="down-btn">
-							<a :href="$baseApiUrl+item.url" :download="item.name">Download the attachments</a>
+							<a :href="$baseApiUrl+item.url" :download="item.name" target="_blank">Download the attachments</a>
 						</div>
 					</div>
 				</div>

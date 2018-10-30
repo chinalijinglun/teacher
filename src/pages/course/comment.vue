@@ -12,7 +12,7 @@
 				<img src="../../assets/fujian.png" alt="">
 				<div class="detail">
 					<div class="names">{{item.upload_file}}</div>
-					<div class="down-btn"><a :href="item.download_file" target="block">Download the attachments</a></div>
+					<div class="down-btn"><a :href="$baseApiUrl + item.download_file" target="block">Download the attachments</a></div>
 				</div>
 			</div>
 		</div>
