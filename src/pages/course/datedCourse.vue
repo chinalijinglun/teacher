@@ -38,7 +38,7 @@
 			</div>
 			<div class="table-list" v-for="(item, index) in tableData" :key="index">
 				<div class="list-tit">
-					<span>Classes period（Current time zone: {{timezone}}）：{{$getCourseScheduleTime(item.start, item.end)}}</span>
+					<span>Classes period（Current time zone: {{$TIME_ZONE[teacher.timezone]}}）：{{$getCourseScheduleTime(item.start, item.end)}}</span>
 				</div>
 				<div class="list-detail">
 					<div class="lesson-name">

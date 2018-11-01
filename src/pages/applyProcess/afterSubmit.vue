@@ -50,7 +50,7 @@
       </ul>
       <ul>
         <li class="info-li1"><em>*</em> Time Zone</li>
-        <li class="info-li2">{{teacher.timezone}}</li>
+        <li class="info-li2">{{$TIME_ZONE[teacher.timezone]}}</li>
       </ul>
       <!-- <ul>
         <li class="info-li1"><em>*</em> Education Background</li>

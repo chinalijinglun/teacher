@@ -83,7 +83,7 @@
       <el-row :gutter="40">
         <el-col :span="6">
           <el-form-item label="Time Zone" prop="timezone">
-            <el-select v-model="form.timezone">
+            <el-select v-model="form.timezone" filterable>
               <el-option v-for="(item, key) in $TIME_ZONE" :value="key" :key="key" :label="item"></el-option>
             </el-select>
           </el-form-item>
