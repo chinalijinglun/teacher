@@ -141,7 +141,7 @@ export default {
 					updated_by: this.userName,
 					updated_at: new Date()
 				}).then(resp => {
-					this.$message.success('回复成功！');
+					this.$message.success('Submitted successfully, please wait for confirmation！');
 				})
 			}
 		},
