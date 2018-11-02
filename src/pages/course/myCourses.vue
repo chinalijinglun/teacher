@@ -34,7 +34,7 @@
 			</div>
 			<div class="list-table" v-for="(item, index) in tableData" :key="index">
 				<div class="list-states">
-					<span>Classes period（Current time zone: {{$TIME_ZONE[timezone]}}）：{{ item.start | courseTime(item.end)}}</span>
+					<span>Classes period（Current time zone: {{$TIME_ZONE[timezone] || timezone}}）：{{ item.start | courseTime(item.end)}}</span>
 				</div>
 				<ul>
 					<li class="course-name">{{item.course_name}}</li>
