@@ -27,7 +27,7 @@
 					Please select a suitable time for an interview: 
 				</h4>
 				<h4>
-					Your Time Zone：{{$TIME_ZONE[teacher.timezone]}}
+					Your Time Zone：{{$TIME_ZONE[timezone]}}
 				</h4>
 				<div class="reservation-span">
 					<el-radio-group v-model="form.timeRadio">

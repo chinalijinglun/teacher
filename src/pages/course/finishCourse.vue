@@ -6,7 +6,7 @@
 					{{course.course_name}}
 				</div>
 				<div>
-					<span class="study-time">Time for class（Current time zone: {{$TIME_ZONE[teacher.timezone]}}）：{{course.course_times}}</span>
+					<span class="study-time">Time for class（Current time zone: {{$TIME_ZONE[timezone]}}）：{{course.course_times}}</span>
 				</div>
         <p>progress：{{course.course_progress}}</p>
 			</div>
@@ -38,7 +38,7 @@
 			</div>
 			<div class="table-list" v-for="item in tableData" :key="item.id">
 				<div class="list-tit">
-					<span>Time for class（Current time zone: {{$TIME_ZONE[teacher.timezone]}}）：{{item.start | courseScheduleTime(item.end)}}</span>
+					<span>Time for class（Current time zone: {{$TIME_ZONE[timezone]}}）：{{item.start | courseScheduleTime(item.end)}}</span>
 				</div>
 				<div class="list-detail">
 					<div class="lesson-name">

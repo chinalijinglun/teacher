@@ -8,7 +8,7 @@
 			<div class="tits">
 				<ul>
 					<li class="li1">#</li>
-					<li class="li2">Classes period(Current time zone: {{$TIME_ZONE[teacher.timezone]}})</li>
+					<li class="li2">Classes period(Current time zone: {{$TIME_ZONE[timezone]}})</li>
 					<li class="li3">Student</li>
 					<li class="li4">Operation</li>
 				</ul>
