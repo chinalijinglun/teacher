@@ -1,7 +1,7 @@
 <template>
 <el-dialog :visible.sync="dialogVisible" @open="handlerOpen" @close="handlerClose" class="ms-dialog no-head" :show-close="false">
-  <div class="dialog-body">
-    <el-form label-position="top" :model="form" :rules="rules" ref="educationForm">
+  <div class="dialog-body"> <!-- :rules="rules" -->
+    <el-form label-position="top" :model="form" ref="educationForm">
       <el-form-item label="Degree" prop="degree">
         <el-select v-model="form.degree">
           <el-option value="BA" label="BA"></el-option>

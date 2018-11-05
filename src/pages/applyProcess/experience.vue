@@ -36,7 +36,7 @@
         </el-row>
         <el-row :gutter="40">
           <el-col :span="12">
-            <el-form-item label=" State(s) where you have taught" prop="cur_province">
+            <el-form-item label="State(s) where you have taught" prop="cur_province">
               <el-select v-model="form.cur_province">
                 <el-option v-for="(item, index) in provinceLs" :value="item.id" :key="index" :label="item.name"></el-option>
               </el-select>
@@ -165,25 +165,25 @@ export default {
         cur_school: [
           {required: true, trigger: 'blur', message: 'current school is required!'}
         ],
-        cur_country: [
-          {required: true, trigger: 'change', message: 'Geographical region is required!'}
-        ],
-        cur_province: [
-          {required: true, trigger: 'change', message: 'Geographical State is required!'}
-        ],
-        subject: [
-          {required: true, trigger: 'change', message: 'Current Teaching Academic Subject is required!'},
-          {validator: curSubjectValid}
-        ],
+        // cur_country: [
+        //   {required: true, trigger: 'change', message: 'Geographical region is required!'}
+        // ],
+        // cur_province: [
+        //   {required: true, trigger: 'change', message: 'Geographical State is required!'}
+        // ],
+        // subject: [
+        //   {required: true, trigger: 'change', message: 'Current Teaching Academic Subject is required!'},
+        //   {validator: curSubjectValid}
+        // ],
         teacher_age: [
           {required: true, trigger: 'blur', message: 'Total Teaching Years is required!'}
         ],
         resume_url: [
           {required: true, trigger: 'change', message: 'Current Resume is required!'}
         ],
-        seniority_url: [
-          {required: true, trigger: 'change', message: 'Credentials is required!'}
-        ],
+        // seniority_url: [
+        //   {required: true, trigger: 'change', message: 'Credentials is required!'}
+        // ],
         qualified_objects: [
           {validator: otherSubjectValid}
         ]

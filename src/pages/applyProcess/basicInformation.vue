@@ -4,6 +4,11 @@
     <step :steps="steps"></step>
   </div>
   <div class="basic-main">
+    <div>
+      <p>
+        You are welcomed to join us, it may take you 10 minutes to fill out the following Basic Info (at least the required part <br/>with <span style="color: #f56c6c;">*</span>, once you get hired please finish the non-required part as the information is all helpful to assign the student to you) and please make sure to confirm the time to attend interview. 
+      </p>
+    </div>
     <el-form label-position="top" :model="form" :rules="rules" ref="basicForm">
       <el-form-item label="Portraits" prop="avatar">
         <avatar-upload v-model="form.avatar"></avatar-upload>
@@ -178,9 +183,9 @@ export default {
         education_history: ''
       },
       rules: {
-        avatar: [
-          {required: true, trigger: 'change'}
-        ],
+        // avatar: [
+        //   {required: true, trigger: 'change'}
+        // ],
         first_name: [
           {required: true, trigger: 'blur'}
         ],
@@ -206,16 +211,17 @@ export default {
         city: [
           {required: true, trigger: 'change'}
         ],
-        street: [
-          {required: true, trigger: 'blur'}
-        ],
+        // street: [
+        //   {required: true, trigger: 'blur'}
+        // ],
         timezone: [
           {required: true, trigger: 'change'}
-        ],
-        education_history: [
-          {required: true, message: 'The Education Background is required', trigger: 'change'},
-          {validator: emptyJSONStr, trigger: 'change'}
         ]
+        // ,
+        // education_history: [
+        //   {required: true, message: 'The Education Background is required', trigger: 'change'},
+        //   {validator: emptyJSONStr, trigger: 'change'}
+        // ]
       },
       countryLs: [],
       stateLs: [],

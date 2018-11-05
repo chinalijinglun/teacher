@@ -181,9 +181,9 @@ export default {
         education_history: ''
       },
       rules: {
-        avatar: [
-          {required: true, trigger: 'change'}
-        ],
+        // avatar: [
+        //   {required: true, trigger: 'change'}
+        // ],
         first_name: [
           {required: true, trigger: 'blur'}
         ],
@@ -209,16 +209,17 @@ export default {
         city: [
           {required: true, trigger: 'change'}
         ],
-        street: [
-          {required: true, trigger: 'blur'}
-        ],
+        // street: [
+        //   {required: true, trigger: 'blur'}
+        // ],
         timezone: [
           {required: true, trigger: 'change'}
-        ],
-        education_history: [
-          {required: true, message: 'The Education Background is required', trigger: 'change'},
-          {validator: emptyJSONStr, trigger: 'change'}
         ]
+        // ,
+        // education_history: [
+        //   {required: true, message: 'The Education Background is required', trigger: 'change'},
+        //   {validator: emptyJSONStr, trigger: 'change'}
+        // ]
       },
       countryLs: [],
       stateLs: [],

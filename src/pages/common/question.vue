@@ -61,7 +61,10 @@ students majoring in education and with some type of teaching experience.</p>
                 <img src="@/assets/A.png" alt="">
                 <div class="detail">
                     <p>A desktop or a laptop with a webcam (for now our platform does not work on phones or tablets).</p>
-                    <p>Chrome browser</p>
+                    <p>
+                        Firefox or Internet Explorer is highly recommended <br/>
+                        Our online education platform currently does not support phones or tablets.
+                    </p>
                     <p>ABOUT TEACHING</p>
                 </div>
             </div>

@@ -15,11 +15,13 @@
 		<div class="basic-main reservation">
 			<small>
 				Dear {{teacher | teacherName}},<br/> 
-				Greetings from UStutor,we have recieved your resume, and hope you to have an interview.<br/> 
-				Could you tell me if you could attend the interview on time? If not, tell me the suitable time for you.<br/> 
-				I'm looking forward to your reply asap.<br/> 
-				Best regards.<br/>
-				UStutor<br/>
+				Thank you for your interest on our PEC (Private Education Counselor) Online Program. <br/> 
+				We would like to arrange an online interview with you, please choose from below a suitable time for you to attend the interview, or provide your availability if not any.<br/> 
+				<br/> 
+				Kind Regards,<br/>
+				<br/>
+				US Tutor<br/>
+				Teacher recruitment team<br/>
 			</small>
 
 			<div class="full-name">
