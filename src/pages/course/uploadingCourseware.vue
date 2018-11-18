@@ -49,7 +49,8 @@
 import { mapState } from "vuex";
 import { 
 	courseScheduleBareGetById,
-	courseSchedulePutById
+	courseSchedulePutById,
+	courseUpdateName
 } from '@/api/course_schedule'
 import { 
 	getCourseWareBySchedule,
@@ -120,11 +121,9 @@ export default {
 			return this.oldWareLs.map(id => coursewareDeleteById(id))
 		},
 		updateSchedule() {
-			return courseSchedulePutById(this.form.course_schedule_id, {
+			return courseUpdateName({
 				name: this.form.course_schedule_name,
-				course_id: this.$route.query.course_id,
-				updated_at: new Date(),
-				updated_by: this.userName
+				course_schedule_id: this.form.course_schedule_id
 			})
 		}
 	},

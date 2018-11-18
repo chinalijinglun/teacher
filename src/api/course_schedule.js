@@ -12,3 +12,5 @@ export const courseSchedulePutById = (id, form) => baseAxios.put(`/api/v1/course
 export const courseScheduleBareGet = (params, others) => baseAxios.get('/api/v1/_bare/course_schedule', { params: { q: JSON.stringify(params), results_per_page: 10, ...others } });
 
 export const courseScheduleBareGetById = (id) => baseAxios.get(`/api/v1/_bare/course_schedule/${id}`);
+
+export const courseUpdateName = form => baseAxios.post('/teacher/edit_course_schedule', form);
