@@ -20,53 +20,32 @@
 			</div>
 		</div>
 		<div class="header-bottom">
-			<img src="@/assets/logo1.png" alt="" class="logo">
+			<img @click="$router.push('/en/index')" src="@/assets/logo1.png" alt="" class="logo">
 			<ul class="nav">
-				<li>
+				<li @click="$router.push('/en/school')">
 					<p>School Staff</p>
 					<p>师资团队</p>
 				</li>
-				<li>
+				<li @click="$router.push('/en/course')">
 					<p>Course System</p>
 					<p>课程体系</p>
 				</li>
-				<li>
+				<li @click="$router.push('/en/service')">
 					<p>Service System</p>
 					<p>教学服务</p>
 				</li>
-				<li class="mouserover" v-on:mouseover="mouserover()" v-on:mouseout="mouseout()">
+				<li @click="$router.push('/en/admissions')">
 					<p>Admissions</p>
 					<p>招生入学</p>
 				</li>
-				<li>
+				<li @click="$router.push('/en/about')">
 					<p>About US</p>
 					<p>关于我们</p>
 				</li>
 			</ul>
 			<div class="btn-box">
 			</div>
-			<div class="tels" v-if="show">
-				<img src="@/assets/dianhua_b.png" alt="" class="b_dianhua">
-			</div>
 		</div>
-		<ul class="img-box" v-if="showAdmissions">
-			<li>
-				<img src="@/assets/zhaosheng01.png" alt="">
-				<p>AP</p>
-			</li>
-			<li>
-				<img src="@/assets/zhaosheng02.png" alt="">
-				<p>提升GPA</p>
-			</li>
-			<li>
-				<img src="@/assets/zhaosheng03.png" alt="">
-				<p>衔接课程</p>
-			</li>
-			<li>
-				<img src="@/assets/zhaosheng04.png" alt="">
-				<p>中美学分双认证</p>
-			</li>
-		</ul>
 	</div>
 </template>
 <script>

@@ -35,6 +35,13 @@ import preview from '@/pages/preview';
 import completeInfo from '@/pages/applyProcess/completeInfo'
 import basicEdit from '@/pages/center/basicInformation'
 import experienceEdit from '@/pages/center/experience'
+import index from '@/pages/index/index'
+import about from '@/pages/index/about'
+import admissions from '@/pages/index/admissions'
+import concat from '@/pages/index/concat'
+import enCourse from '@/pages/index/course'
+import school from '@/pages/index/school'
+import service from '@/pages/index/service'
 
 Vue.use(Router)
 
@@ -42,6 +49,54 @@ export default new Router({
 	routes: [
 		//注册
 		//邮箱注册
+		{
+			title: '教室',
+			path: '',
+			name: 'index',
+			component: index
+		},
+		{
+			title: '首页',
+			path: '/en/index',
+			name: 'index',
+			component: index
+		},
+		{
+			title: '关于我们',
+			path: '/en/about',
+			name: 'about',
+			component: about
+		},
+		{
+			title: '招生入学',
+			path: '/en/admissions',
+			name: 'admissions',
+			component: admissions
+		},
+		{
+			title: '联系我们',
+			path: '/en/concat',
+			name: 'concat',
+			component: concat
+		},
+		{
+			title: '课程体系',
+			path: '/en/course',
+			name: 'enCourse',
+			component: enCourse
+		},
+		{
+			title: '师资团队',
+			path: '/en/school',
+			name: 'school',
+			component: school
+		},
+		{
+			title: '教学服务',
+			path: '/en/service',
+			name: 'service',
+			component: service
+		},
 		{
 			title: '教室',
 			path: '/room',
@@ -80,7 +135,7 @@ export default new Router({
 		},
 		{
 			title: 'My center',
-			path: '',
+			path: '/center',
 			redirect: { name: 'center' }
 		},
 		{
