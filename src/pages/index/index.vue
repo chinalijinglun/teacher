@@ -10,7 +10,7 @@
     </div>
     <div class="p-2">
       <div class="inner">
-        <a href="school.html" class="link"></a>
+        <a class="link"></a>
         <div class="cover">
           <img src="@/assets/2_left.png">
         </div>
@@ -34,13 +34,13 @@
     </div>
     <div class="p-3">
       <div class="inner">
-        <a href="#p-4"></a>
+        <a></a>
         <img src="@/assets/3_desc.png">
       </div>
     </div>
     <div class="p-4" id='p-4'>
       <div class="inner">
-        <a href="#/en/service"></a>
+        <a></a>
         <img src="@/assets/4_desc.jpg">
       </div>
     </div>

@@ -1,12 +1,7 @@
 <template>
 	<div class="footers">
 		<div class="center">
-			<span>关于我们</span>
-			<span>|</span>
-			<span>联系我们</span>
-			<span>|</span>
-			<span>加入我们</span>
-			<span>|</span>
+			<span>About Us</span>
 			<span>Common Mistakes/Problems</span>
 			<div class="right">
 				京ICP备15062105号-1 京公网安备 11010802020457号

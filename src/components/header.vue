@@ -22,22 +22,22 @@
 		<div class="header-bottom">
 			<img @click="$router.push('/en/index')" src="@/assets/logo1.png" alt="" class="logo">
 			<ul class="nav">
-				<li @click="$router.push('/en/school')">
+				<!-- <li @click="$router.push('/en/school')">
 					<p>School Staff</p>
 					<p>师资团队</p>
-				</li>
+				</li> -->
 				<li @click="$router.push('/en/course')">
 					<p>Course System</p>
 					<p>课程体系</p>
 				</li>
-				<li @click="$router.push('/en/service')">
+				<!-- <li @click="$router.push('/en/service')">
 					<p>Service System</p>
 					<p>教学服务</p>
-				</li>
-				<li @click="$router.push('/en/admissions')">
+				</li> -->
+				<!-- <li @click="$router.push('/en/admissions')">
 					<p>Admissions</p>
 					<p>招生入学</p>
-				</li>
+				</li> -->
 				<li @click="$router.push('/en/about')">
 					<p>About US</p>
 					<p>关于我们</p>
