@@ -11,12 +11,12 @@ function getCurPath() {
   return ''
 }
 
-function load() {
+function load(needValid) {
   const {
     authorization,
     id
   } = store.state.auth
-  console.log(authorization, id)
+  if (!needValid) return Promise.resolve(true)
   if(authorization && id) {
     return store.dispatch('TEACHER_GET_BY_ID', id).then( teacher => {
       const {

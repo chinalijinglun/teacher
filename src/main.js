@@ -28,7 +28,10 @@ Vue.prototype.$loginOut = function() {
 const whiltPage = [
   '/login',
   '/regist',
-  '/reset'
+  '/reset',
+  '/en/index',
+  '/en/about',
+  '/'
 ]
 const needSign = [
   '/center',
@@ -48,7 +51,7 @@ router.beforeEach((to, from, next) => {
   return next()
 })
 
-load().then(url => {
+load(whiltPage.indexOf(router.currentRoute.path) === -1).then(url => {
   if(url !== true) {
     router.push(url)
   }
