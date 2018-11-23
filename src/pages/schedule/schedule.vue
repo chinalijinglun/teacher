@@ -40,7 +40,7 @@ export default {
 			window.open(`#/room?id=${id}`)
     },
     isToday(day) {
-      return this.$dateFmt(new Date(day), 'YYYY-MM-DD') === this.$dateFmt(new Date(), 'YYYY-MM-DD');
+      return day === this.$dateFmt(new Date(), 'YYYY-MM-DD');
     },
     isEnd(end) {
       return new Date() > new Date(end)
