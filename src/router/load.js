@@ -1,15 +1,4 @@
 import store from '../store'
-import { whiltPath } from '../config/config'
-
-function getCurPath() {
-  const hash = location.hash;
-  const regExp = /\#([^\#\?]+)\??/;
-  if(hash) {
-    const res = regExp.exec(hash)
-    return res[1]
-  }
-  return ''
-}
 
 function load(needValid) {
   const {
@@ -22,12 +11,6 @@ function load(needValid) {
       const {
         state
       } = teacher;
-
-      const path = getCurPath();
-      if(whiltPath.indexOf(path) !== -1) {
-        return true;
-      }
-      
       switch (state) {
         case 1: 
         case 2:

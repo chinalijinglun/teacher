@@ -31,6 +31,7 @@ const whiltPage = [
   '/reset',
   '/en/index',
   '/en/about',
+  '/en/course',
   '/'
 ]
 const needSign = [
@@ -51,7 +52,17 @@ router.beforeEach((to, from, next) => {
   return next()
 })
 
-load(whiltPage.indexOf(router.currentRoute.path) === -1).then(url => {
+function getCurPath() {
+  const hash = location.hash;
+  const regExp = /\#([^\#\?]+)\??/;
+  if(hash) {
+    const res = regExp.exec(hash)
+    return res[1]
+  }
+  return ''
+}
+
+load(whiltPage.indexOf(getCurPath()) === -1).then(url => {
   if(url !== true) {
     router.push(url)
   }

@@ -40,7 +40,7 @@ export default {
   methods: {
     login() {
       authLoginPost(this.form, this.keep).then(resp => {
-        return load()
+        return load(true)
       }).then(url => {
         if(url === true) {
           this.$router.push('/center')
