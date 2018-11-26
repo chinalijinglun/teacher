@@ -1,15 +1,15 @@
 import store from '../store'
-import { whiltPath } from '../config/config'
+// import { whiltPath } from '../config/config'
 
-function getCurPath() {
-  const hash = location.hash;
-  const regExp = /\#([^\#\?]+)\??/;
-  if(hash) {
-    const res = regExp.exec(hash)
-    return res[1]
-  }
-  return ''
-}
+// function getCurPath() {
+//   const hash = location.hash;
+//   const regExp = /\#([^\#\?]+)\??/;
+//   if(hash) {
+//     const res = regExp.exec(hash)
+//     return res[1]
+//   }
+//   return ''
+// }
 
 function load(needValid) {
   const {
@@ -23,10 +23,12 @@ function load(needValid) {
         state
       } = teacher;
 
-      const path = getCurPath();
-      if(whiltPath.indexOf(path) !== -1) {
-        return true;
-      }
+      // const path = getCurPath();
+      // if(whiltPath.indexOf(path) !== -1) {
+      //   return true;
+      // }
+
+      // console.log(teacher)
       
       switch (state) {
         case 1: 
