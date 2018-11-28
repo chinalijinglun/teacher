@@ -42,7 +42,7 @@ baseAxios.interceptors.response.use(resp => {
     }
   }, 50)
   if(!error.response) {
-    return router.push('/login');
+    return Promise.reject(error);
   }
   if(error.response && error.response.data) {
     Message.error(error.response.data.error || error.response.data.message || 'unknown error!');
