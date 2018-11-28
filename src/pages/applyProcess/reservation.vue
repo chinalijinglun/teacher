@@ -148,14 +148,12 @@ export default {
 			}
 		},
 		getStartAndEnd(day, [start, end]) {
-			const date = this.$dateFmt(new Date(day), 'YYYY-MM-DD');
-			const startTime = this.$dateFmt(new Date(start), 'HH:mm:ss');
+			const date = this.$dateFmt(new Date(start), 'YYYY-MM-DD');
 			const startTimeView = this.$dateFmt(new Date(start), 'HH:mm');
-			const endTime = this.$dateFmt(new Date(end), 'HH:mm:ss');;
 			const endTimeView = this.$dateFmt(new Date(end), 'HH:mm');
 			return {
-				start: new Date(date+' '+startTime),
-				end: new Date(date+' '+endTime),
+				start: new Date(start),
+				end: new Date(end),
 				viewStr: date+' '+startTimeView+'-'+endTimeView
 			}
 		}

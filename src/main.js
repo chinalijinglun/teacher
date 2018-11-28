@@ -51,7 +51,11 @@ router.beforeEach((to, from, next) => {
   return next()
 })
 
-load(whiltPage.indexOf(router.currentRoute.path) === -1).then(url => {
+function getCurrentPath() {
+  return location.hash.slice(1)
+}
+
+load(whiltPage.indexOf(getCurrentPath()) === -1).then(url => {
   if(url !== true) {
     router.push(url)
   }
