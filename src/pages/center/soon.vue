@@ -90,7 +90,9 @@
 					page_no: 1,
 					page_limit: 1000
 				}).then(resp => {
-					const courseInfo = resp.data.objects[0];
+					const courseInfo = resp.data.objects.sort((a, b) => {
+						return new Date(a.start).getTime() - new Date(b.start).getTime()
+					})[0];
 					previewDoc(courseInfo.course_schedule_id).then(resp => {
 						courseInfo.courseware = resp.data.objects
 						this.futureCourse = courseInfo;

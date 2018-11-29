@@ -165,6 +165,7 @@ li {
 .logo {
   margin-top: 19px;
   float: left;
+  cursor: pointer;
 }
 .nav {
   overflow: hidden;
