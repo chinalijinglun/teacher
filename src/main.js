@@ -31,6 +31,7 @@ const whiltPage = [
   '/reset',
   '/en/index',
   '/en/about',
+  '/room',
   '/'
 ]
 const needSign = [
@@ -52,7 +53,7 @@ router.beforeEach((to, from, next) => {
 })
 
 function getCurrentPath() {
-  return location.hash.slice(1)
+  return location.hash.slice(1).split('?')[0]
 }
 
 load(whiltPage.indexOf(getCurrentPath()) === -1).then(url => {
