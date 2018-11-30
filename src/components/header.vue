@@ -38,7 +38,7 @@
 					<p>招生入学</p>
 				</li> -->
 				<li @click="$router.push('/en/about')">
-					<p>About US</p>
+					<p>About Us</p>
 					<p>关于我们</p>
 				</li>
 			</ul>
