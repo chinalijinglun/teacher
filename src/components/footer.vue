@@ -1,8 +1,7 @@
 <template>
 	<div class="footers">
 		<div class="center">
-			<span>About Us</span>
-			<span>Common Mistakes/Problems</span>
+			<span @click="$router.push('/en/about')">About Us</span>
 			<div class="right">
 				京ICP备15062105号-1 京公网安备 11010802020457号
 			</div>

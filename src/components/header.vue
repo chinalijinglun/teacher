@@ -12,9 +12,8 @@
 					<span class="user" v-else>
 						<span @click="logout">Login</span>
 					</span>
-					<span class="mouseenter">
-						<span class="span">join us</span>
-						<img src="@/assets/erweima.png" alt="" class="erweima">
+					<span>
+						<span class="span">Join Us</span>
 					</span>
 				</div>
 			</div>
@@ -100,7 +99,7 @@ li {
 .centers {
   height: 33px;
   margin: 0 auto;
-  width: 1400px;
+  max-width: 1400px;
   /* overflow: hidden; */
 }
 .left {
@@ -133,12 +132,6 @@ li {
 }
 .wx_h {
   cursor: pointer;
-}
-.mouseenter {
-  position: relative;
-  background: url(../assets/wx_h.jpg) no-repeat center left;
-  display: inline-block;
-  width: 100px;
 }
 .erweima {
   position: absolute;
