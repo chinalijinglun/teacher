@@ -13,7 +13,7 @@
 						<span @click="logout">Login</span>
 					</span>
 					<span>
-						<span class="span">Join Us</span>
+						<span class="span" @click="$router.push('/regist')">Join Us</span>
 					</span>
 				</div>
 			</div>
@@ -127,8 +127,8 @@ li {
   font-size: 12px;
   color: #666666;
   line-height: 33px;
-  float: right;
   cursor: pointer;
+  margin-right: 71px;
 }
 .wx_h {
   cursor: pointer;
@@ -233,12 +233,10 @@ li {
   color: #ffffff;
 }
 .user {
-  float: left;
   display: inline-block;
   line-height: 33px;
   font-size: 12px;
   color: #666666;
-  margin-right: 71px;
 }
 .user span {
   margin-right: 10px;
