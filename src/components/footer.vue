@@ -20,7 +20,7 @@ export default {};
   background: #06060b;
 }
 .center {
-  width: 1400px;
+  min-width: 1200px;
   margin: 0 auto;
   height: 55px;
   line-height: 55px;

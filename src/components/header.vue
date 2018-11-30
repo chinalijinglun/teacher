@@ -99,7 +99,7 @@ li {
 .centers {
   height: 33px;
   margin: 0 auto;
-  max-width: 1400px;
+  min-width: 1200px;
   /* overflow: hidden; */
 }
 .left {
@@ -149,7 +149,7 @@ li {
   background: url(../assets/weixin.png) no-repeat center left;
 }
 .header-bottom {
-  width: 1400px;
+  min-width: 1200px;
   margin: 0 auto;
   height: 104px;
   position: relative;

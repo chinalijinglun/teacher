@@ -1,12 +1,14 @@
 <template>
   <div class="index-container">
     <div class="banner" id='HomeBanner'>
-      <div class="item"></div>
-      <div class="item"></div>
+      <div class="item">
+        <img src="@/assets/2_left.png">
+      </div>
+      <!-- <div class="item"></div>
       <div class="dots">
         <a href="javascript:void(0)" class="active"></a>
         <a href="javascript:void(0)"></a>
-      </div>
+      </div> -->
     </div>
     <div class="p-2">
       <div class="inner">
@@ -77,7 +79,7 @@
 <script>
   export default {
     mounted () {
-      new Slide('#HomeBanner');
+      // new Slide('#HomeBanner');
       new Slide('#Page2Desc');
 
       var pageWidth = $(document).width(),
