@@ -2,7 +2,6 @@
   <div class="index-container">
     <div class="banner" id='HomeBanner'>
       <div class="item">
-        <img src="@/assets/2_left.png">
       </div>
       <!-- <div class="item"></div>
       <div class="dots">
