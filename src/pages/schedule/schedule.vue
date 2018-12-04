@@ -46,7 +46,11 @@ export default {
       return new Date() > new Date(end)
     },
     getSchedule({startDay, endDay}) {
-      this.query(new Date(startDay.full), new Date(endDay.full))
+      const timezone = this.$store.state.userinfo.teacher.timezone
+      const offset = moment().tz(timezone.split(' ')[0]).utcOffset();
+      const start = new Date(startDay.full).getTime() - offset * 60000;
+      const end = new Date(endDay.full).getTime() + 24*3600*1000 - offset * 60000
+      this.query(new Date(start), new Date(end))
     },
     query(start, end) {
       mySchedule({
